@@ -1,0 +1,8 @@
+prefix=/home/arob/catkin_ws/install
+
+Name: arob_lab2
+Description: Description of arob_lab2
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -larob_lab2
+Requires: 

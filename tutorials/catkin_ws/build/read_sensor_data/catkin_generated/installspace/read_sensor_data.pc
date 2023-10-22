@@ -1,0 +1,8 @@
+prefix=/home/arob/catkin_ws/install
+
+Name: read_sensor_data
+Description: Description of read_sensor_data
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs message_filters

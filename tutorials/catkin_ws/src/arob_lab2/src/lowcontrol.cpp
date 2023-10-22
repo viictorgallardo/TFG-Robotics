@@ -7,6 +7,7 @@
 #include <math.h>
 #include <fstream>
 #include <tf/transform_broadcaster.h>
+#include <sensor_msgs/LaserScan.h>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class Lowlevelcontrol {
 	ros::Publisher velocity_pub_;
 	ros::Subscriber position_sub_;
 	ros::Subscriber goal_sub_;
+	ros::Subscriber laser_data_sub;
 	geometry_msgs::PoseStamped Goal;
 	float krho, kalpha, kbeta;
 	bool noGoal; 
@@ -25,6 +27,7 @@ public:
 		position_sub_ = nh_.subscribe("/base_pose_ground_truth", 1, &Lowlevelcontrol::positionCb, this);
 		goal_sub_ = nh_.subscribe("goal", 1, &Lowlevelcontrol::goalCb, this);
 		velocity_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1);
+		
 		// mensaje que controla el robot cuando no hay goal. De esta manera, no se movera el robot ya que 
 		// no hay meta a la que llegar
 		Goal.pose.position.x = 0; //update the initial values of these variables
@@ -47,6 +50,7 @@ public:
 		Goal.pose.position.x = msg.pose.position.x;
 		Goal.pose.position.y = msg.pose.position.y;
 	}
+
 
 	void positionCb(const nav_msgs::Odometry& msg) {
 

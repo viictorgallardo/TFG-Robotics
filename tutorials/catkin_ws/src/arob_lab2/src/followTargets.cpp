@@ -17,12 +17,13 @@ class FollowTargetsClass {
 	std::vector<std::vector<float> > targets;
 	ifstream inFile;
 	int currentTarget; //index with the next target to reach
+	int tamanyo;
 
 
 public:
 	FollowTargetsClass() { 
 		inFile.open("/home/arob/catkin_ws/src/arob_lab2/src/targets.txt");
-
+		tamanyo = 0;
 		cout << "Hola" << endl;
 		string aux;
 		string lineaX, lineaY;
@@ -42,6 +43,7 @@ public:
 			auxVector.push_back(x);
 			auxVector.push_back(y);
 			targets.push_back(auxVector);
+			tamanyo++; // tamanyo en lineas del archivo(num de posis que hay)
 		}
 
 		inFile.close();
@@ -54,8 +56,10 @@ public:
 		Goal.pose.position.x = target0[0];
 		Goal.pose.position.y = target0[1];
 	
-
+	
 		goal_pub_.publish(Goal);
+	
+
 
 		cout << "Goal x " << Goal.pose.position.x << endl;
 		cout << "Goal y " << Goal.pose.position.y << endl;	
@@ -81,15 +85,18 @@ public:
 
 		if(abs(Goal.pose.position.x - msg.pose.pose.position.x) < 0.1 ){
 			//Se ha llegado ya
-			currentTarget++;
-			std::vector<float> aux = targets[currentTarget];
-			Goal.pose.position.x = aux[0];
-			Goal.pose.position.y = aux[1];
+			if(currentTarget < tamanyo - 1){
+				currentTarget++;
+				std::vector<float> aux = targets[currentTarget];
+				Goal.pose.position.x = aux[0];
+				Goal.pose.position.y = aux[1];
 
-			goal_pub_.publish(Goal);
+				goal_pub_.publish(Goal);
 
-			cout << "Goal x " << Goal.pose.position.x << endl;
-			cout << "Goal y " << Goal.pose.position.y << endl;
+				cout << "Goal x " << Goal.pose.position.x << endl;
+				cout << "Goal y " << Goal.pose.position.y << endl;
+			}
+			
 		}else{
 			//No se hace nada
 		}
