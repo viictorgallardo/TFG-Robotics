@@ -1,2 +1,0 @@
-arob_lab2:first_package:second_package:turtle_comunic
--DCATKIN_DEVEL_PREFIX=/home/arob/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/arob/catkin_ws/install -G Unix Makefiles

@@ -1,8 +1,0 @@
-<launch>
-	<node name="stage_sim" pkg="stage_ros" type="stageros" args="$(find read_sensor_data)/world/simple.world" output="screen"/>
-  
-	<node name="read_sync" pkg="read_sensor_data" type="readOdomScan" output="screen">
-		<remap from="/pose" to="/base_pose_ground_truth"/>
-		<remap from="/scan" to="/base_scan"/>
-	</node>
-</launch>
