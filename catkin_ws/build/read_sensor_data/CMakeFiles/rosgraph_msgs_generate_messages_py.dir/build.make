@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/arob/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/arob/Desktop/TFG-Robotics/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/arob/catkin_ws/build
+CMAKE_BINARY_DIR = /home/arob/Desktop/TFG-Robotics/catkin_ws/build
 
 # Utility rule file for rosgraph_msgs_generate_messages_py.
 
@@ -63,10 +63,10 @@ read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build: rosgra
 .PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 
 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	cd /home/arob/catkin_ws/build/read_sensor_data && $(CMAKE_COMMAND) -P CMakeFiles/rosgraph_msgs_generate_messages_py.dir/cmake_clean.cmake
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data && $(CMAKE_COMMAND) -P CMakeFiles/rosgraph_msgs_generate_messages_py.dir/cmake_clean.cmake
 .PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend:
-	cd /home/arob/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arob/catkin_ws/src /home/arob/catkin_ws/src/read_sensor_data /home/arob/catkin_ws/build /home/arob/catkin_ws/build/read_sensor_data /home/arob/catkin_ws/build/read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arob/Desktop/TFG-Robotics/catkin_ws/src /home/arob/Desktop/TFG-Robotics/catkin_ws/src/read_sensor_data /home/arob/Desktop/TFG-Robotics/catkin_ws/build /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
 

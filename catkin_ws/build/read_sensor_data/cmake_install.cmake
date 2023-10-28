@@ -1,8 +1,8 @@
-# Install script for directory: /home/arob/catkin_ws/src/read_sensor_data
+# Install script for directory: /home/arob/Desktop/TFG-Robotics/catkin_ws/src/read_sensor_data
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/arob/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/arob/Desktop/TFG-Robotics/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/arob/catkin_ws/build/read_sensor_data/catkin_generated/installspace/read_sensor_data.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/catkin_generated/installspace/read_sensor_data.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/read_sensor_data/cmake" TYPE FILE FILES
-    "/home/arob/catkin_ws/build/read_sensor_data/catkin_generated/installspace/read_sensor_dataConfig.cmake"
-    "/home/arob/catkin_ws/build/read_sensor_data/catkin_generated/installspace/read_sensor_dataConfig-version.cmake"
+    "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/catkin_generated/installspace/read_sensor_dataConfig.cmake"
+    "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/catkin_generated/installspace/read_sensor_dataConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/read_sensor_data" TYPE FILE FILES "/home/arob/catkin_ws/src/read_sensor_data/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/read_sensor_data" TYPE FILE FILES "/home/arob/Desktop/TFG-Robotics/catkin_ws/src/read_sensor_data/package.xml")
 endif()
 

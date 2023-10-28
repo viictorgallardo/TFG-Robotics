@@ -1,4 +1,4 @@
-prefix=/home/arob/catkin_ws/install
+prefix=/home/arob/Desktop/TFG-Robotics/catkin_ws/install
 
 Name: read_sensor_data
 Description: Description of read_sensor_data

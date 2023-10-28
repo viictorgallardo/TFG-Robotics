@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/arob/catkin_ws/devel/lib/read_sensor_data/readOdomScan"
-  "/home/arob/catkin_ws/devel/lib/read_sensor_data/readOdomScan.pdb"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/read_sensor_data/readOdomScan"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/read_sensor_data/readOdomScan.pdb"
   "CMakeFiles/readOdomScan.dir/src/readOdomScan.cpp.o"
 )
 

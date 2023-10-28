@@ -1,8 +1,8 @@
-# Install script for directory: /home/arob/catkin_ws/src/arob_lab2
+# Install script for directory: /home/arob/Desktop/TFG-Robotics/catkin_ws/src/arob_lab2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/arob/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/arob/Desktop/TFG-Robotics/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/arob/catkin_ws/build/arob_lab2/catkin_generated/installspace/arob_lab2.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/arob_lab2/catkin_generated/installspace/arob_lab2.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/arob_lab2/cmake" TYPE FILE FILES
-    "/home/arob/catkin_ws/build/arob_lab2/catkin_generated/installspace/arob_lab2Config.cmake"
-    "/home/arob/catkin_ws/build/arob_lab2/catkin_generated/installspace/arob_lab2Config-version.cmake"
+    "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/arob_lab2/catkin_generated/installspace/arob_lab2Config.cmake"
+    "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/arob_lab2/catkin_generated/installspace/arob_lab2Config-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/arob_lab2" TYPE FILE FILES "/home/arob/catkin_ws/src/arob_lab2/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/arob_lab2" TYPE FILE FILES "/home/arob/Desktop/TFG-Robotics/catkin_ws/src/arob_lab2/package.xml")
 endif()
 

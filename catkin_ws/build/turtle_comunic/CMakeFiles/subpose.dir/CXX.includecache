@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/arob/catkin_ws/src/turtle_comunic/src/subpose.cpp
+/home/arob/Desktop/TFG-Robotics/catkin_ws/src/turtle_comunic/src/subpose.cpp
 ros/ros.h
 -
 turtlesim/Pose.h

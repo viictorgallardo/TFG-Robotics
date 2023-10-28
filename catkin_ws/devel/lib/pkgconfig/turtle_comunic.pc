@@ -1,4 +1,4 @@
-prefix=/home/arob/catkin_ws/devel
+prefix=/home/arob/Desktop/TFG-Robotics/catkin_ws/devel
 
 Name: turtle_comunic
 Description: Description of turtle_comunic

@@ -1,8 +1,8 @@
-# Install script for directory: /home/arob/catkin_ws/src/turtle_comunic
+# Install script for directory: /home/arob/Desktop/TFG-Robotics/catkin_ws/src/turtle_comunic
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/arob/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/arob/Desktop/TFG-Robotics/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/arob/catkin_ws/build/turtle_comunic/catkin_generated/installspace/turtle_comunic.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/turtle_comunic/catkin_generated/installspace/turtle_comunic.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/turtle_comunic/cmake" TYPE FILE FILES
-    "/home/arob/catkin_ws/build/turtle_comunic/catkin_generated/installspace/turtle_comunicConfig.cmake"
-    "/home/arob/catkin_ws/build/turtle_comunic/catkin_generated/installspace/turtle_comunicConfig-version.cmake"
+    "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/turtle_comunic/catkin_generated/installspace/turtle_comunicConfig.cmake"
+    "/home/arob/Desktop/TFG-Robotics/catkin_ws/build/turtle_comunic/catkin_generated/installspace/turtle_comunicConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/turtle_comunic" TYPE FILE FILES "/home/arob/catkin_ws/src/turtle_comunic/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/turtle_comunic" TYPE FILE FILES "/home/arob/Desktop/TFG-Robotics/catkin_ws/src/turtle_comunic/package.xml")
 endif()
 

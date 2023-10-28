@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/arob/catkin_ws/devel/lib/arob_lab2/followTargets"
-  "/home/arob/catkin_ws/devel/lib/arob_lab2/followTargets.pdb"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/arob_lab2/followTargets"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/arob_lab2/followTargets.pdb"
   "CMakeFiles/followTargets.dir/src/followTargets.cpp.o"
 )
 

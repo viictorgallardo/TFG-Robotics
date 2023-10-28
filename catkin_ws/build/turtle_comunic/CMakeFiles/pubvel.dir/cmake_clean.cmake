@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/arob/catkin_ws/devel/lib/turtle_comunic/pubvel"
-  "/home/arob/catkin_ws/devel/lib/turtle_comunic/pubvel.pdb"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/turtle_comunic/pubvel"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/turtle_comunic/pubvel.pdb"
   "CMakeFiles/pubvel.dir/src/pubvel.cpp.o"
 )
 

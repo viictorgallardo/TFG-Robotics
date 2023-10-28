@@ -1,4 +1,4 @@
-prefix=/home/arob/catkin_ws/install
+prefix=/home/arob/Desktop/TFG-Robotics/catkin_ws/install
 
 Name: arob_lab2
 Description: Description of arob_lab2

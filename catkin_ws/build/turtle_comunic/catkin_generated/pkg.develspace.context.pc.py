@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "turtle_comunic"
-PROJECT_SPACE_DIR = "/home/arob/catkin_ws/devel"
+PROJECT_SPACE_DIR = "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel"
 PROJECT_VERSION = "0.0.1"

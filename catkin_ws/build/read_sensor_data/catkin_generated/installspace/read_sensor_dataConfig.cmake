@@ -67,14 +67,14 @@ set(read_sensor_data_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(read_sensor_data_SOURCE_PREFIX /home/arob/catkin_ws/src/read_sensor_data)
-  set(read_sensor_data_DEVEL_PREFIX /home/arob/catkin_ws/devel)
+  set(read_sensor_data_SOURCE_PREFIX /home/arob/Desktop/TFG-Robotics/catkin_ws/src/read_sensor_data)
+  set(read_sensor_data_DEVEL_PREFIX /home/arob/Desktop/TFG-Robotics/catkin_ws/devel)
   set(read_sensor_data_INSTALL_PREFIX "")
   set(read_sensor_data_PREFIX ${read_sensor_data_DEVEL_PREFIX})
 else()
   set(read_sensor_data_SOURCE_PREFIX "")
   set(read_sensor_data_DEVEL_PREFIX "")
-  set(read_sensor_data_INSTALL_PREFIX /home/arob/catkin_ws/install)
+  set(read_sensor_data_INSTALL_PREFIX /home/arob/Desktop/TFG-Robotics/catkin_ws/install)
   set(read_sensor_data_PREFIX ${read_sensor_data_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/arob/catkin_ws/install/lib;/home/arob/catkin_ws/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/arob/Desktop/TFG-Robotics/catkin_ws/install/lib;/home/arob/catkin_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

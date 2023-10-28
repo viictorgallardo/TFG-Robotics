@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/arob/catkin_ws/src/read_sensor_data/src/readOdomScan.cpp
+/home/arob/Desktop/TFG-Robotics/catkin_ws/src/read_sensor_data/src/readOdomScan.cpp
 message_filters/subscriber.h
 -
 message_filters/synchronizer.h
@@ -20,7 +20,7 @@ nav_msgs/Odometry.h
 tf/transform_datatypes.h
 -
 ros/ros.h
-/home/arob/catkin_ws/src/read_sensor_data/src/ros/ros.h
+/home/arob/Desktop/TFG-Robotics/catkin_ws/src/read_sensor_data/src/ros/ros.h
 
 /opt/ros/noetic/include/geometry_msgs/Point.h
 string

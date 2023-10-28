@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/arob/catkin_ws/devel/lib/arob_lab2/robot_location"
-  "/home/arob/catkin_ws/devel/lib/arob_lab2/robot_location.pdb"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/arob_lab2/robot_location"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/arob_lab2/robot_location.pdb"
   "CMakeFiles/robot_location.dir/src/robot_location.cpp.o"
 )
 

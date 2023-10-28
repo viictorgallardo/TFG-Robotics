@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/arob/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/arob/Desktop/TFG-Robotics/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/arob/catkin_ws/build
+CMAKE_BINARY_DIR = /home/arob/Desktop/TFG-Robotics/catkin_ws/build
 
 # Utility rule file for geometry_msgs_generate_messages_nodejs.
 
@@ -63,10 +63,10 @@ arob_lab2/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build: geometry_
 .PHONY : arob_lab2/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
 
 arob_lab2/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean:
-	cd /home/arob/catkin_ws/build/arob_lab2 && $(CMAKE_COMMAND) -P CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/cmake_clean.cmake
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build/arob_lab2 && $(CMAKE_COMMAND) -P CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/cmake_clean.cmake
 .PHONY : arob_lab2/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
 
 arob_lab2/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/depend:
-	cd /home/arob/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arob/catkin_ws/src /home/arob/catkin_ws/src/arob_lab2 /home/arob/catkin_ws/build /home/arob/catkin_ws/build/arob_lab2 /home/arob/catkin_ws/build/arob_lab2/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arob/Desktop/TFG-Robotics/catkin_ws/src /home/arob/Desktop/TFG-Robotics/catkin_ws/src/arob_lab2 /home/arob/Desktop/TFG-Robotics/catkin_ws/build /home/arob/Desktop/TFG-Robotics/catkin_ws/build/arob_lab2 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/arob_lab2/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : arob_lab2/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/depend
 

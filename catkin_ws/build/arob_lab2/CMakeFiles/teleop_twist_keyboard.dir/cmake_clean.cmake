@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/arob/catkin_ws/devel/lib/arob_lab2/teleop_twist_keyboard"
-  "/home/arob/catkin_ws/devel/lib/arob_lab2/teleop_twist_keyboard.pdb"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/arob_lab2/teleop_twist_keyboard"
+  "/home/arob/Desktop/TFG-Robotics/catkin_ws/devel/lib/arob_lab2/teleop_twist_keyboard.pdb"
   "CMakeFiles/teleop_twist_keyboard.dir/src/teleop_twist_keyboard.cpp.o"
 )
 
