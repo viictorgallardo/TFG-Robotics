@@ -78,6 +78,7 @@ define erratic position
 )
 
 
+
 define modelPractica model
 (
   size [0.150 0.150 0.150]
@@ -90,6 +91,10 @@ define modelPractica model
 
 # throw in a robot
 erratic( pose [ -6 -6 0 0 ] name "Audrie" color "blue")
+
+#erratic( pose [ -5 -5 0 0 ] name "robotASeguir" color "green")
+
+
 block( pose [ 4 4 0 0 ] name "obstacle" color "red")
 
 #Se añaden los puntos de meta para el robot

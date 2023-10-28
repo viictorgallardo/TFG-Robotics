@@ -22,7 +22,8 @@ class FollowTargetsClass {
 
 public:
 	FollowTargetsClass() { 
-		inFile.open("/home/arob/catkin_ws/src/arob_lab2/src/targets.txt");
+		//TODO: CAMBIAR LA RUTA, NO PUEDE SER ABSOLUTA SI NO NO COMPILA EN OTRO PC
+		inFile.open("/home/arob/Desktop/TFG-Robotics/catkin_ws/src/arob_lab2/src/targets.txt");
 		tamanyo = 0;
 		cout << "Hola" << endl;
 		string aux;
