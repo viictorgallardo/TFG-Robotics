@@ -65,7 +65,8 @@ public:
 		cout << "Goal x " << Goal.pose.position.x << endl;
 		cout << "Goal y " << Goal.pose.position.y << endl;	
 		//Cuando le llegue mensaje de odometria ejecutara positionCb
-		position_sub_ = nh_.subscribe("/base_pose_ground_truth", 1, &FollowTargetsClass::positionCb, this);
+		//Se pone robot_0 para que coja al primer robot, ya que hay varios
+		position_sub_ = nh_.subscribe("/robot_0/base_pose_ground_truth", 1, &FollowTargetsClass::positionCb, this);
 
 		//Leo target
 

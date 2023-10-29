@@ -15,9 +15,11 @@ class NodeSync
   NodeSync()
   {
     noGoal = true;
+    //Estos dos no se ponen a robot_0 porque ya se remapearon en el start.launch
     scan_sub_.subscribe(nh_, "/scan", 1);
     pose_sub_.subscribe(nh_, "/pose", 1);
     goal_sub_ = nh_.subscribe("goal", 1, &NodeSync::goalCb, this);
+    //Tampoco se pone robot0 ya esta remapeado
     velocity_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1);
     sync_.reset(new Sync(MySyncPolicy(10), scan_sub_, pose_sub_));
     sync_->registerCallback(boost::bind(&NodeSync::callback, this, _1, _2));
@@ -44,7 +46,7 @@ class NodeSync
     */
   void callback(const sensor_msgs::LaserScan::ConstPtr& laser_scan, const nav_msgs::Odometry::ConstPtr& estimate_pose)
   {
-    ROS_INFO("Synchronization successful");
+    //ROS_INFO("Synchronization successful");
     
     // Get position info
     tf::Quaternion q(	estimate_pose->pose.pose.orientation.x, 
@@ -54,7 +56,7 @@ class NodeSync
     tf::Matrix3x3 m(q);
     double roll, pitch, yaw;
     m.getRPY(roll, pitch, yaw);
-    ROS_INFO("Robot Pose x:%f ; y:%f ; th:%f ;", estimate_pose->pose.pose.position.x,estimate_pose->pose.pose.position.y,yaw);
+    //ROS_INFO("Robot Pose x:%f ; y:%f ; th:%f ;", estimate_pose->pose.pose.position.x,estimate_pose->pose.pose.position.y,yaw);
 
 
     /*BUCLE DE CONTROL DE VELOCIDADES*/
@@ -73,7 +75,7 @@ class NodeSync
 		if (beta > M_PI) beta = -2*M_PI + beta;
 		//angle to the goal
 		float alpha = beta - tf::getYaw(estimate_pose->pose.pose.orientation);
-
+  /*
 		std::cout << "ex: "<< ex << " ";
 		std::cout << "ey: "<< ey << " ";
 
@@ -84,7 +86,7 @@ class NodeSync
 		std::cout << "X: "<< estimate_pose->pose.pose.position.x << " ";
 		std::cout << "Y: "<< estimate_pose->pose.pose.position.y << " ";
 		std::cout << "Th: "<< tf::getYaw(estimate_pose->pose.pose.orientation) << endl;
-
+*/
 		geometry_msgs::Twist input; //to send the velocities
 
 		//No hay que corregir angulo
