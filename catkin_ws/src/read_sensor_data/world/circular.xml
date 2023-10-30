@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot name="circular_object">
+  <link name="link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.075" length="0.01"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>

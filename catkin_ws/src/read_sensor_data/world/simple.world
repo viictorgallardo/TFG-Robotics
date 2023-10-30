@@ -58,7 +58,7 @@ define topurg ranger
 (
 	sensor( 			
     range [ 0.0  30.0 ]
-    fov 270.25
+    fov 180.0
    samples 1081
   )
 
@@ -84,6 +84,7 @@ define modelPractica model
   size [0.150 0.150 0.150]
   color "yellow"
   obstacle_return 0
+  
 )
 
 
