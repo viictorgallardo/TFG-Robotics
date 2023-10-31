@@ -132,6 +132,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/arob/Desktop/TFG-Robotics/catkin_ws/build/gtest/cmake_install.cmake")
   include("/home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/cmake_install.cmake")
+  include("/home/arob/Desktop/TFG-Robotics/catkin_ws/build/obstacle_detector-master/cmake_install.cmake")
 
 endif()
 

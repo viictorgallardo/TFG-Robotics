@@ -1,2 +1,2 @@
-read_sensor_data
+obstacle_detector-master:read_sensor_data
 -DCATKIN_DEVEL_PREFIX=/home/arob/Desktop/TFG-Robotics/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/arob/Desktop/TFG-Robotics/catkin_ws/install -G Unix Makefiles
