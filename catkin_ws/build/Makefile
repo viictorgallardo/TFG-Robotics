@@ -311,6 +311,19 @@ readOdomScan/fast:
 .PHONY : readOdomScan/fast
 
 #=============================================================================
+# Target rules for targets named circularTrajectory
+
+# Build rule for target.
+circularTrajectory: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 circularTrajectory
+.PHONY : circularTrajectory
+
+# fast build rule for target.
+circularTrajectory/fast:
+	$(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/build
+.PHONY : circularTrajectory/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_py
 
 # Build rule for target.
@@ -1712,6 +1725,7 @@ help:
 	@echo "... gtest"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"
+	@echo "... circularTrajectory"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_cpp"

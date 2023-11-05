@@ -41,6 +41,7 @@
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/test.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/readOdomScan.dir
+/home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/circularTrajectory.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir

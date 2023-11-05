@@ -139,6 +139,7 @@ include_directories(
 add_executable(readOdomScan src/readOdomScan.cpp)
 add_executable(followTargets src/followTargets.cpp)
 add_executable(teleop_twist_keyboard src/teleop_twist_keyboard.cpp)
+add_executable(circularTrajectory src/circular2DTrajectory.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -158,6 +159,7 @@ add_executable(teleop_twist_keyboard src/teleop_twist_keyboard.cpp)
 target_link_libraries(readOdomScan ${catkin_LIBRARIES})
 target_link_libraries(followTargets ${catkin_LIBRARIES})
 target_link_libraries(teleop_twist_keyboard ${catkin_LIBRARIES})
+target_link_libraries(circularTrajectory ${catkin_LIBRARIES})
 
 #############
 ## Install ##

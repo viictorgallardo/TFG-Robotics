@@ -198,6 +198,21 @@ readOdomScan/fast:
 .PHONY : readOdomScan/fast
 
 # Convenience name for target.
+read_sensor_data/CMakeFiles/circularTrajectory.dir/rule:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/circularTrajectory.dir/rule
+.PHONY : read_sensor_data/CMakeFiles/circularTrajectory.dir/rule
+
+# Convenience name for target.
+circularTrajectory: read_sensor_data/CMakeFiles/circularTrajectory.dir/rule
+
+.PHONY : circularTrajectory
+
+# fast build rule for target.
+circularTrajectory/fast:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/build
+.PHONY : circularTrajectory/fast
+
+# Convenience name for target.
 read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 .PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/rule
@@ -437,6 +452,33 @@ rosgraph_msgs_generate_messages_py/fast:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
+src/circular2DTrajectory.o: src/circular2DTrajectory.cpp.o
+
+.PHONY : src/circular2DTrajectory.o
+
+# target to build an object file
+src/circular2DTrajectory.cpp.o:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/src/circular2DTrajectory.cpp.o
+.PHONY : src/circular2DTrajectory.cpp.o
+
+src/circular2DTrajectory.i: src/circular2DTrajectory.cpp.i
+
+.PHONY : src/circular2DTrajectory.i
+
+# target to preprocess a source file
+src/circular2DTrajectory.cpp.i:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/src/circular2DTrajectory.cpp.i
+.PHONY : src/circular2DTrajectory.cpp.i
+
+src/circular2DTrajectory.s: src/circular2DTrajectory.cpp.s
+
+.PHONY : src/circular2DTrajectory.s
+
+# target to generate assembly for a file
+src/circular2DTrajectory.cpp.s:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/src/circular2DTrajectory.cpp.s
+.PHONY : src/circular2DTrajectory.cpp.s
+
 src/followTargets.o: src/followTargets.cpp.o
 
 .PHONY : src/followTargets.o
@@ -530,6 +572,7 @@ help:
 	@echo "... test"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"
+	@echo "... circularTrajectory"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_cpp"
@@ -549,6 +592,9 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... src/circular2DTrajectory.o"
+	@echo "... src/circular2DTrajectory.i"
+	@echo "... src/circular2DTrajectory.s"
 	@echo "... src/followTargets.o"
 	@echo "... src/followTargets.i"
 	@echo "... src/followTargets.s"
