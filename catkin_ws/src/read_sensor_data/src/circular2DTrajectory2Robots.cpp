@@ -77,7 +77,6 @@ int main(int argc, char **argv)
 
     ros::Publisher goal_pub_0;
     ros::Publisher goal_pub_1;
-    ros::Publisher goal_pub_2;
 
     /*// Inicializa un objeto RViz Visual Tools
     rviz_visual_tools::RvizVisualToolsPtr visual_tools;
@@ -92,8 +91,6 @@ int main(int argc, char **argv)
 
     goal_pub_1 = nh_.advertise<geometry_msgs::PoseStamped>("robot1/goal", 1);
 
-    goal_pub_2 = nh_.advertise<geometry_msgs::PoseStamped>("robot2/goal", 1);
-
     double T = 0.1; // 100 milisegundos
     double wTarget = 0; // w*
     double ki1 = 3.5; // gains 1 
@@ -102,15 +99,13 @@ int main(int argc, char **argv)
 
     //Hay que diferenciar el publicador de cada robot
     
-    double posRobot0[3] = {-1000 , -1000, 0}; // x0,1   ,   x0,2 ,  w0
-    double posRobot1[3] = {-500 , 1000, 1};
-    double posRobot2[3] = {750 , -750, 2};
+    double posRobot0[3] = {0 , 0, 0}; // x0,1   ,   x0,2 ,  w0
+    double posRobot1[3] = {10 , 10, 1};
     double u01,u02,mu0,w0;
     double u11, u12, mu1, w1;
-    double u21, u22, mu2, w2;
     int i = 0;
-    int r = 2;
-    int R = 500;
+    int r = 1;
+    int R = 100;
     while(i < 1000){
         i++;
         cout << "ITERACION " << i << " DEL BUCLE"   << endl;
@@ -120,9 +115,8 @@ int main(int argc, char **argv)
         u01 = -800*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1*800* cos(posRobot0[2]);
         u02 = 800* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2*800* sin(posRobot0[2]);
 
-        // Sumatorio de todos los vecinos r1 y r2
-        mu0 =  calcularAlpha(posRobot1[2], r , R)* posRobot1[2]/calcularModulo(posRobot1[0], posRobot1[1])
-                + calcularAlpha(posRobot2[2], r , R)* posRobot2[2]/calcularModulo(posRobot2[0], posRobot2[1]);
+        // Sumatorio de todos los vecinos
+        mu0 =  calcularAlpha(posRobot1[2], r , R)* posRobot1[2]/calcularModulo(posRobot1[0], posRobot1[1]);
 
         w0 = 1 + ki1 * (posRobot0[0] - 800* cos(posRobot0[2])) * (-800* sin(posRobot0[2]))
                 + ki2 * (posRobot0[1] - 800* sin(posRobot0[2])) * (800* cos(posRobot0[2]))
@@ -156,9 +150,8 @@ int main(int argc, char **argv)
         u11 = -800* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1*800* cos(posRobot1[2]);
         u12 = 800*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2*800* sin(posRobot1[2]);
 
-        // Sumatorio de todos los vecinos r0 y r2
-        mu1 =  calcularAlpha(posRobot0[2], r , R)* posRobot0[2]/calcularModulo(posRobot0[0], posRobot0[1]) +
-                calcularAlpha(posRobot2[2], r , R)* posRobot2[2]/calcularModulo(posRobot2[0], posRobot2[1]);
+        // Sumatorio de todos los vecinos
+        mu1 =  calcularAlpha(posRobot0[2], r , R)* posRobot0[2]/calcularModulo(posRobot0[0], posRobot0[1]);
 
         w1 = 1 + ki1 * (posRobot1[0] - 800* cos(posRobot1[2])) * (-800* sin(posRobot1[2]))
                 + ki2 * (posRobot1[1] - 800* sin(posRobot1[2])) * (800* cos(posRobot1[2]))
@@ -188,52 +181,8 @@ int main(int argc, char **argv)
         //visual_tools->trigger();
 
         //simula el periodo cada cuanto se controla
-
-
-
-        //Para robot1... mas tarde se hara con odometria
-        u21 = -800* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1*800* cos(posRobot2[2]);
-        u22 = 800*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2*800* sin(posRobot2[2]);
-
-        // Sumatorio de todos los vecinos
-        mu2 =  calcularAlpha(posRobot0[2], r , R)* posRobot0[2]/calcularModulo(posRobot0[0], posRobot0[1])
-                + calcularAlpha(posRobot1[2], r , R)* posRobot1[2]/calcularModulo(posRobot1[0], posRobot1[1]);
-
-        w2 = 1 + ki1 * (posRobot2[0] - 800* cos(posRobot2[2])) * (-800* sin(posRobot2[2]))
-                + ki2 * (posRobot2[1] - 800* sin(posRobot2[2])) * (800* cos(posRobot2[2]))
-                - ci * (posRobot2[2] - wTarget) + mu2;
-
-        // ¿Que valor se le da a wtarget?
-
-        posRobot2[0] = posRobot2[0] + T * u21;
-        posRobot2[1] = posRobot2[1] + T * u22;
-        posRobot2[2] = posRobot2[2] + T* w2;
-
-        ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
- 
-        // poner velocidad
-
-        Goal.pose.position.x = posRobot2[0];
-		Goal.pose.position.y = posRobot2[1];
-
-        goal_pub_2.publish(Goal);
-
-
         sleep(100);
         T += 100;
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
