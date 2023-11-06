@@ -109,8 +109,8 @@ int main(int argc, char **argv)
     double u11, u12, mu1, w1;
     double u21, u22, mu2, w2;
     int i = 0;
-    int r = 2;
-    int R = 500;
+    int r = 20;
+    int R = 2000;
     while(i < 1000){
         i++;
         cout << "ITERACION " << i << " DEL BUCLE"   << endl;
