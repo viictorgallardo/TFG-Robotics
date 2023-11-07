@@ -24,8 +24,10 @@ using namespace std;
 double calcularAlpha(double wVecino, double r, double R ){
     cout  << "Wvecino:  "<< wVecino  << endl;
     if (wVecino > R){
+        cout << "LIMITE SUPERIOR R PASADO" << endl;
         return 0;
     }else if(wVecino < r){
+        cout << "LIMITE SUPERIOR r PASADO" << endl;
         return 1000000;
     }else if(wVecino > r && wVecino < R){
         return (1/(wVecino -r)) - (1/(R-r));
@@ -99,6 +101,9 @@ int main(int argc, char **argv)
     geometry_msgs::PoseStamped Goal;
 
     ofstream trazasSalida("salida_logs.txt");
+    ofstream coordenadas("coordenadasR0.txt");
+    ofstream coordenadas1("coordenadasR1.txt");
+    ofstream coordenadas2("coordenadasR2.txt");
 
 
 
@@ -127,7 +132,7 @@ int main(int argc, char **argv)
     int i = 0;
     int r = 0.2;
     int R = 20;
-    while(i < 30){
+    while(i < 55){
         i++;
         //cout << "ITERACION " << i << " DEL BUCLE"   << endl;
 
@@ -164,7 +169,7 @@ int main(int argc, char **argv)
 
         posRobot0[0] = posRobot0[0] + T * u01;
         posRobot0[1] = posRobot0[1] + T * u02;
-        posRobot0[2] = posRobot0[2] + T* w0;
+        posRobot0[2] = normalizarAngulo(posRobot0[2] + normalizarAngulo(T* w0));
 
         //ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
 
@@ -183,7 +188,7 @@ int main(int argc, char **argv)
 
 
         //Vamos a escribir la trayectoria del robot 0
-        //archivo << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << endl;
+        coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << endl;
 
 
         //Para robot1... mas tarde se hara con odometria
@@ -214,11 +219,16 @@ int main(int argc, char **argv)
 
         posRobot1[0] = posRobot1[0] + T * u11;
         posRobot1[1] = posRobot1[1] + T * u12;
-        posRobot1[2] = posRobot1[2] + T* w1;
+        posRobot1[2] = normalizarAngulo(posRobot1[2] + normalizarAngulo(T* w1));
 
         //ROS_INFO("POS ROBOT 1 %f , %f , %f" , posRobot1[0], posRobot1[1], posRobot1[2]);
  
         // poner velocidad
+
+
+         //Vamos a escribir la trayectoria del robot 1
+        coordenadas1 << posRobot1[0] << "," << posRobot1[1] << "," << posRobot1[2] << "," << wTarget << endl;
+
 
         trazasSalida << "Posicion robot 1 " << posRobot1[0] << "   " << posRobot1[1] << "   " <<  posRobot1[2] << endl;
 
@@ -239,7 +249,7 @@ int main(int argc, char **argv)
 
 
 
-        //Para robot1... mas tarde se hara con odometria
+        //Para robot2... mas tarde se hara con odometria
         u21 = - 0.8* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1* 0.8* cos(posRobot2[2]);
         u22 =  0.8*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2* 0.8* sin(posRobot2[2]);
 
@@ -262,7 +272,10 @@ int main(int argc, char **argv)
 
         posRobot2[0] = posRobot2[0] + T * u21;
         posRobot2[1] = posRobot2[1] + T * u22;
-        posRobot2[2] = posRobot2[2] + T* w2;
+        posRobot2[2] = normalizarAngulo(posRobot2[2] + normalizarAngulo(T* w2));
+
+         //Vamos a escribir la trayectoria del robot 2
+        coordenadas2 << posRobot2[0] << "," << posRobot2[1] << "," << posRobot2[2] << "," << wTarget << endl;
 
         //ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
 
@@ -277,7 +290,8 @@ int main(int argc, char **argv)
 
 
         //Se actualiza la w virtual segun su derivada ( mirar paper )
-        wTarget = wTarget + T * 1;
+        // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
+        wTarget = normalizarAngulo(wTarget + T * 1);
 
         sleep(0.01);
         T += 0.01;
@@ -285,6 +299,9 @@ int main(int argc, char **argv)
     }
 
     trazasSalida.close();
+    coordenadas.close();
+    coordenadas1.close();
+    coordenadas2.close();
 }
 
 

@@ -1,120 +1,220 @@
 ITERACION 1 DEL BUCLE
-Posicion robot 0 -0.937   -0.957   -0.0147725
+Posicion robot 0 -0.937   -0.957   6.26841
 Posicion robot 1 -0.474103   0.992884   1.02766
 Posicion robot 2 0.704824   -0.701619   1.97389
 ITERACION 2 DEL BUCLE
-Posicion robot 0 -0.81518   -0.874839   -0.292997
+Posicion robot 0 -0.81518   -0.874839   5.99019
 Posicion robot 1 -0.425671   0.979592   1.07531
 Posicion robot 2 0.618801   -0.60727   1.92352
 ITERACION 3 DEL BUCLE
-Posicion robot 0 -0.642234   -0.784265   -0.700259
+Posicion robot 0 -0.642234   -0.784265   5.58293
 Posicion robot 1 -0.362151   0.962044   1.13258
 Posicion robot 2 0.502286   -0.472969   1.85512
 ITERACION 4 DEL BUCLE
-Posicion robot 0 -0.446056   -0.722173   -1.1999
+Posicion robot 0 -0.446056   -0.722173   5.08329
 Posicion robot 1 -0.292902   0.942353   1.18957
 Posicion robot 2 0.369834   -0.308226   1.78156
 ITERACION 5 DEL BUCLE
-Posicion robot 0 -0.279973   -0.711774   -1.72009
+Posicion robot 0 -0.279973   -0.711774   4.5631
 Posicion robot 1 -0.226684   0.922273   1.23873
 Posicion robot 2 0.236709   -0.125753   1.72319
 ITERACION 6 DEL BUCLE
-Posicion robot 0 -0.1987   -0.735572   -2.18521
+Posicion robot 0 -0.1987   -0.735572   4.09798
 Posicion robot 1 -0.16969   0.903066   1.27647
 Posicion robot 2 0.114053   0.0594213   1.70197
 ITERACION 7 DEL BUCLE
-Posicion robot 0 -0.21725   -0.747794   -2.56121
+Posicion robot 0 -0.21725   -0.747794   3.72197
 Posicion robot 1 -0.124849   0.885632   1.30353
 Posicion robot 2 0.00495454   0.231854   1.72451
 ITERACION 8 DEL BUCLE
-Posicion robot 0 -0.308647   -0.714761   -2.8534
+Posicion robot 0 -0.308647   -0.714761   3.42978
 Posicion robot 1 -0.0924609   0.870604   1.32402
 Posicion robot 2 -0.0939752   0.378495   1.77357
 ITERACION 9 DEL BUCLE
-Posicion robot 0 -0.432567   -0.630264   -3.0773
+Posicion robot 0 -0.432567   -0.630264   3.20589
 Posicion robot 1 -0.0715962   0.858318   1.34356
 Posicion robot 2 -0.185648   0.491606   1.83197
 ITERACION 10 DEL BUCLE
-Posicion robot 0 -0.55545   -0.507496   -3.24367
+Posicion robot 0 -0.55545   -0.507496   3.03952
 Posicion robot 1 -0.0614009   0.848731   1.36758
 Posicion robot 2 -0.270257   0.569392   1.89529
 ITERACION 11 DEL BUCLE
-Posicion robot 0 -0.656966   -0.368268   -3.35751
+Posicion robot 0 -0.656966   -0.368268   2.92568
 Posicion robot 1 -0.0617897   0.841392   1.40038
 Posicion robot 2 -0.347815   0.614045   1.96451
 ITERACION 12 DEL BUCLE
-Posicion robot 0 -0.729806   -0.235381   -3.42159
+Posicion robot 0 -0.729806   -0.235381   2.86159
 Posicion robot 1 -0.0734657   0.835421   1.44497
 Posicion robot 2 -0.419285   0.629611   2.04145
 ITERACION 13 DEL BUCLE
-Posicion robot 0 -0.776309   -0.127639   -3.43977
+Posicion robot 0 -0.776309   -0.127639   2.84341
 Posicion robot 1 -0.0975347   0.829478   1.50324
 Posicion robot 2 -0.486267   0.620399   2.12783
 ITERACION 14 DEL BUCLE
-Posicion robot 0 -0.803523   -0.0569913   -3.41779
+Posicion robot 0 -0.803523   -0.0569913   2.8654
 Posicion robot 1 -0.135026   0.8217   1.57642
 Posicion robot 2 -0.550304   0.589932   2.22521
 ITERACION 15 DEL BUCLE
-Posicion robot 0 -0.818479   -0.0279891   -3.36167
+Posicion robot 0 -0.818479   -0.0279891   2.92151
 Posicion robot 1 -0.186497   0.809626   1.66526
 Posicion robot 2 -0.612254   0.540405   2.33494
 ITERACION 16 DEL BUCLE
-Posicion robot 0 -0.825268   -0.0394265   -3.27614
+Posicion robot 0 -0.825268   -0.0394265   3.00705
 Posicion robot 1 -0.251746   0.790165   1.77023
 Posicion robot 2 -0.671784   0.472658   2.45812
 ITERACION 17 DEL BUCLE
-Posicion robot 0 -0.824175   -0.0868881   -3.1647
+Posicion robot 0 -0.824175   -0.0868881   3.11849
 Posicion robot 1 -0.329562   0.759639   1.89152
 Posicion robot 2 -0.727038   0.386564   2.59551
 ITERACION 18 DEL BUCLE
-Posicion robot 0 -0.812137   -0.164465   -3.03029
+Posicion robot 0 -0.812137   -0.164465   3.2529
 Posicion robot 1 -0.417484   0.713969   2.02914
 Posicion robot 2 -0.774491   0.28172   2.74754
 ITERACION 19 DEL BUCLE
-Posicion robot 0 -0.783891   -0.265247   -2.87539
+Posicion robot 0 -0.783891   -0.265247   3.40779
 Posicion robot 1 -0.511559   0.649016   2.18287
 Posicion robot 2 -0.80904   0.158276   2.91434
 ITERACION 20 DEL BUCLE
-Posicion robot 0 -0.733352   -0.381257   -2.7021
+Posicion robot 0 -0.733352   -0.381257   3.58109
 Posicion robot 1 -0.606176   0.561113   2.35233
 Posicion robot 2 -0.824362   0.0177632   3.0958
 ITERACION 21 DEL BUCLE
-Posicion robot 0 -0.654978   -0.50325   -2.51212
+Posicion robot 0 -0.654978   -0.50325   3.77107
 Posicion robot 1 -0.694058   0.447744   2.53704
 Posicion robot 2 -0.81353   -0.136198   3.2916
 ITERACION 22 DEL BUCLE
-Posicion robot 0 -0.544965   -0.620667   -2.30681
+Posicion robot 0 -0.544965   -0.620667   3.97638
 Posicion robot 1 -0.766489   0.308306   2.73644
 Posicion robot 2 -0.769891   -0.297408   3.50134
 ITERACION 23 DEL BUCLE
-Posicion robot 0 -0.402238   -0.721858   -2.08725
+Posicion robot 0 -0.402238   -0.721858   4.19594
 Posicion robot 1 -0.813854   0.144854   2.94993
 Posicion robot 2 -0.68813   -0.456927   3.72452
 ITERACION 24 DEL BUCLE
-Posicion robot 0 -0.229233   -0.794662   -1.85429
+Posicion robot 0 -0.229233   -0.794662   4.42889
 Posicion robot 1 -0.826486   -0.0372961   3.17691
 Posicion robot 2 -0.565434   -0.603316   3.96064
 ITERACION 25 DEL BUCLE
-Posicion robot 0 -0.0324386   -0.827334   -1.60862
+Posicion robot 0 -0.0324386   -0.827334   4.67456
 Posicion robot 1 -0.795812   -0.229254   3.41682
 Posicion robot 2 -0.402625   -0.723344   4.2092
 ITERACION 26 DEL BUCLE
-Posicion robot 0 0.177402   -0.809805   -1.3508
+Posicion robot 0 0.177402   -0.809805   4.93239
 Posicion robot 1 -0.715697   -0.418648   3.66913
 Posicion robot 2 -0.205076   -0.803167   4.46975
 ITERACION 27 DEL BUCLE
-Posicion robot 0 0.385532   -0.73518   -1.08126
+Posicion robot 0 0.385532   -0.73518   5.20192
 Posicion robot 1 -0.58385   -0.590235   3.93338
 Posicion robot 2 0.0167551   -0.829926   4.7419
 ITERACION 28 DEL BUCLE
-Posicion robot 0 0.574051   -0.601296   -0.800423
+Posicion robot 0 0.574051   -0.601296   5.48276
 Posicion robot 1 -0.403096   -0.727083   4.20916
 Posicion robot 2 0.247367   -0.793649   5.02528
 ITERACION 29 DEL BUCLE
-Posicion robot 0 0.723364   -0.412147   -0.508521
+Posicion robot 0 0.723364   -0.412147   5.77466
 Posicion robot 1 -0.182305   -0.812314   4.49615
 Posicion robot 2 0.466968   -0.689258   5.31963
 ITERACION 30 DEL BUCLE
-Posicion robot 0 0.814396   -0.178745   -0.205935
+Posicion robot 0 0.814396   -0.178745   6.07725
 Posicion robot 1 0.0632933   -0.831316   4.79404
 Posicion robot 2 0.653053   -0.518422   5.6247
+ITERACION 31 DEL BUCLE
+Posicion robot 0 0.831147   0.080462   0.107432
+Posicion robot 1 0.312591   -0.774218   5.10264
+Posicion robot 2 0.782765   -0.290934   5.94033
+ITERACION 32 DEL BUCLE
+Posicion robot 0 0.763647   0.340943   0.430779
+Posicion robot 1 0.540096   -0.638341   5.42174
+Posicion robot 2 0.835982   -0.0251982   6.26632
+ITERACION 33 DEL BUCLE
+Posicion robot 0 0.610978   0.572878   0.765533
+Posicion robot 1 0.718442   -0.430223   5.75124
+Posicion robot 2 0.798743   0.252287   0.319571
+ITERACION 34 DEL BUCLE
+Posicion robot 0 0.381844   0.74693   1.10784
+Posicion robot 1 0.821911   -0.166711   6.09095
+Posicion robot 2 0.666588   0.509374   0.665814
+ITERACION 35 DEL BUCLE
+Posicion robot 0 0.101226   0.833828   1.46724
+Posicion robot 1 0.830513   0.125119   0.157833
+Posicion robot 2 0.447748   0.710932   1.02342
+ITERACION 36 DEL BUCLE
+Posicion robot 0 -0.20858   0.815575   1.81839
+Posicion robot 1 0.73427   0.410325   0.517597
+Posicion robot 2 0.16228   0.82577   1.38755
+ITERACION 37 DEL BUCLE
+Posicion robot 0 -0.479337   0.691271   2.23029
+Posicion robot 1 0.537227   0.648787   0.888746
+Posicion robot 2 -0.150138   0.82899   1.77297
+ITERACION 38 DEL BUCLE
+Posicion robot 0 -0.734   0.426498   2.51143
+Posicion robot 1 0.257456   0.803502   1.26623
+Posicion robot 2 -0.461909   0.707721   2.1329
+ITERACION 39 DEL BUCLE
+Posicion robot 0 -0.798207   0.235738   3.22197
+Posicion robot 1 -0.0641437   0.842027   1.66553
+Posicion robot 2 -0.677401   0.499373   2.62358
+ITERACION 40 DEL BUCLE
+Posicion robot 0 -0.77141   -0.503184   2.80836
+Posicion robot 1 -0.398849   0.747898   2.0418
+Posicion robot 2 -0.860552   0.0768013   2.74104
+ITERACION 41 DEL BUCLE
+Posicion robot 0 -0.856574   0.284438   3.62422
+Posicion robot 1 -0.639728   0.548821   2.48737
+Posicion robot 2 -0.810688   0.112185   4.43035
+ITERACION 42 DEL BUCLE
+Posicion robot 0 -0.483148   -0.977096   2.59472
+Posicion robot 1 -0.836978   0.19108   2.84095
+Posicion robot 2 0.376445   -1.27578   2.58202
+ITERACION 43 DEL BUCLE
+Posicion robot 0 -0.963301   0.825702   1.5152
+Posicion robot 1 -0.829193   -0.068523   5.21067
+Posicion robot 2 -1.39308   0.991848   5.57229
+ITERACION 44 DEL BUCLE
+Posicion robot 0 0.237185   0.803777   5.73657
+Posicion robot 1 1.34576   -0.876964   3.02991
+Posicion robot 2 1.91553   -1.07276   3.91133
+ITERACION 45 DEL BUCLE
+Posicion robot 0 1.12715   -0.809572   5.66712
+Posicion robot 1 -2.06608   0.286919   5.70729
+Posicion robot 2 -1.75569   -0.518571   0.618099
+ITERACION 46 DEL BUCLE
+Posicion robot 0 0.576292   0.049945   4.76147
+Posicion robot 1 2.54097   -0.567805   4.04953
+Posicion robot 2 1.90741   1.36262   5.84991
+ITERACION 47 DEL BUCLE
+Posicion robot 0 0.0683996   -1.32818   0.192065
+Posicion robot 1 -2.15238   -0.902463   2.33729
+Posicion robot 2 0.121977   -1.09015   1.64427
+ITERACION 48 DEL BUCLE
+Posicion robot 0 1.19947   1.53666   3.93351
+Posicion robot 1 0.254791   1.31548   3.01072
+Posicion robot 2 -0.564567   2.05348   5.70791
+ITERACION 49 DEL BUCLE
+Posicion robot 0 -1.54245   -2.35053   0.0592926
+Posicion robot 1 -1.5936   -1.15017   4.4618
+Posicion robot 2 1.7681   -1.8858   2.06169
+ITERACION 50 DEL BUCLE
+Posicion robot 0 2.53067   2.24516   3.64248
+Posicion robot 1 1.23554   -0.592832   5.47334
+Posicion robot 2 -2.33882   2.46046   5.75883
+ITERACION 51 DEL BUCLE
+Posicion robot 0 -3.04324   -2.80606   6.01669
+Posicion robot 1 0.310325   -0.287399   1.40464
+Posicion robot 2 3.27639   -2.29322   2.10226
+ITERACION 52 DEL BUCLE
+Posicion robot 0 4.00961   2.31884   2.36918
+Posicion robot 1 -0.423924   1.74042   0.809235
+Posicion robot 2 -3.78315   2.92478   5.45679
+ITERACION 53 DEL BUCLE
+Posicion robot 0 -4.78699   -1.25065   1.79295
+Posicion robot 1 1.07962   -0.121416   3.99952
+Posicion robot 2 4.5519   -3.30489   0.755897
+ITERACION 54 DEL BUCLE
+Posicion robot 0 3.5059   2.49274   4.07238
+Posicion robot 1 -1.62292   -1.31828   3.65753
+Posicion robot 2 -3.2473   4.29284   0.0738208
+ITERACION 55 DEL BUCLE
+Posicion robot 0 -3.80974   -3.80377   6.10108
+Posicion robot 1 0.378736   0.0769226   3.47081
+Posicion robot 2 4.5071   -3.4185   5.38953
