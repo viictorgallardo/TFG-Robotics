@@ -25,24 +25,36 @@ double calcularAlpha(double wVecino, double r, double R ){
     cout  << "Wvecino:  "<< wVecino  << endl;
     if (wVecino > R){
         return 0;
-    }else if(wVecino < R){
+    }else if(wVecino < r){
         return 1000000;
     }else if(wVecino > r && wVecino < R){
         return (1/(wVecino -r)) - (1/(R-r));
     }
 }
 
-//Calcula el modulo de 1 coordenada en 2d
+/* //Calcula el modulo de 1 coordenada en 2d
 double calcularModulo(double x, double y){
     return  sqrt( pow(x,2) +  pow(y,2));
 }
-
+ */
 
 
 
 void signalHandler(int signum) {
     cout << " Señal capturada " << endl;
     exit(signum);
+}
+
+double normalizarAngulo(double angulo) {
+    const double dosPi = 2.0 * M_PI; // Valor constante de 2π
+
+    // Calcula el ángulo normalizado
+    double anguloNormalizado = fmod(angulo, dosPi);
+    if (anguloNormalizado < 0) {
+        anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
+    }
+
+    return anguloNormalizado;
 }
 
 
@@ -94,7 +106,7 @@ int main(int argc, char **argv)
 
     goal_pub_2 = nh_.advertise<geometry_msgs::PoseStamped>("robot2/goal", 1);
 
-    double T = 0.1; // 100 milisegundos
+    double T = 0.01; // 100 milisegundos
     double wTarget = 0; // w*
     double ki1 = 3.5; // gains 1 
     double ki2 = 3.5; // gains 2
@@ -102,31 +114,47 @@ int main(int argc, char **argv)
 
     //Hay que diferenciar el publicador de cada robot
     
-    double posRobot0[3] = {-1000 , -1000, 0}; // x0,1   ,   x0,2 ,  w0
-    double posRobot1[3] = {-500 , 1000, 1};
-    double posRobot2[3] = {750 , -750, 2};
+    double posRobot0[3] = {-1 , -1, 0}; // x0,1   ,   x0,2 ,  w0
+    double posRobot1[3] = {-0.5 , 1, 1};
+    double posRobot2[3] = {0.75 , -0.75, 2};
     double u01,u02,mu0,w0;
     double u11, u12, mu1, w1;
     double u21, u22, mu2, w2;
+    double w0menos1, w0menos2, w1menos0, w1menos2, w2menos0, w2menos1;
+
     int i = 0;
-    int r = 20;
-    int R = 2000;
-    while(i < 1000){
+    int r = 0.2;
+    int R = 20;
+    while(i < 10){
         i++;
         cout << "ITERACION " << i << " DEL BUCLE"   << endl;
         // ... calcular controladores
 
         //Para robot0... mas tarde se hara con odometria
-        u01 = -800*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1*800* cos(posRobot0[2]);
-        u02 = 800* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2*800* sin(posRobot0[2]);
+        u01 = - 0.8*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1* 0.8* cos(posRobot0[2]);
+        u02 =  0.8* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2* 0.8* sin(posRobot0[2]);
 
+        //Necesitamos la diferencia de angulos entre el robot y sus vecinos
+        w0menos1 = normalizarAngulo(posRobot0[2] - posRobot1[2]);
+        w0menos2 = normalizarAngulo(posRobot0[2] - posRobot2[2]);
         // Sumatorio de todos los vecinos r1 y r2
-        mu0 =  calcularAlpha(posRobot1[2], r , R)* posRobot1[2]/calcularModulo(posRobot1[0], posRobot1[1])
-                + calcularAlpha(posRobot2[2], r , R)* posRobot2[2]/calcularModulo(posRobot2[0], posRobot2[1]);
+        mu0 =  calcularAlpha( abs(w0menos1),  r , R)* (w0menos1/abs(w0menos1))
+                + calcularAlpha(abs(w0menos2), r , R)* (w0menos2/abs(w0menos2));
 
-        w0 = 1 + ki1 * (posRobot0[0] - 800* cos(posRobot0[2])) * (-800* sin(posRobot0[2]))
-                + ki2 * (posRobot0[1] - 800* sin(posRobot0[2])) * (800* cos(posRobot0[2]))
-                - ci * (posRobot0[2] - wTarget) + mu0;
+        w0 = 1 + ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2]))
+                + ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2]))
+                - ci * (normalizarAngulo(posRobot0[2] - wTarget)) + mu0;
+
+        ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2])));
+        ROS_INFO("Ganancia ki1 %f", ki1);
+        ROS_INFO("x de robot 0 %f", posRobot0[0]);
+        double aux =  0.8* cos(posRobot0[2]);
+        double aux1 =  0.8* sin(posRobot0[2]);
+        ROS_INFO("Tercer termino %f" , aux);
+        ROS_INFO("cuarto termino %f", aux1);
+        ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2])));
+        ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot0[2] - wTarget));
+        ROS_INFO("VALOR DE MU %f" , mu0);
 
         
 
@@ -138,7 +166,7 @@ int main(int argc, char **argv)
 
         // ¿Que valor se le da a wtarget?
 
-        wTarget = posRobot0[2];
+        
  
         // poner velocidad
 
@@ -153,18 +181,30 @@ int main(int argc, char **argv)
 
 
         //Para robot1... mas tarde se hara con odometria
-        u11 = -800* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1*800* cos(posRobot1[2]);
-        u12 = 800*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2*800* sin(posRobot1[2]);
+        u11 = - 0.8* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1* 0.8* cos(posRobot1[2]);
+        u12 =  0.8*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2* 0.8* sin(posRobot1[2]);
+
+
+
+        //Necesitamos la diferencia de angulos entre el robot y sus vecinos
+        w1menos0 = normalizarAngulo(posRobot1[2] - posRobot0[2]);
+        w1menos2 = normalizarAngulo(posRobot1[2] - posRobot2[2]);
+
 
         // Sumatorio de todos los vecinos r0 y r2
-        mu1 =  calcularAlpha(posRobot0[2], r , R)* posRobot0[2]/calcularModulo(posRobot0[0], posRobot0[1]) +
-                calcularAlpha(posRobot2[2], r , R)* posRobot2[2]/calcularModulo(posRobot2[0], posRobot2[1]);
+        mu1 =  calcularAlpha(abs(w1menos0), r , R)* (w1menos0/abs(w1menos0)) +
+                calcularAlpha(abs(w1menos2), r , R)* w1menos2/abs(w1menos2);
 
-        w1 = 1 + ki1 * (posRobot1[0] - 800* cos(posRobot1[2])) * (-800* sin(posRobot1[2]))
-                + ki2 * (posRobot1[1] - 800* sin(posRobot1[2])) * (800* cos(posRobot1[2]))
-                - ci * (posRobot1[2] - wTarget) + mu1;
+        w1 = 1 + ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2]))
+                + ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2]))
+                - ci * (normalizarAngulo(posRobot1[2] - wTarget)) + mu1;
 
         // ¿Que valor se le da a wtarget?
+
+        ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2])));
+        ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2])));
+        ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot1[2] - wTarget));
+        ROS_INFO("VALOR DE MU %f" , mu1);
 
         posRobot1[0] = posRobot1[0] + T * u11;
         posRobot1[1] = posRobot1[1] + T * u12;
@@ -192,16 +232,23 @@ int main(int argc, char **argv)
 
 
         //Para robot1... mas tarde se hara con odometria
-        u21 = -800* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1*800* cos(posRobot2[2]);
-        u22 = 800*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2*800* sin(posRobot2[2]);
+        u21 = - 0.8* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1* 0.8* cos(posRobot2[2]);
+        u22 =  0.8*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2* 0.8* sin(posRobot2[2]);
+
+
+
+        //Necesitamos la diferencia de angulos entre el robot y sus vecinos
+        w2menos0 = normalizarAngulo(posRobot2[2] - posRobot0[2]);
+        w2menos1 = normalizarAngulo(posRobot2[2] - posRobot1[2]);
+
 
         // Sumatorio de todos los vecinos
-        mu2 =  calcularAlpha(posRobot0[2], r , R)* posRobot0[2]/calcularModulo(posRobot0[0], posRobot0[1])
-                + calcularAlpha(posRobot1[2], r , R)* posRobot1[2]/calcularModulo(posRobot1[0], posRobot1[1]);
+        mu2 =  calcularAlpha(abs(w2menos0), r , R)* w2menos0/(abs(w2menos0))
+                + calcularAlpha(abs(w2menos1), r , R)* w2menos1/(abs(w2menos1));
 
-        w2 = 1 + ki1 * (posRobot2[0] - 800* cos(posRobot2[2])) * (-800* sin(posRobot2[2]))
-                + ki2 * (posRobot2[1] - 800* sin(posRobot2[2])) * (800* cos(posRobot2[2]))
-                - ci * (posRobot2[2] - wTarget) + mu2;
+        w2 = 1 + ki1 * (posRobot2[0] -  0.8* cos(posRobot2[2])) * (- 0.8* sin(posRobot2[2]))
+                + ki2 * (posRobot2[1] -  0.8* sin(posRobot2[2])) * ( 0.8* cos(posRobot2[2]))
+                - ci * (normalizarAngulo(posRobot2[2] - wTarget)) + mu2;
 
         // ¿Que valor se le da a wtarget?
 
@@ -219,8 +266,11 @@ int main(int argc, char **argv)
         goal_pub_2.publish(Goal);
 
 
-        sleep(100);
-        T += 100;
+        //Se actualiza la w virtual segun su derivada ( mirar paper )
+        wTarget = wTarget + T * 1;
+
+        sleep(0.01);
+        T += 0.01;
         
     }
 }
