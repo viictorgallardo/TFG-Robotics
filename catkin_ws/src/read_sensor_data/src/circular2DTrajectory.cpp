@@ -98,6 +98,8 @@ int main(int argc, char **argv)
 */
     geometry_msgs::PoseStamped Goal;
 
+    ofstream trazasSalida("salida_logs.txt");
+
 
 
     goal_pub_0 = nh_.advertise<geometry_msgs::PoseStamped>("robot0/goal", 1);
@@ -125,9 +127,11 @@ int main(int argc, char **argv)
     int i = 0;
     int r = 0.2;
     int R = 20;
-    while(i < 10){
+    while(i < 30){
         i++;
-        cout << "ITERACION " << i << " DEL BUCLE"   << endl;
+        //cout << "ITERACION " << i << " DEL BUCLE"   << endl;
+
+        trazasSalida << "ITERACION " << i << " DEL BUCLE"   << endl;
         // ... calcular controladores
 
         //Para robot0... mas tarde se hara con odometria
@@ -145,16 +149,16 @@ int main(int argc, char **argv)
                 + ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2]))
                 - ci * (normalizarAngulo(posRobot0[2] - wTarget)) + mu0;
 
-        ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2])));
-        ROS_INFO("Ganancia ki1 %f", ki1);
-        ROS_INFO("x de robot 0 %f", posRobot0[0]);
-        double aux =  0.8* cos(posRobot0[2]);
-        double aux1 =  0.8* sin(posRobot0[2]);
-        ROS_INFO("Tercer termino %f" , aux);
-        ROS_INFO("cuarto termino %f", aux1);
-        ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2])));
-        ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot0[2] - wTarget));
-        ROS_INFO("VALOR DE MU %f" , mu0);
+        //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2])));
+        //ROS_INFO("Ganancia ki1 %f", ki1);
+        //ROS_INFO("x de robot 0 %f", posRobot0[0]);
+        //double aux =  0.8* cos(posRobot0[2]);
+        //double aux1 =  0.8* sin(posRobot0[2]);
+        //ROS_INFO("Tercer termino %f" , aux);
+        //ROS_INFO("cuarto termino %f", aux1);
+        //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2])));
+        //ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot0[2] - wTarget));
+        //ROS_INFO("VALOR DE MU %f" , mu0);
 
         
 
@@ -162,7 +166,9 @@ int main(int argc, char **argv)
         posRobot0[1] = posRobot0[1] + T * u02;
         posRobot0[2] = posRobot0[2] + T* w0;
 
-        ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
+        //ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
+
+        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << endl;
 
         // ¿Que valor se le da a wtarget?
 
@@ -201,18 +207,20 @@ int main(int argc, char **argv)
 
         // ¿Que valor se le da a wtarget?
 
-        ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2])));
-        ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2])));
-        ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot1[2] - wTarget));
-        ROS_INFO("VALOR DE MU %f" , mu1);
+        //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2])));
+        //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2])));
+        //ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot1[2] - wTarget));
+        //ROS_INFO("VALOR DE MU %f" , mu1);
 
         posRobot1[0] = posRobot1[0] + T * u11;
         posRobot1[1] = posRobot1[1] + T * u12;
         posRobot1[2] = posRobot1[2] + T* w1;
 
-        ROS_INFO("POS ROBOT 1 %f , %f , %f" , posRobot1[0], posRobot1[1], posRobot1[2]);
+        //ROS_INFO("POS ROBOT 1 %f , %f , %f" , posRobot1[0], posRobot1[1], posRobot1[2]);
  
         // poner velocidad
+
+        trazasSalida << "Posicion robot 1 " << posRobot1[0] << "   " << posRobot1[1] << "   " <<  posRobot1[2] << endl;
 
         Goal.pose.position.x = posRobot1[0];
 		Goal.pose.position.y = posRobot1[1];
@@ -256,7 +264,9 @@ int main(int argc, char **argv)
         posRobot2[1] = posRobot2[1] + T * u22;
         posRobot2[2] = posRobot2[2] + T* w2;
 
-        ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
+        //ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
+
+        trazasSalida << "Posicion robot 2 " << posRobot2[0] <<"   " <<  posRobot2[1] << "   "  << posRobot2[2] << endl;
  
         // poner velocidad
 
@@ -273,6 +283,8 @@ int main(int argc, char **argv)
         T += 0.01;
         
     }
+
+    trazasSalida.close();
 }
 
 
