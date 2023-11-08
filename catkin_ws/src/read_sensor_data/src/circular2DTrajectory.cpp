@@ -113,7 +113,7 @@ int main(int argc, char **argv)
 
     goal_pub_2 = nh_.advertise<geometry_msgs::PoseStamped>("robot2/goal", 1);
 
-    double T = 0.01; // 100 milisegundos
+    double T = 0.001; // 100 milisegundos
     double wTarget = 0; // w*
     double ki1 = 3.5; // gains 1 
     double ki2 = 3.5; // gains 2
@@ -132,7 +132,7 @@ int main(int argc, char **argv)
     int i = 0;
     int r = 0.2;
     int R = 20;
-    while(i < 70){
+    while(i < 300){
         i++;
         //cout << "ITERACION " << i << " DEL BUCLE"   << endl;
 
@@ -293,8 +293,8 @@ int main(int argc, char **argv)
         // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
         wTarget = normalizarAngulo(wTarget + T * 1);
 
-        sleep(0.01);
-        T += 0.01;
+        sleep(0.001);
+        T += 0.001;
         
     }
 
