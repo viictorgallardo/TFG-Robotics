@@ -67,12 +67,6 @@ double normalizarAngulo(double angulo) {
 int main(int argc, char **argv)
 {
     
-    ofstream archivo("coordenadas.txt");
-    ofstream archivo1("coordenadas1.txt");
-    if (!archivo.is_open() || !archivo1.is_open()) {
-        cerr << "Error al abrir el archivo" << endl;
-        return 1; // Sal del programa si no se pueden abrir los archivos
-    }
 
     /* signal(SIGINT, signalHandler);
     signal(SIGTSTP, signalHandler);
@@ -163,7 +157,7 @@ int main(int argc, char **argv)
         //ROS_INFO("cuarto termino %f", aux1);
         //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2])));
         //ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot0[2] - wTarget));
-        //ROS_INFO("VALOR DE MU %f" , mu0);
+        
 
         
 
@@ -173,7 +167,7 @@ int main(int argc, char **argv)
 
         //ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
 
-        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << endl;
+        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2]  << endl;
 
         // ¿Que valor se le da a wtarget?
 
@@ -188,7 +182,7 @@ int main(int argc, char **argv)
 
 
         //Vamos a escribir la trayectoria del robot 0
-        coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << endl;
+        coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << "   " << mu0 << endl;
 
 
         //Para robot1... mas tarde se hara con odometria
@@ -204,7 +198,7 @@ int main(int argc, char **argv)
 
         // Sumatorio de todos los vecinos r0 y r2
         mu1 =  calcularAlpha(abs(w1menos0), r , R)* (w1menos0/abs(w1menos0)) +
-                calcularAlpha(abs(w1menos2), r , R)* w1menos2/abs(w1menos2);
+                calcularAlpha(abs(w1menos2), r , R)* (w1menos2/abs(w1menos2));
 
         w1 = 1 + ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2]))
                 + ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2]))
@@ -262,7 +256,7 @@ int main(int argc, char **argv)
 
         // Sumatorio de todos los vecinos
         mu2 =  calcularAlpha(abs(w2menos0), r , R)* w2menos0/(abs(w2menos0))
-                + calcularAlpha(abs(w2menos1), r , R)* w2menos1/(abs(w2menos1));
+                + calcularAlpha(abs(w2menos1), r , R)* (w2menos1/abs(w2menos1));
 
         w2 = 1 + ki1 * (posRobot2[0] -  0.8* cos(posRobot2[2])) * (- 0.8* sin(posRobot2[2]))
                 + ki2 * (posRobot2[1] -  0.8* sin(posRobot2[2])) * ( 0.8* cos(posRobot2[2]))
