@@ -5,7 +5,7 @@
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_datatypes.h>
 #include "ros/ros.h"
-#include <cmath>
+#include <math.h>
 #include <unistd.h>
 
 #include <iostream>
@@ -67,12 +67,6 @@ double normalizarAngulo(double angulo) {
 int main(int argc, char **argv)
 {
     
-    ofstream archivo("coordenadas.txt");
-    ofstream archivo1("coordenadas1.txt");
-    if (!archivo.is_open() || !archivo1.is_open()) {
-        cerr << "Error al abrir el archivo" << endl;
-        return 1; // Sal del programa si no se pueden abrir los archivos
-    }
 
     /* signal(SIGINT, signalHandler);
     signal(SIGTSTP, signalHandler);
@@ -121,9 +115,9 @@ int main(int argc, char **argv)
 
     //Hay que diferenciar el publicador de cada robot
     
-    double posRobot0[3] = {-1 , -1, 0}; // x0,1   ,   x0,2 ,  w0
+    double posRobot0[3] = {-1 , -1, 0.5}; // x0,1   ,   x0,2 ,  w0
     double posRobot1[3] = {-0.5 , 1, 1};
-    double posRobot2[3] = {0.75 , -0.75, 2};
+    double posRobot2[3] = {0.75 , -0.75, 1.5};
     double u01,u02,mu0,w0;
     double u11, u12, mu1, w1;
     double u21, u22, mu2, w2;
@@ -132,7 +126,7 @@ int main(int argc, char **argv)
     int i = 0;
     int r = 0.2;
     int R = 20;
-    while(i < 70){
+    while(i < 300){
         i++;
         //cout << "ITERACION " << i << " DEL BUCLE"   << endl;
 
@@ -140,9 +134,15 @@ int main(int argc, char **argv)
         // ... calcular controladores
 
         //Para robot0... mas tarde se hara con odometria
-        u01 = - 0.8*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1* 0.8* cos(posRobot0[2]);
+        u01 = (- 0.8*  sin(posRobot0[2])) - ki1 * posRobot0[0] + ki1* 0.8* cos(posRobot0[2]);
         u02 =  0.8* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2* 0.8* sin(posRobot0[2]);
 
+
+        cout << "El robot 0 tiene u01 " << u01 << " y u02 " << u02 << " en la iteracion " << i <<  endl;
+        cout << "DESGLOSE: " <<endl;
+        cout << " - 0.8* sin w " << - 0.8*  sin(posRobot0[2]) <<  " para  " << posRobot0[2] << endl;
+        cout << " -ki1 * x " << - ki1 * posRobot0[0] << endl;
+        cout << " ki1 * 0.8 * cos z" << ki1* 0.8* cos(posRobot0[2]) << endl;
         //Necesitamos la diferencia de angulos entre el robot y sus vecinos
         w0menos1 = normalizarAngulo(posRobot0[2] - posRobot1[2]);
         w0menos2 = normalizarAngulo(posRobot0[2] - posRobot2[2]);
@@ -150,9 +150,7 @@ int main(int argc, char **argv)
         mu0 =  calcularAlpha( abs(w0menos1),  r , R)* (w0menos1/abs(w0menos1))
                 + calcularAlpha(abs(w0menos2), r , R)* (w0menos2/abs(w0menos2));
 
-        w0 = 1 + ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2]))
-                + ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2]))
-                - ci * (normalizarAngulo(posRobot0[2] - wTarget)) + mu0;
+        w0 = normalizarAngulo(wTarget - 0.5);
 
         //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2])));
         //ROS_INFO("Ganancia ki1 %f", ki1);
@@ -163,17 +161,17 @@ int main(int argc, char **argv)
         //ROS_INFO("cuarto termino %f", aux1);
         //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2])));
         //ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot0[2] - wTarget));
-        //ROS_INFO("VALOR DE MU %f" , mu0);
+        
 
         
 
         posRobot0[0] = posRobot0[0] + T * u01;
         posRobot0[1] = posRobot0[1] + T * u02;
-        posRobot0[2] = normalizarAngulo(posRobot0[2] + normalizarAngulo(T* w0));
+        posRobot0[2] = 0.5;
 
         //ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
 
-        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << endl;
+        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2]  << endl;
 
         // ¿Que valor se le da a wtarget?
 
@@ -188,11 +186,11 @@ int main(int argc, char **argv)
 
 
         //Vamos a escribir la trayectoria del robot 0
-        coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << endl;
+        coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget  << endl;
 
 
         //Para robot1... mas tarde se hara con odometria
-        u11 = - 0.8* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1* 0.8* cos(posRobot1[2]);
+        u11 = (- 0.8* sin(posRobot1[2])) - ki1 * posRobot1[0] + ki1* 0.8* cos(posRobot1[2]);
         u12 =  0.8*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2* 0.8* sin(posRobot1[2]);
 
 
@@ -204,11 +202,9 @@ int main(int argc, char **argv)
 
         // Sumatorio de todos los vecinos r0 y r2
         mu1 =  calcularAlpha(abs(w1menos0), r , R)* (w1menos0/abs(w1menos0)) +
-                calcularAlpha(abs(w1menos2), r , R)* w1menos2/abs(w1menos2);
+                calcularAlpha(abs(w1menos2), r , R)* (w1menos2/abs(w1menos2));
 
-        w1 = 1 + ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2]))
-                + ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2]))
-                - ci * (normalizarAngulo(posRobot1[2] - wTarget)) + mu1;
+        w1 = normalizarAngulo(wTarget - 1);
 
         // ¿Que valor se le da a wtarget?
 
@@ -219,7 +215,7 @@ int main(int argc, char **argv)
 
         posRobot1[0] = posRobot1[0] + T * u11;
         posRobot1[1] = posRobot1[1] + T * u12;
-        posRobot1[2] = normalizarAngulo(posRobot1[2] + normalizarAngulo(T* w1));
+        posRobot1[2] = 1;
 
         //ROS_INFO("POS ROBOT 1 %f , %f , %f" , posRobot1[0], posRobot1[1], posRobot1[2]);
  
@@ -250,7 +246,7 @@ int main(int argc, char **argv)
 
 
         //Para robot2... mas tarde se hara con odometria
-        u21 = - 0.8* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1* 0.8* cos(posRobot2[2]);
+        u21 = (- 0.8* sin(posRobot2[2])) - ki1 * posRobot2[0] + ki1* 0.8* cos(posRobot2[2]);
         u22 =  0.8*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2* 0.8* sin(posRobot2[2]);
 
 
@@ -261,18 +257,16 @@ int main(int argc, char **argv)
 
 
         // Sumatorio de todos los vecinos
-        mu2 =  calcularAlpha(abs(w2menos0), r , R)* w2menos0/(abs(w2menos0))
-                + calcularAlpha(abs(w2menos1), r , R)* w2menos1/(abs(w2menos1));
+        mu2 =  calcularAlpha(abs(w2menos0), r , R)* (w2menos0/abs(w2menos0))
+                + calcularAlpha(abs(w2menos1), r , R)* (w2menos1/abs(w2menos1));
 
-        w2 = 1 + ki1 * (posRobot2[0] -  0.8* cos(posRobot2[2])) * (- 0.8* sin(posRobot2[2]))
-                + ki2 * (posRobot2[1] -  0.8* sin(posRobot2[2])) * ( 0.8* cos(posRobot2[2]))
-                - ci * (normalizarAngulo(posRobot2[2] - wTarget)) + mu2;
+        w2 = 1.5;
 
         // ¿Que valor se le da a wtarget?
 
-        posRobot2[0] = posRobot2[0] + T * u21;
-        posRobot2[1] = posRobot2[1] + T * u22;
-        posRobot2[2] = normalizarAngulo(posRobot2[2] + normalizarAngulo(T* w2));
+        posRobot2[0] = posRobot2[0] +  T * u21;
+        posRobot2[1] = posRobot2[1] +  T * u22;
+        posRobot2[2] = 1.5;
 
          //Vamos a escribir la trayectoria del robot 2
         coordenadas2 << posRobot2[0] << "," << posRobot2[1] << "," << posRobot2[2] << "," << wTarget << endl;
@@ -303,6 +297,7 @@ int main(int argc, char **argv)
     coordenadas1.close();
     coordenadas2.close();
 }
+
 
 
 
