@@ -63,7 +63,7 @@ double normalizarAngulo(double angulo) {
 }
 
 
-//Se define un caso hardcodeado de trayectoria circular 2d para 2 robots
+//Se define un caso hardcodeado de trayectoria circular 2d para 3 robots
 // Va a ir publicando los controladores(nuevas posiciones) en los topics goal para cada robot.
 // Asi otro nodo irá moviendo los robots respectivamente. Si se calculan bien los controladores debería realizar una trayectoria circular.
 //TODO: PROBAR CON 3 Y PARAMETRIZARLO
@@ -118,9 +118,10 @@ int main(int argc, char **argv)
 
     double T = 0.001; // 100 milisegundos
     double wTarget = 0; // w*
-    double ki1 = 3.5; // gains 1 
-    double ki2 = 3.5; // gains 2
-    double ci = 2; // 
+    double ki1 = 0.5; // gains 1 
+    double ki2 = 0.5; // gains 2
+    double kw = 0.01; // ganancia de la w para evitar que cambie mucho
+    double ci = 0.1; // 
 
     //Hay que diferenciar el publicador de cada robot
     
@@ -135,7 +136,7 @@ int main(int argc, char **argv)
     int i = 0;
     int r = 0.2;
     int R = 20;
-    while(i < 300){
+    while(i < 1500){
         i++;
         //cout << "ITERACION " << i << " DEL BUCLE"   << endl;
 
@@ -155,7 +156,7 @@ int main(int argc, char **argv)
 
         w0 = 1 + ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2]))
                 + ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2]))
-                - ci * (normalizarAngulo(posRobot0[2] - wTarget));
+                - (ci * (normalizarAngulo(posRobot0[2] - wTarget)) * kw) + mu0 * kw; 
 
         //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2])));
         //ROS_INFO("Ganancia ki1 %f", ki1);
@@ -211,7 +212,7 @@ int main(int argc, char **argv)
 
         w1 = 1 + ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2]))
                 + ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2]))
-                - ci * (normalizarAngulo(posRobot1[2] - wTarget)) ;
+                - (ci * (normalizarAngulo(posRobot1[2] - wTarget)) * kw) + mu1 * kw ;
 
         // ¿Que valor se le da a wtarget?
 
@@ -269,7 +270,7 @@ int main(int argc, char **argv)
 
         w2 = 1 + ki1 * (posRobot2[0] -  0.8* cos(posRobot2[2])) * (- 0.8* sin(posRobot2[2]))
                 + ki2 * (posRobot2[1] -  0.8* sin(posRobot2[2])) * ( 0.8* cos(posRobot2[2]))
-                - ci * (normalizarAngulo(posRobot2[2] - wTarget));
+                - (ci * (normalizarAngulo(posRobot2[2] - wTarget)) * kw) + mu2 * kw;
 
         // ¿Que valor se le da a wtarget?
 
@@ -294,7 +295,7 @@ int main(int argc, char **argv)
 
         //Se actualiza la w virtual segun su derivada ( mirar paper )
         // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
-        wTarget = normalizarAngulo(wTarget + T * 1);
+        wTarget = normalizarAngulo(wTarget + (T * 1) * kw);
 
         sleep(0.001);
         T += 0.001;
