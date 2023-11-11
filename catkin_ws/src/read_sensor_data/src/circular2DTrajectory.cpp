@@ -19,6 +19,23 @@
 using namespace std;
 
 
+double normalizarAngulo(double angulo) {
+    const double pi = M_PI; // Valor constante de π
+
+    // Calcula el ángulo normalizado entre -pi y pi
+    double anguloNormalizado = fmod(angulo + pi, 2*pi) - pi;
+   
+
+
+    //if (anguloNormalizado < 0) {
+     //   anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
+    //}
+    cout << "Angulo normalizado " << anguloNormalizado << endl;
+    return anguloNormalizado;
+}
+
+
+
 
 //Calcula el valor de alpha(s) según la figura 19 del paper 
 double calcularAlpha(double wVecino, double r, double R ){
@@ -30,7 +47,7 @@ double calcularAlpha(double wVecino, double r, double R ){
         cout << "LIMITE SUPERIOR r PASADO" << endl;
         return 1000000;
     }else if(wVecino > r && wVecino < R){
-        return (1/(wVecino -r)) - (1/(R-r));
+        return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
     }
 }
 
@@ -47,20 +64,6 @@ void signalHandler(int signum) {
     exit(signum);
 }
 
-double normalizarAngulo(double angulo) {
-    const double pi = M_PI; // Valor constante de π
-
-    // Calcula el ángulo normalizado entre -pi y pi
-    double anguloNormalizado = fmod(angulo + pi, 2*pi) - pi;
-   
-
-
-    //if (anguloNormalizado < 0) {
-     //   anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
-    //}
-    cout << "Angulo normalizado " << anguloNormalizado << endl;
-    return anguloNormalizado;
-}
 
 
 //Se define un caso hardcodeado de trayectoria circular 2d para 3 robots
@@ -121,7 +124,7 @@ int main(int argc, char **argv)
     double ki1 = 0.5; // gains 1 
     double ki2 = 0.5; // gains 2
     double kw = 0.01; // ganancia de la w para evitar que cambie mucho
-    double ci = 0.1; // 
+    double ci = 0.1; // ganancia ci
 
     //Hay que diferenciar el publicador de cada robot
     
@@ -154,9 +157,10 @@ int main(int argc, char **argv)
         mu0 =  calcularAlpha( abs(w0menos1),  r , R)* (w0menos1/abs(w0menos1))
                 + calcularAlpha(abs(w0menos2), r , R)* (w0menos2/abs(w0menos2));
 
+        //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
         w0 = 1 + ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2]))
                 + ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2]))
-                - (ci * (normalizarAngulo(posRobot0[2] - wTarget)) * kw) + mu0 * kw; 
+                - (ci * (normalizarAngulo(posRobot0[2] - wTarget)) * kw); 
 
         //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2])));
         //ROS_INFO("Ganancia ki1 %f", ki1);
@@ -210,9 +214,10 @@ int main(int argc, char **argv)
         mu1 =  calcularAlpha(abs(w1menos0), r , R)* (w1menos0/abs(w1menos0)) +
                 calcularAlpha(abs(w1menos2), r , R)* w1menos2/abs(w1menos2);
 
+        //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
         w1 = 1 + ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2]))
                 + ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2]))
-                - (ci * (normalizarAngulo(posRobot1[2] - wTarget)) * kw) + mu1 * kw ;
+                - (ci * (normalizarAngulo(posRobot1[2] - wTarget)) * kw);
 
         // ¿Que valor se le da a wtarget?
 
@@ -268,9 +273,10 @@ int main(int argc, char **argv)
         mu2 =  calcularAlpha(abs(w2menos0), r , R)* w2menos0/(abs(w2menos0))
                 + calcularAlpha(abs(w2menos1), r , R)* w2menos1/(abs(w2menos1));
 
+        //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
         w2 = 1 + ki1 * (posRobot2[0] -  0.8* cos(posRobot2[2])) * (- 0.8* sin(posRobot2[2]))
                 + ki2 * (posRobot2[1] -  0.8* sin(posRobot2[2])) * ( 0.8* cos(posRobot2[2]))
-                - (ci * (normalizarAngulo(posRobot2[2] - wTarget)) * kw) + mu2 * kw;
+                - (ci * (normalizarAngulo(posRobot2[2] - wTarget)) * kw);
 
         // ¿Que valor se le da a wtarget?
 
@@ -283,7 +289,7 @@ int main(int argc, char **argv)
 
         //ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
 
-        trazasSalida << "Posicion robot 2 " << posRobot2[0] <<"   " <<  posRobot2[1] << "   "  << posRobot2[2] << endl;
+        trazasSalida << "Posicion robot 2 " << posRobot2[0] <<"   " <<  posRobot2[1] << "   "  << posRobot2[2] <<  "  wi - w* " <<  normalizarAngulo(posRobot2[2] - wTarget) << endl;
  
         // poner velocidad
 
