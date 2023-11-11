@@ -48,14 +48,17 @@ void signalHandler(int signum) {
 }
 
 double normalizarAngulo(double angulo) {
-    const double dosPi = 2.0 * M_PI; // Valor constante de 2π
+    const double pi = M_PI; // Valor constante de π
 
-    // Calcula el ángulo normalizado
-    double anguloNormalizado = fmod(angulo, dosPi);
-    if (anguloNormalizado < 0) {
-        anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
-    }
+    // Calcula el ángulo normalizado entre -pi y pi
+    double anguloNormalizado = fmod(angulo + pi, 2*pi) - pi;
+   
 
+
+    //if (anguloNormalizado < 0) {
+     //   anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
+    //}
+    cout << "Angulo normalizado " << anguloNormalizado << endl;
     return anguloNormalizado;
 }
 
@@ -121,9 +124,9 @@ int main(int argc, char **argv)
 
     //Hay que diferenciar el publicador de cada robot
     
-    double posRobot0[3] = {-1 , -1, 0}; // x0,1   ,   x0,2 ,  w0
-    double posRobot1[3] = {-0.5 , 1, 1};
-    double posRobot2[3] = {0.75 , -0.75, 2};
+    double posRobot0[3] = {-0.8*cos((0*M_PI)/180) , -0.8*sin((0*M_PI)/180),(0*M_PI)/180 }; // x0,1   ,   x0,2 ,  w0
+    double posRobot1[3] = {-0.8*cos((45*M_PI)/180) , -0.8*sin((45*M_PI)/180), (45*M_PI)/180};
+    double posRobot2[3] = {-0.8*cos((-45*M_PI)/180) , -0.8*sin((-45*M_PI)/180), (-45*M_PI)/180};
     double u01,u02,mu0,w0;
     double u11, u12, mu1, w1;
     double u21, u22, mu2, w2;
@@ -152,7 +155,7 @@ int main(int argc, char **argv)
 
         w0 = 1 + ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2]))
                 + ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2]))
-                - ci * (normalizarAngulo(posRobot0[2] - wTarget)) + mu0;
+                - ci * (normalizarAngulo(posRobot0[2] - wTarget));
 
         //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2])));
         //ROS_INFO("Ganancia ki1 %f", ki1);
@@ -173,7 +176,7 @@ int main(int argc, char **argv)
 
         //ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
 
-        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << endl;
+        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " <<  normalizarAngulo(posRobot0[2] - wTarget)  << endl;
 
         // ¿Que valor se le da a wtarget?
 
@@ -208,7 +211,7 @@ int main(int argc, char **argv)
 
         w1 = 1 + ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2]))
                 + ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2]))
-                - ci * (normalizarAngulo(posRobot1[2] - wTarget)) + mu1;
+                - ci * (normalizarAngulo(posRobot1[2] - wTarget)) ;
 
         // ¿Que valor se le da a wtarget?
 
@@ -230,7 +233,7 @@ int main(int argc, char **argv)
         coordenadas1 << posRobot1[0] << "," << posRobot1[1] << "," << posRobot1[2] << "," << wTarget << endl;
 
 
-        trazasSalida << "Posicion robot 1 " << posRobot1[0] << "   " << posRobot1[1] << "   " <<  posRobot1[2] << endl;
+        trazasSalida << "Posicion robot 1 " << posRobot1[0] << "   " << posRobot1[1] << "   " <<  posRobot1[2] <<  "  wi - w* " <<  normalizarAngulo(posRobot1[2] - wTarget) <<  endl;
 
         Goal.pose.position.x = posRobot1[0];
 		Goal.pose.position.y = posRobot1[1];
@@ -266,7 +269,7 @@ int main(int argc, char **argv)
 
         w2 = 1 + ki1 * (posRobot2[0] -  0.8* cos(posRobot2[2])) * (- 0.8* sin(posRobot2[2]))
                 + ki2 * (posRobot2[1] -  0.8* sin(posRobot2[2])) * ( 0.8* cos(posRobot2[2]))
-                - ci * (normalizarAngulo(posRobot2[2] - wTarget)) + mu2;
+                - ci * (normalizarAngulo(posRobot2[2] - wTarget));
 
         // ¿Que valor se le da a wtarget?
 
