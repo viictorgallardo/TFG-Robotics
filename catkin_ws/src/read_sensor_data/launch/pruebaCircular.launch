@@ -15,5 +15,13 @@
 		<remap from="/cmd_vel" to="/robot_1/cmd_vel"/>
 	</node>
 
+
+    <node name="read_sync" pkg="read_sensor_data" type="readOdomScan" output="screen">
+        <remap from="/robot2/goal" to="/goal"/>
+		<remap from="/pose" to="/robot_2/base_pose_ground_truth"/>
+		<remap from="/scan" to="/robot_2/base_scan"/>
+		<remap from="/cmd_vel" to="/robot_2/cmd_vel"/>
+	</node>
+
 	
 </launch>
