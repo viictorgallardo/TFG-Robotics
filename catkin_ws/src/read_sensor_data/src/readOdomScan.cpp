@@ -5,6 +5,7 @@
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_datatypes.h>
 #include "ros/ros.h"
+#include "std_msgs/Bool.h"
 
 
 using namespace std;
@@ -19,6 +20,14 @@ class NodeSync
     scan_sub_.subscribe(nh_, "/scan", 1);
     pose_sub_.subscribe(nh_, "/pose", 1);
     goal_sub_ = nh_.subscribe("goal", 1, &NodeSync::goalCb, this);
+    //Canal que manda si cada robot quiere una nueva meta( True = si quiere False = En caso contrario)
+    //Al principio siempre quiere una nueva meta
+    pedirSiguienteGoal_pub = nh_.advertise<std_msgs::Bool>("pedirSiguienteGoal", 1);
+    std_msgs::Bool msg;
+    msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
+    pedirSiguienteGoal_pub.publish(msg);
+
+
     //Tampoco se pone robot0 ya esta remapeado
     velocity_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1);
     sync_.reset(new Sync(MySyncPolicy(10), scan_sub_, pose_sub_));
@@ -102,6 +111,9 @@ class NodeSync
 		&& abs(Goal.pose.position.y - estimate_pose->pose.pose.position.y) < 0.1 ){
 			input.linear.x = 0;
 			input.angular.z = 0;
+      std_msgs::Bool msg;
+      msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
+      pedirSiguienteGoal_pub.publish(msg);
 		}
 		//input.angular = alpha;
 		//input.linear = rho;
@@ -123,41 +135,6 @@ class NodeSync
 		velocity_pub_.publish(input);
 
 		}
-
-
-
-
-
-
-
-    
-    /*
-    // Print first and last value of the laser scan
-    ROS_INFO("First range data scan: %f",laser_scan->ranges[0]);
-    ROS_INFO("Last range data scan: %f",laser_scan->ranges[laser_scan->ranges.size()-1]);
-
-
-
-    
-
-    for(int i=0;i<(laser_scan->ranges.size());i++){
-      if(laser_scan->ranges[laser_scan->ranges.size()/2] < 15 &&  ((laser_scan->ranges[laser_scan->ranges.size()/2] - 1) < 15)
-       && ((laser_scan->ranges[laser_scan->ranges.size()/2] + 1 )< 15)){
-        ROS_INFO("OBSTACULO DETECTADO %d", i);
-      }
-    }
-    */
-
-
-    /*
-     //Example loop over laser scan data
-    for(int i=0;i<(laser_scan->ranges.size());i++){
-      if(!(laser_scan->ranges.empty()))
-         ROS_INFO("data %f",laser_scan->ranges[i]);
-      else{
-         ROS_INFO("NO VALUE");
-      }
-    } */
       
   }
 
@@ -167,6 +144,7 @@ class NodeSync
   message_filters::Subscriber<nav_msgs::Odometry> pose_sub_;
   ros::Subscriber goal_sub_;
   ros::Publisher velocity_pub_;
+  ros::Publisher pedirSiguienteGoal_pub;
 
   typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::LaserScan, nav_msgs::Odometry> MySyncPolicy;
   typedef message_filters::Synchronizer<MySyncPolicy> Sync;

@@ -70,8 +70,7 @@ define topurg ranger
 define erratic position
 (
   #size [0.415 0.392 0.25]
-  #size [300 120 60]
-  size [0.125 0.125 0.125]
+  size [0.150 0.150 0.150]
   origin [0 0 0.000 0.000]
   gui_nose 1
   drive "diff"
@@ -92,9 +91,14 @@ define modelPractica model
 
 
 # throw in a robot
-erratic( pose [ 0 0 0 0 ] name "Audrie" color "blue")
+erratic( pose [ -6 -6 0 0 ] name "Robot1" color "blue")
 
-erratic( pose [ 2 2 0 0 ] name "robotASeguir" color "green")
+erratic( pose [ -5 -5 0 0 ] name "Robot2" color "green")
+
+erratic( pose [ -4 -4 0 0 ] name "Robot3" color "red")
+
+
+
 
 
 
