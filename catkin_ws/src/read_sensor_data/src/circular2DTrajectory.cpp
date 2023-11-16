@@ -30,14 +30,14 @@ class CircularTrajectory{
             coordenadas1.open("coordenadasR1.txt", ios::out);
             coordenadas2.open("coordenadasR2.txt", ios::out);
 
-            goal_pub_0 = nh_.advertise<geometry_msgs::PoseStamped>("robot0/goal", 1);
-            goal_pub_1 = nh_.advertise<geometry_msgs::PoseStamped>("robot1/goal", 1);
-            goal_pub_2 = nh_.advertise<geometry_msgs::PoseStamped>("robot2/goal", 1);
+            goal_pub_0 = nh_.advertise<geometry_msgs::PoseStamped>("robot_0/goal", 1);
+            goal_pub_1 = nh_.advertise<geometry_msgs::PoseStamped>("robot_1/goal", 1);
+            goal_pub_2 = nh_.advertise<geometry_msgs::PoseStamped>("robot_2/goal", 1);
 
             //TODO:Se podria usar solo uno y remapear en el launch
-            pedirSiguienteGoal_sub0_ = nh_.subscribe("/robot0/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
-            pedirSiguienteGoal_sub1_ = nh_.subscribe("/robot1/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
-            pedirSiguienteGoal_sub2_ = nh_.subscribe("/robot2/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
+            pedirSiguienteGoal_sub0_ = nh_.subscribe("/robot_0/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
+            pedirSiguienteGoal_sub1_ = nh_.subscribe("/robot_1/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
+            pedirSiguienteGoal_sub2_ = nh_.subscribe("/robot_2/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
 
             
         }
@@ -53,7 +53,7 @@ class CircularTrajectory{
             //if (anguloNormalizado < 0) {
             //   anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
             //}
-            cout << "Angulo normalizado " << anguloNormalizado << endl;
+            //cout << "Angulo normalizado " << anguloNormalizado << endl;
             return anguloNormalizado;
         }
         //Calcula el valor de alpha(s) según la figura 19 del paper 
@@ -86,7 +86,7 @@ class CircularTrajectory{
 
         void pedirSiguienteGoal(const std_msgs::Bool msg){
             
-
+            ROS_INFO("He recibido un pedir siguiente");
             
             //Si el robot 0 quiere una nueva meta se calcula...
             if(msg.data == true){
@@ -117,7 +117,7 @@ class CircularTrajectory{
                     posRobot0[1] = posRobot0[1] + T * u02;
                     posRobot0[2] = normalizarAngulo(posRobot0[2] + normalizarAngulo(T* w0));
 
-                    //ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
+                    ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
 
                     trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " <<  normalizarAngulo(posRobot0[2] - wTarget)  << endl;
 
@@ -168,7 +168,7 @@ class CircularTrajectory{
                     posRobot1[1] = posRobot1[1] + T * u12;
                     posRobot1[2] = normalizarAngulo(posRobot1[2] + normalizarAngulo(T* w1));
 
-                    //ROS_INFO("POS ROBOT 1 %f , %f , %f" , posRobot1[0], posRobot1[1], posRobot1[2]);
+                    ROS_INFO("POS ROBOT 1 %f , %f , %f" , posRobot1[0], posRobot1[1], posRobot1[2]);
             
                     // poner velocidad
 
@@ -225,7 +225,7 @@ class CircularTrajectory{
                     //Vamos a escribir la trayectoria del robot 2
                     coordenadas2 << posRobot2[0] << "," << posRobot2[1] << "," << posRobot2[2] << "," << wTarget << endl;
 
-                    //ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
+                    ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
 
                     trazasSalida << "Posicion robot 2 " << posRobot2[0] <<"   " <<  posRobot2[1] << "   "  << posRobot2[2] <<  "  wi - w* " <<  normalizarAngulo(posRobot2[2] - wTarget) << endl;
             

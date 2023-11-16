@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+read_sensor_data/CMakeFiles/moveRobot0.dir/rule:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/moveRobot0.dir/rule
+.PHONY : read_sensor_data/CMakeFiles/moveRobot0.dir/rule
+
+# Convenience name for target.
+moveRobot0: read_sensor_data/CMakeFiles/moveRobot0.dir/rule
+
+.PHONY : moveRobot0
+
+# fast build rule for target.
+moveRobot0/fast:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot0.dir/build.make read_sensor_data/CMakeFiles/moveRobot0.dir/build
+.PHONY : moveRobot0/fast
+
+# Convenience name for target.
 read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule
 .PHONY : read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule
@@ -333,6 +348,21 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
+read_sensor_data/CMakeFiles/moveRobot2.dir/rule:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/moveRobot2.dir/rule
+.PHONY : read_sensor_data/CMakeFiles/moveRobot2.dir/rule
+
+# Convenience name for target.
+moveRobot2: read_sensor_data/CMakeFiles/moveRobot2.dir/rule
+
+.PHONY : moveRobot2
+
+# fast build rule for target.
+moveRobot2/fast:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot2.dir/build.make read_sensor_data/CMakeFiles/moveRobot2.dir/build
+.PHONY : moveRobot2/fast
+
+# Convenience name for target.
 read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 .PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
@@ -406,6 +436,21 @@ rosgraph_msgs_generate_messages_eus: read_sensor_data/CMakeFiles/rosgraph_msgs_g
 rosgraph_msgs_generate_messages_eus/fast:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+read_sensor_data/CMakeFiles/moveRobot1.dir/rule:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/moveRobot1.dir/rule
+.PHONY : read_sensor_data/CMakeFiles/moveRobot1.dir/rule
+
+# Convenience name for target.
+moveRobot1: read_sensor_data/CMakeFiles/moveRobot1.dir/rule
+
+.PHONY : moveRobot1
+
+# fast build rule for target.
+moveRobot1/fast:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot1.dir/build.make read_sensor_data/CMakeFiles/moveRobot1.dir/build
+.PHONY : moveRobot1/fast
 
 # Convenience name for target.
 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
@@ -506,6 +551,87 @@ src/followTargets.cpp.s:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/followTargets.dir/build.make read_sensor_data/CMakeFiles/followTargets.dir/src/followTargets.cpp.s
 .PHONY : src/followTargets.cpp.s
 
+src/movimientoRobot/moveRobot0.o: src/movimientoRobot/moveRobot0.cpp.o
+
+.PHONY : src/movimientoRobot/moveRobot0.o
+
+# target to build an object file
+src/movimientoRobot/moveRobot0.cpp.o:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot0.dir/build.make read_sensor_data/CMakeFiles/moveRobot0.dir/src/movimientoRobot/moveRobot0.cpp.o
+.PHONY : src/movimientoRobot/moveRobot0.cpp.o
+
+src/movimientoRobot/moveRobot0.i: src/movimientoRobot/moveRobot0.cpp.i
+
+.PHONY : src/movimientoRobot/moveRobot0.i
+
+# target to preprocess a source file
+src/movimientoRobot/moveRobot0.cpp.i:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot0.dir/build.make read_sensor_data/CMakeFiles/moveRobot0.dir/src/movimientoRobot/moveRobot0.cpp.i
+.PHONY : src/movimientoRobot/moveRobot0.cpp.i
+
+src/movimientoRobot/moveRobot0.s: src/movimientoRobot/moveRobot0.cpp.s
+
+.PHONY : src/movimientoRobot/moveRobot0.s
+
+# target to generate assembly for a file
+src/movimientoRobot/moveRobot0.cpp.s:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot0.dir/build.make read_sensor_data/CMakeFiles/moveRobot0.dir/src/movimientoRobot/moveRobot0.cpp.s
+.PHONY : src/movimientoRobot/moveRobot0.cpp.s
+
+src/movimientoRobot/moveRobot1.o: src/movimientoRobot/moveRobot1.cpp.o
+
+.PHONY : src/movimientoRobot/moveRobot1.o
+
+# target to build an object file
+src/movimientoRobot/moveRobot1.cpp.o:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot1.dir/build.make read_sensor_data/CMakeFiles/moveRobot1.dir/src/movimientoRobot/moveRobot1.cpp.o
+.PHONY : src/movimientoRobot/moveRobot1.cpp.o
+
+src/movimientoRobot/moveRobot1.i: src/movimientoRobot/moveRobot1.cpp.i
+
+.PHONY : src/movimientoRobot/moveRobot1.i
+
+# target to preprocess a source file
+src/movimientoRobot/moveRobot1.cpp.i:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot1.dir/build.make read_sensor_data/CMakeFiles/moveRobot1.dir/src/movimientoRobot/moveRobot1.cpp.i
+.PHONY : src/movimientoRobot/moveRobot1.cpp.i
+
+src/movimientoRobot/moveRobot1.s: src/movimientoRobot/moveRobot1.cpp.s
+
+.PHONY : src/movimientoRobot/moveRobot1.s
+
+# target to generate assembly for a file
+src/movimientoRobot/moveRobot1.cpp.s:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot1.dir/build.make read_sensor_data/CMakeFiles/moveRobot1.dir/src/movimientoRobot/moveRobot1.cpp.s
+.PHONY : src/movimientoRobot/moveRobot1.cpp.s
+
+src/movimientoRobot/moveRobot2.o: src/movimientoRobot/moveRobot2.cpp.o
+
+.PHONY : src/movimientoRobot/moveRobot2.o
+
+# target to build an object file
+src/movimientoRobot/moveRobot2.cpp.o:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot2.dir/build.make read_sensor_data/CMakeFiles/moveRobot2.dir/src/movimientoRobot/moveRobot2.cpp.o
+.PHONY : src/movimientoRobot/moveRobot2.cpp.o
+
+src/movimientoRobot/moveRobot2.i: src/movimientoRobot/moveRobot2.cpp.i
+
+.PHONY : src/movimientoRobot/moveRobot2.i
+
+# target to preprocess a source file
+src/movimientoRobot/moveRobot2.cpp.i:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot2.dir/build.make read_sensor_data/CMakeFiles/moveRobot2.dir/src/movimientoRobot/moveRobot2.cpp.i
+.PHONY : src/movimientoRobot/moveRobot2.cpp.i
+
+src/movimientoRobot/moveRobot2.s: src/movimientoRobot/moveRobot2.cpp.s
+
+.PHONY : src/movimientoRobot/moveRobot2.s
+
+# target to generate assembly for a file
+src/movimientoRobot/moveRobot2.cpp.s:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/moveRobot2.dir/build.make read_sensor_data/CMakeFiles/moveRobot2.dir/src/movimientoRobot/moveRobot2.cpp.s
+.PHONY : src/movimientoRobot/moveRobot2.cpp.s
+
 src/readOdomScan.o: src/readOdomScan.cpp.o
 
 .PHONY : src/readOdomScan.o
@@ -570,6 +696,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... moveRobot0"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"
 	@echo "... circularTrajectory"
@@ -583,12 +710,14 @@ help:
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... install"
+	@echo "... moveRobot2"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... install/strip"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... moveRobot1"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
@@ -598,6 +727,15 @@ help:
 	@echo "... src/followTargets.o"
 	@echo "... src/followTargets.i"
 	@echo "... src/followTargets.s"
+	@echo "... src/movimientoRobot/moveRobot0.o"
+	@echo "... src/movimientoRobot/moveRobot0.i"
+	@echo "... src/movimientoRobot/moveRobot0.s"
+	@echo "... src/movimientoRobot/moveRobot1.o"
+	@echo "... src/movimientoRobot/moveRobot1.i"
+	@echo "... src/movimientoRobot/moveRobot1.s"
+	@echo "... src/movimientoRobot/moveRobot2.o"
+	@echo "... src/movimientoRobot/moveRobot2.i"
+	@echo "... src/movimientoRobot/moveRobot2.s"
 	@echo "... src/readOdomScan.o"
 	@echo "... src/readOdomScan.i"
 	@echo "... src/readOdomScan.s"

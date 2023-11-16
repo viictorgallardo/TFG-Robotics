@@ -146,6 +146,9 @@ add_executable(readOdomScan src/readOdomScan.cpp)
 add_executable(followTargets src/followTargets.cpp)
 add_executable(teleop_twist_keyboard src/teleop_twist_keyboard.cpp)
 add_executable(circularTrajectory src/circular2DTrajectory.cpp)
+add_executable(moveRobot0 src/movimientoRobot/moveRobot0.cpp)
+add_executable(moveRobot1 src/movimientoRobot/moveRobot1.cpp)
+add_executable(moveRobot2 src/movimientoRobot/moveRobot2.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -166,6 +169,9 @@ target_link_libraries(readOdomScan ${catkin_LIBRARIES})
 target_link_libraries(followTargets ${catkin_LIBRARIES})
 target_link_libraries(teleop_twist_keyboard ${catkin_LIBRARIES})
 target_link_libraries(circularTrajectory ${catkin_LIBRARIES})
+target_link_libraries(moveRobot0 ${catkin_LIBRARIES})
+target_link_libraries(moveRobot1 ${catkin_LIBRARIES})
+target_link_libraries(moveRobot2 ${catkin_LIBRARIES})
 
 #############
 ## Install ##

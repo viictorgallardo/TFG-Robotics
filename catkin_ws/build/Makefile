@@ -285,6 +285,19 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named moveRobot0
+
+# Build rule for target.
+moveRobot0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 moveRobot0
+.PHONY : moveRobot0
+
+# fast build rule for target.
+moveRobot0/fast:
+	$(MAKE) -f read_sensor_data/CMakeFiles/moveRobot0.dir/build.make read_sensor_data/CMakeFiles/moveRobot0.dir/build
+.PHONY : moveRobot0/fast
+
+#=============================================================================
 # Target rules for targets named teleop_twist_keyboard
 
 # Build rule for target.
@@ -428,6 +441,19 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named moveRobot2
+
+# Build rule for target.
+moveRobot2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 moveRobot2
+.PHONY : moveRobot2
+
+# fast build rule for target.
+moveRobot2/fast:
+	$(MAKE) -f read_sensor_data/CMakeFiles/moveRobot2.dir/build.make read_sensor_data/CMakeFiles/moveRobot2.dir/build
+.PHONY : moveRobot2/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -491,6 +517,19 @@ rosgraph_msgs_generate_messages_eus: cmake_check_build_system
 rosgraph_msgs_generate_messages_eus/fast:
 	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named moveRobot1
+
+# Build rule for target.
+moveRobot1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 moveRobot1
+.PHONY : moveRobot1
+
+# fast build rule for target.
+moveRobot1/fast:
+	$(MAKE) -f read_sensor_data/CMakeFiles/moveRobot1.dir/build.make read_sensor_data/CMakeFiles/moveRobot1.dir/build
+.PHONY : moveRobot1/fast
 
 #=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_lisp
@@ -1723,6 +1762,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... moveRobot0"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"
 	@echo "... circularTrajectory"
@@ -1734,11 +1774,13 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
+	@echo "... moveRobot2"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... moveRobot1"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"

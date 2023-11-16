@@ -20,18 +20,23 @@ class NodeSync
     scan_sub_.subscribe(nh_, "/scan", 1);
     pose_sub_.subscribe(nh_, "/pose", 1);
     goal_sub_ = nh_.subscribe("goal", 1, &NodeSync::goalCb, this);
+
     //Canal que manda si cada robot quiere una nueva meta( True = si quiere False = En caso contrario)
     //Al principio siempre quiere una nueva meta
-    pedirSiguienteGoal_pub = nh_.advertise<std_msgs::Bool>("pedirSiguienteGoal", 1);
-    std_msgs::Bool msg;
-    msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
-    pedirSiguienteGoal_pub.publish(msg);
+    
+    pedirSiguienteGoal_pub = nh_.advertise<std_msgs::Bool>("/pedirSiguienteGoal", 1, true);
 
+    primerMensaje = true;
+    ros::Duration(0.5).sleep();
+
+    
 
     //Tampoco se pone robot0 ya esta remapeado
     velocity_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1);
     sync_.reset(new Sync(MySyncPolicy(10), scan_sub_, pose_sub_));
     sync_->registerCallback(boost::bind(&NodeSync::callback, this, _1, _2));
+
+
   }
 
 
@@ -56,7 +61,22 @@ class NodeSync
   void callback(const sensor_msgs::LaserScan::ConstPtr& laser_scan, const nav_msgs::Odometry::ConstPtr& estimate_pose)
   {
     //ROS_INFO("Synchronization successful");
+    if(primerMensaje == true){
+      //Se mandan N mensajes siendo N el num de robots para pedir la primera meta.
+      //Esto se hace hasta que nos responda el circularTrajectory, despues solo se hara una vez
+      //alcancemos la meta
+      primerMensaje = false;
+      std_msgs::Bool msg;
+      msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
+      pedirSiguienteGoal_pub.publish(msg);
+      ROS_INFO("Se ha publicado el mensaje");
+    }
     
+      
+    
+    
+
+
     // Get position info
     tf::Quaternion q(	estimate_pose->pose.pose.orientation.x, 
     			estimate_pose->pose.pose.orientation.y, 
@@ -153,6 +173,7 @@ class NodeSync
   geometry_msgs::PoseStamped Goal;
 
   bool noGoal; 
+  bool primerMensaje;
 
 };
 
