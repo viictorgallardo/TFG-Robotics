@@ -119,7 +119,7 @@ int main(int argc, char **argv)
 
     goal_pub_2 = nh_.advertise<geometry_msgs::PoseStamped>("robot2/goal", 1);
 
-    double T = 0.001; // 100 milisegundos
+    double T = 0.1; // 100 milisegundos
     double wTarget = 0; // w*
     double ki1 = 3.5; // gains 1 
     double ki2 = 3.5; // gains 2
@@ -128,9 +128,9 @@ int main(int argc, char **argv)
 
     //Hay que diferenciar el publicador de cada robot
     
-    double posRobot0[3] = {-0.8*cos((0*M_PI)/180) , -0.8*sin((0*M_PI)/180),(0*M_PI)/180 }; // x0,1   ,   x0,2 ,  w0
-    double posRobot1[3] = {-0.8*cos((45*M_PI)/180) , -0.8*sin((45*M_PI)/180), (45*M_PI)/180};
-    double posRobot2[3] = {-0.8*cos((-45*M_PI)/180) , -0.8*sin((-45*M_PI)/180), (-45*M_PI)/180};
+    double posRobot0[3] = {-1 , -1, 0.5}; // x0,1   ,   x0,2 ,  w0
+    double posRobot1[3] = {-0.5 , 1, 1};
+    double posRobot2[3] = {0.75 , -0.75, 1.5};
     double u01,u02,mu0,w0;
     double u11, u12, mu1, w1;
     double u21, u22, mu2, w2;
@@ -139,7 +139,7 @@ int main(int argc, char **argv)
     int i = 0;
     int r = 0.2;
     int R = 20;
-    while(i < 400){
+    while(i < 10000){
         i++;
         //cout << "ITERACION " << i << " DEL BUCLE"   << endl;
 
@@ -304,7 +304,6 @@ int main(int argc, char **argv)
         wTarget = normalizarAngulo(wTarget + (T * 1) * kw);
 
         sleep(0.001);
-        T += 0.001;
         
     }
 
