@@ -139,7 +139,7 @@ int main(int argc, char **argv)
     int i = 0;
     int r = 0.2;
     int R = 20;
-    while(i < 10000){
+    while(i <10000){
         i++;
         //cout << "ITERACION " << i << " DEL BUCLE"   << endl;
 
