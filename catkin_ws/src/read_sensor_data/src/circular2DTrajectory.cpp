@@ -241,8 +241,8 @@ class CircularTrajectory{
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
                     wTarget = normalizarAngulo(wTarget + (T * 1) * kw);
 
-                    sleep(0.001);
-                    T += 0.001;
+                    sleep(0.1);
+                    
                 }
                         
                 
@@ -273,7 +273,7 @@ class CircularTrajectory{
         ofstream coordenadas2;
 
 
-        double T = 0.001; // 100 milisegundos
+        double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
         double ki1 = 3.5; // gains 1 
         double ki2 = 3.5; // gains 2
@@ -282,9 +282,9 @@ class CircularTrajectory{
 
         //Hay que diferenciar el publicador de cada robot
         
-        double posRobot0[3] = {-1 , -1, 0.5}; // x0,1   ,   x0,2 ,  w0
-    double posRobot1[3] = {-0.5 , 1, 1};
-    double posRobot2[3] = {0.75 , -0.75, 1.5};
+        double posRobot0[3] = {-4 , -4, 0.5}; // x0,1   ,   x0,2 ,  w0
+    double posRobot1[3] = {-3.5 , 4, 1};
+    double posRobot2[3] = {3.75 , -3.75, 1.5};
         double u01,u02,mu0,w0;
         double u11, u12, mu1, w1;
         double u21, u22, mu2, w2;

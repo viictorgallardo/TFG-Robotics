@@ -74,6 +74,7 @@ define erratic position
   origin [0 0 0.000 0.000]
   gui_nose 1
   drive "diff"
+  obstacle_return 1
   topurg(pose [ 0 0.000 0.000 0.000 ])
 )
 
@@ -91,12 +92,15 @@ define modelPractica model
 
 
 # throw in a robot
-erratic( pose [ -1 -1 0 0 ] name "Robot1" color "blue")
+erratic( pose [ -4 -4 0 0 ] name "Robot1" color "blue")
 
-erratic( pose [ -0.5 1 0 0 ] name "Robot2" color "green")
+erratic( pose [ -3.5 4 0 0 ] name "Robot2" color "green")
 
-erratic( pose [ 0.75 -0.75 0 0 ] name "Robot3" color "red")
+erratic( pose [ 3.75 -3.75 0 0 ] name "Robot3" color "red")
 
+
+
+block( pose [ 4 4 0 0 ] name "obstacle" color "red")
 
 
 

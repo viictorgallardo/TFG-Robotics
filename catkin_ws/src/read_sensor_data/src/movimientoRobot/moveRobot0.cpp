@@ -92,8 +92,8 @@ class NodeSync
 
 
 		if(!noGoal){
-			std::cout << "meta x: "<< Goal.pose.position.x << " ";
-		std::cout << "meta y: "<< Goal.pose.position.y << " ";
+			//std::cout << "meta x: "<< Goal.pose.position.x << " ";
+		//std::cout << "meta y: "<< Goal.pose.position.y << " ";
 		
     //Cogemos la odometria del robot
 		float ex = estimate_pose->pose.pose.position.x - Goal.pose.position.x;
@@ -141,13 +141,16 @@ class NodeSync
 
     /*HAY QUE CHEKEAR EL LASER ANTES DE PUBLICAR LA VELOCIDAD*/
 
-    //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
-    if(laser_scan->ranges[laser_scan->ranges.size()/2] < 2 &&  ((laser_scan->ranges[laser_scan->ranges.size()/2] - 1) < 2)
-       && ((laser_scan->ranges[laser_scan->ranges.size()/2] + 1 )< 2)){
-        ROS_INFO("OBSTACULO DETECTADO");
-        input.linear.x = 0;
-        input.angular.z = 0;
+    for(int laser : laser_scan->ranges){
+      //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
+      if(laser < 2){
+          ROS_INFO("OBSTACULO DETECTADO");
+          input.linear.x = 0;
+          input.angular.z = 0;
+      }
     }
+
+    
 
 
 

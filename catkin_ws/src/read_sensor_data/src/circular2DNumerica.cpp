@@ -30,7 +30,7 @@ double normalizarAngulo(double angulo) {
     //if (anguloNormalizado < 0) {
      //   anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
     //}
-    cout << "Angulo normalizado " << anguloNormalizado << endl;
+    //cout << "Angulo normalizado " << anguloNormalizado << endl;
     return anguloNormalizado;
 }
 
@@ -128,9 +128,9 @@ int main(int argc, char **argv)
 
     //Hay que diferenciar el publicador de cada robot
     
-    double posRobot0[3] = {-1 , -1, 0.5}; // x0,1   ,   x0,2 ,  w0
-    double posRobot1[3] = {-0.5 , 1, 1};
-    double posRobot2[3] = {0.75 , -0.75, 1.5};
+    double posRobot0[3] = {-4 , -4, 0.5}; // x0,1   ,   x0,2 ,  w0
+    double posRobot1[3] = {-3.5 , 4, 1};
+    double posRobot2[3] = {3.75 , -3.75, 1.5};
     double u01,u02,mu0,w0;
     double u11, u12, mu1, w1;
     double u21, u22, mu2, w2;
@@ -303,7 +303,7 @@ int main(int argc, char **argv)
         // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
         wTarget = normalizarAngulo(wTarget + (T * 1) * kw);
 
-        sleep(0.001);
+        sleep(0.1);
         
     }
 
