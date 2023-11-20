@@ -123,7 +123,7 @@ int main(int argc, char **argv)
     double wTarget = 0; // w*
     double ki1 = 3.5; // gains 1 
     double ki2 = 3.5; // gains 2
-    double kw = 0.01; // ganancia de la w para evitar que cambie mucho
+    double kw = 1; // ganancia de la w para evitar que cambie mucho
     double ci = 2; // ganancia ci
 
     //Hay que diferenciar el publicador de cada robot
@@ -147,8 +147,8 @@ int main(int argc, char **argv)
         // ... calcular controladores
 
         //Para robot0... mas tarde se hara con odometria
-        u01 = - 0.8*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1* 0.8* cos(posRobot0[2]);
-        u02 =  0.8* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2* 0.8* sin(posRobot0[2]);
+        u01 = - 1.6*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1* 1.6* cos(posRobot0[2]);
+        u02 =  1.6* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2* 1.6* sin(posRobot0[2]);
 
         //Necesitamos la diferencia de angulos entre el robot y sus vecinos
         w0menos1 = normalizarAngulo(posRobot0[2] - posRobot1[2]);
@@ -158,18 +158,18 @@ int main(int argc, char **argv)
                 + calcularAlpha(abs(w0menos2), r , R)* (w0menos2/abs(w0menos2));
 
         //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-        w0 = 1 + ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2]))
-                + ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2]))
+        w0 = 1 + ki1 * (posRobot0[0] -  1.6* cos(posRobot0[2])) * (- 1.6* sin(posRobot0[2]))
+                + ki2 * (posRobot0[1] -  1.6* sin(posRobot0[2])) * ( 1.6* cos(posRobot0[2]))
                 - (ci * (normalizarAngulo(posRobot0[2] - wTarget)) * kw )+ mu0*kw; 
 
-        //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2])));
+        //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot0[0] -  1.6* cos(posRobot0[2])) * (- 1.6* sin(posRobot0[2])));
         //ROS_INFO("Ganancia ki1 %f", ki1);
         //ROS_INFO("x de robot 0 %f", posRobot0[0]);
-        //double aux =  0.8* cos(posRobot0[2]);
-        //double aux1 =  0.8* sin(posRobot0[2]);
+        //double aux =  1.6* cos(posRobot0[2]);
+        //double aux1 =  1.6* sin(posRobot0[2]);
         //ROS_INFO("Tercer termino %f" , aux);
         //ROS_INFO("cuarto termino %f", aux1);
-        //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2])));
+        //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot0[1] -  1.6* sin(posRobot0[2])) * ( 1.6* cos(posRobot0[2])));
         //ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot0[2] - wTarget));
         //ROS_INFO("VALOR DE MU %f" , mu0);
 
@@ -200,8 +200,8 @@ int main(int argc, char **argv)
 
 
         //Para robot1... mas tarde se hara con odometria
-        u11 = - 0.8* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1* 0.8* cos(posRobot1[2]);
-        u12 =  0.8*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2* 0.8* sin(posRobot1[2]);
+        u11 = - 1.6* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1* 1.6* cos(posRobot1[2]);
+        u12 =  1.6*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2* 1.6* sin(posRobot1[2]);
 
 
 
@@ -215,14 +215,14 @@ int main(int argc, char **argv)
                 calcularAlpha(abs(w1menos2), r , R)* w1menos2/abs(w1menos2);
 
         //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-        w1 = 1 + ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2]))
-                + ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2]))
+        w1 = 1 + ki1 * (posRobot1[0] -  1.6* cos(posRobot1[2])) * (- 1.6* sin(posRobot1[2]))
+                + ki2 * (posRobot1[1] -  1.6* sin(posRobot1[2])) * ( 1.6* cos(posRobot1[2]))
                 - (ci * (normalizarAngulo(posRobot1[2] - wTarget)) * kw) + mu1*kw;
 
         // ¿Que valor se le da a wtarget?
 
-        //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2])));
-        //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2])));
+        //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot1[0] -  1.6* cos(posRobot1[2])) * (- 1.6* sin(posRobot1[2])));
+        //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot1[1] -  1.6* sin(posRobot1[2])) * ( 1.6* cos(posRobot1[2])));
         //ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot1[2] - wTarget));
         //ROS_INFO("VALOR DE MU %f" , mu1);
 
@@ -259,8 +259,8 @@ int main(int argc, char **argv)
 
 
         //Para robot2... mas tarde se hara con odometria
-        u21 = - 0.8* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1* 0.8* cos(posRobot2[2]);
-        u22 =  0.8*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2* 0.8* sin(posRobot2[2]);
+        u21 = - 1.6* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1* 1.6* cos(posRobot2[2]);
+        u22 =  1.6*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2* 1.6* sin(posRobot2[2]);
 
 
 
@@ -274,8 +274,8 @@ int main(int argc, char **argv)
                 + calcularAlpha(abs(w2menos1), r , R)* w2menos1/(abs(w2menos1));
 
         //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-        w2 = 1 + ki1 * (posRobot2[0] -  0.8* cos(posRobot2[2])) * (- 0.8* sin(posRobot2[2]))
-                + ki2 * (posRobot2[1] -  0.8* sin(posRobot2[2])) * ( 0.8* cos(posRobot2[2]))
+        w2 = 1 + ki1 * (posRobot2[0] -  1.6* cos(posRobot2[2])) * (- 1.6* sin(posRobot2[2]))
+                + ki2 * (posRobot2[1] -  1.6* sin(posRobot2[2])) * ( 1.6* cos(posRobot2[2]))
                 - (ci * (normalizarAngulo(posRobot2[2] - wTarget)) * kw) + mu2*kw;
 
         // ¿Que valor se le da a wtarget?

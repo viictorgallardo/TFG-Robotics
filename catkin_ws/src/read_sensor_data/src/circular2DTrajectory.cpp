@@ -96,8 +96,8 @@ class CircularTrajectory{
                 if(numPedirSiguienteRecibidos == 3){
                     numPedirSiguienteRecibidos = 0;
                     //Para robot0... mas tarde se hara con odometria
-                    u01 = - 0.8*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1* 0.8* cos(posRobot0[2]);
-                    u02 =  0.8* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2* 0.8* sin(posRobot0[2]);
+                    u01 = - 1.6*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1* 1.6* cos(posRobot0[2]);
+                    u02 =  1.6* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2* 1.6* sin(posRobot0[2]);
 
                     //Necesitamos la diferencia de angulos entre el robot y sus vecinos
                     w0menos1 = normalizarAngulo(posRobot0[2] - posRobot1[2]);
@@ -107,8 +107,8 @@ class CircularTrajectory{
                             + calcularAlpha(abs(w0menos2), r , R)* (w0menos2/abs(w0menos2));
 
                     //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w0 = 1 + ki1 * (posRobot0[0] -  0.8* cos(posRobot0[2])) * (- 0.8* sin(posRobot0[2]))
-                            + ki2 * (posRobot0[1] -  0.8* sin(posRobot0[2])) * ( 0.8* cos(posRobot0[2]))
+                    w0 = 1 + ki1 * (posRobot0[0] -  1.6* cos(posRobot0[2])) * (- 1.6* sin(posRobot0[2]))
+                            + ki2 * (posRobot0[1] -  1.6* sin(posRobot0[2])) * ( 1.6* cos(posRobot0[2]))
                             - (ci * (normalizarAngulo(posRobot0[2] - wTarget)) * kw )+ mu0*kw; 
 
                     
@@ -138,8 +138,8 @@ class CircularTrajectory{
 
 
                     //Para robot1... mas tarde se hara con odometria
-                    u11 = - 0.8* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1* 0.8* cos(posRobot1[2]);
-                    u12 =  0.8*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2* 0.8* sin(posRobot1[2]);
+                    u11 = - 1.6* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1* 1.6* cos(posRobot1[2]);
+                    u12 =  1.6*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2* 1.6* sin(posRobot1[2]);
 
 
 
@@ -153,14 +153,14 @@ class CircularTrajectory{
                             calcularAlpha(abs(w1menos2), r , R)* w1menos2/abs(w1menos2);
 
                     //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w1 = 1 + ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2]))
-                            + ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2]))
+                    w1 = 1 + ki1 * (posRobot1[0] -  1.6* cos(posRobot1[2])) * (- 1.6* sin(posRobot1[2]))
+                            + ki2 * (posRobot1[1] -  1.6* sin(posRobot1[2])) * ( 1.6* cos(posRobot1[2]))
                             - (ci * (normalizarAngulo(posRobot1[2] - wTarget)) * kw) + mu1*kw;
 
                     // ¿Que valor se le da a wtarget?
 
-                    //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot1[0] -  0.8* cos(posRobot1[2])) * (- 0.8* sin(posRobot1[2])));
-                    //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot1[1] -  0.8* sin(posRobot1[2])) * ( 0.8* cos(posRobot1[2])));
+                    //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot1[0] -  1.6* cos(posRobot1[2])) * (- 1.6* sin(posRobot1[2])));
+                    //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot1[1] -  1.6* sin(posRobot1[2])) * ( 1.6* cos(posRobot1[2])));
                     //ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot1[2] - wTarget));
                     //ROS_INFO("VALOR DE MU %f" , mu1);
 
@@ -197,8 +197,8 @@ class CircularTrajectory{
 
 
                     //Para robot2... mas tarde se hara con odometria
-                    u21 = - 0.8* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1* 0.8* cos(posRobot2[2]);
-                    u22 =  0.8*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2* 0.8* sin(posRobot2[2]);
+                    u21 = - 1.6* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1* 1.6* cos(posRobot2[2]);
+                    u22 =  1.6*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2* 1.6* sin(posRobot2[2]);
 
 
 
@@ -212,8 +212,8 @@ class CircularTrajectory{
                             + calcularAlpha(abs(w2menos1), r , R)* w2menos1/(abs(w2menos1));
 
                     //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w2 = 1 + ki1 * (posRobot2[0] -  0.8* cos(posRobot2[2])) * (- 0.8* sin(posRobot2[2]))
-                            + ki2 * (posRobot2[1] -  0.8* sin(posRobot2[2])) * ( 0.8* cos(posRobot2[2]))
+                    w2 = 1 + ki1 * (posRobot2[0] -  1.6* cos(posRobot2[2])) * (- 1.6* sin(posRobot2[2]))
+                            + ki2 * (posRobot2[1] -  1.6* sin(posRobot2[2])) * ( 1.6* cos(posRobot2[2]))
                             - (ci * (normalizarAngulo(posRobot2[2] - wTarget)) * kw) + mu2*kw;
 
                     // ¿Que valor se le da a wtarget?
@@ -283,8 +283,8 @@ class CircularTrajectory{
         //Hay que diferenciar el publicador de cada robot
         
         double posRobot0[3] = {-4 , -4, 0.5}; // x0,1   ,   x0,2 ,  w0
-    double posRobot1[3] = {-3.5 , 4, 1};
-    double posRobot2[3] = {3.75 , -3.75, 1.5};
+        double posRobot1[3] = {-3.5 , 4, 1};
+        double posRobot2[3] = {3.75 , -3.75, 1.5};
         double u01,u02,mu0,w0;
         double u11, u12, mu1, w1;
         double u21, u22, mu2, w2;
