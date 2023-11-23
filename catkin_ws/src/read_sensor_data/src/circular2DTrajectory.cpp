@@ -25,10 +25,10 @@ class CircularTrajectory{
         CircularTrajectory(){
             numPedirSiguienteRecibidos = 0;
 
-            trazasSalida.open("salida_logs.txt", ios::out);
-            coordenadas.open("coordenadasR0.txt", ios::out);
-            coordenadas1.open("coordenadasR1.txt", ios::out);
-            coordenadas2.open("coordenadasR2.txt", ios::out);
+            ofstream trazasSalida("src/read_sensor_data/src/aux/salida_logs.txt", ios::out);
+            ofstream coordenadas("src/read_sensor_data/src/aux/coordenadasR0.txt",ios::out);
+            ofstream coordenadas1("src/read_sensor_data/src/aux/coordenadasR1.txt",ios::out);
+            ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt",ios::out);
 
             goal_pub_0 = nh_.advertise<geometry_msgs::PoseStamped>("robot_0/goal", 1);
             goal_pub_1 = nh_.advertise<geometry_msgs::PoseStamped>("robot_1/goal", 1);

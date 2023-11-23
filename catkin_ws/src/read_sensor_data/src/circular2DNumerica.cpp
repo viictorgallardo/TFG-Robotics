@@ -73,13 +73,6 @@ void signalHandler(int signum) {
 int main(int argc, char **argv)
 {
     
-    ofstream archivo("coordenadas.txt");
-    ofstream archivo1("coordenadas1.txt");
-    if (!archivo.is_open() || !archivo1.is_open()) {
-        cerr << "Error al abrir el archivo" << endl;
-        return 1; // Sal del programa si no se pueden abrir los archivos
-    }
-
     /* signal(SIGINT, signalHandler);
     signal(SIGTSTP, signalHandler);
     if (!archivo.is_open()){
@@ -106,10 +99,10 @@ int main(int argc, char **argv)
 */
     geometry_msgs::PoseStamped Goal;
 
-    ofstream trazasSalida("salida_logs.txt");
-    ofstream coordenadas("coordenadasR0.txt");
-    ofstream coordenadas1("coordenadasR1.txt");
-    ofstream coordenadas2("coordenadasR2.txt");
+    ofstream trazasSalida("src/read_sensor_data/src/aux/salida_logs.txt");
+    ofstream coordenadas("src/read_sensor_data/src/aux/coordenadasR0.txt");
+    ofstream coordenadas1("src/read_sensor_data/src/aux/coordenadasR1.txt");
+    ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt");
 
 
 
@@ -181,7 +174,8 @@ int main(int argc, char **argv)
 
         //ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
 
-        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " <<  normalizarAngulo(posRobot0[2] - wTarget)  << endl;
+        trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " 
+        <<  normalizarAngulo(posRobot0[2] - wTarget)  <<   "   " <<   mu0*kw << endl;
 
         // ¿Que valor se le da a wtarget?
 
@@ -239,7 +233,8 @@ int main(int argc, char **argv)
         coordenadas1 << posRobot1[0] << "," << posRobot1[1] << "," << posRobot1[2] << "," << wTarget << endl;
 
 
-        trazasSalida << "Posicion robot 1 " << posRobot1[0] << "   " << posRobot1[1] << "   " <<  posRobot1[2] <<  "  wi - w* " <<  normalizarAngulo(posRobot1[2] - wTarget) <<  endl;
+        trazasSalida << "Posicion robot 1 " << posRobot1[0] << "   " << posRobot1[1] << "   " <<  posRobot1[2] 
+        <<  "  wi - w* " <<  normalizarAngulo(posRobot1[2] - wTarget) <<   "   " <<   mu1*kw << endl;
 
         Goal.pose.position.x = posRobot1[0];
 		Goal.pose.position.y = posRobot1[1];
@@ -289,7 +284,8 @@ int main(int argc, char **argv)
 
         //ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
 
-        trazasSalida << "Posicion robot 2 " << posRobot2[0] <<"   " <<  posRobot2[1] << "   "  << posRobot2[2] <<  "  wi - w* " <<  normalizarAngulo(posRobot2[2] - wTarget) << endl;
+        trazasSalida << "Posicion robot 2 " << posRobot2[0] <<"   " <<  posRobot2[1] << "   "  << posRobot2[2] <<  "  wi - w* " 
+        <<  normalizarAngulo(posRobot2[2] - wTarget) <<    "   " <<   mu2*kw << endl;
  
         // poner velocidad
 

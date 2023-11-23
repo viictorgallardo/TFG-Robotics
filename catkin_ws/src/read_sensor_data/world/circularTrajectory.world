@@ -72,9 +72,9 @@ define erratic position
   #size [0.415 0.392 0.25]
   size [0.150 0.150 0.150]
   origin [0 0 0.000 0.000]
-  gui_nose 1
+  gui_nose 0
+  ranger_return 1
   drive "diff"
-  obstacle_return 1
   topurg(pose [ 0 0.000 0.000 0.000 ])
 )
 
