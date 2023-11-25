@@ -122,6 +122,17 @@ class NodeSync
 		if(abs(alpha) < 0.1){
 			input.linear.x = 0.5;
 			input.angular.z = 0;
+
+      for(int laser : laser_scan->ranges){
+      //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
+      if(laser < 0.2){
+          ROS_INFO("OBSTACULO DETECTADO");
+          input.linear.x = 0;
+          input.angular.z = 0;
+      }
+    }
+
+    
 		}else{
 			input.linear.x = 0;
 			input.angular.z = 0.5;
@@ -141,14 +152,7 @@ class NodeSync
 
     /*HAY QUE CHEKEAR EL LASER ANTES DE PUBLICAR LA VELOCIDAD*/
 
-    for(int laser : laser_scan->ranges){
-      //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
-      if(laser < 2){
-          ROS_INFO("OBSTACULO DETECTADO");
-          input.linear.x = 0;
-          input.angular.z = 0;
-      }
-    }
+    
 
     
 
