@@ -134,8 +134,9 @@ class NodeSync
 
     
 		}else{
-			input.linear.x = 0;
-			input.angular.z = 0.5;
+        input.linear.x = 0;
+        input.angular.z = 0.5;
+			
 		}
 		//Hemos llegado al goal, parar.
 		if(abs(Goal.pose.position.x - estimate_pose->pose.pose.position.x) < 0.1 
@@ -160,6 +161,7 @@ class NodeSync
 
 
 		velocity_pub_.publish(input);
+    anteriorAlpha = alpha;
 
 		}
       
@@ -181,6 +183,10 @@ class NodeSync
 
   bool noGoal; 
   bool primerMensaje;
+
+
+  //Angulo antiguo para mejorar el giro si falla
+  double anteriorAlpha; 
 
 };
 

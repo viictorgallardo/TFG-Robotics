@@ -27,6 +27,8 @@ unistd.h
 -
 std_msgs/Bool.h
 /home/arob/Desktop/TFG-Robotics/catkin_ws/src/read_sensor_data/src/std_msgs/Bool.h
+vector
+-
 iostream
 -
 fstream

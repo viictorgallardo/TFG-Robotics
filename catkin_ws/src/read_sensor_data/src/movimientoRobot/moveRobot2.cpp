@@ -26,6 +26,7 @@ class NodeSync
     
     pedirSiguienteGoal_pub = nh_.advertise<std_msgs::Bool>("/pedirSiguienteGoal", 1, true);
 
+    anteriorAlpha = 0;
     primerMensaje = true;
     ros::Duration(0.5).sleep();
 
@@ -104,7 +105,7 @@ class NodeSync
 		if (beta > M_PI) beta = -2*M_PI + beta;
 		//angle to the goal
 		float alpha = beta - tf::getYaw(estimate_pose->pose.pose.orientation);
-  /*
+    /*
 		std::cout << "ex: "<< ex << " ";
 		std::cout << "ey: "<< ey << " ";
 
@@ -115,7 +116,7 @@ class NodeSync
 		std::cout << "X: "<< estimate_pose->pose.pose.position.x << " ";
 		std::cout << "Y: "<< estimate_pose->pose.pose.position.y << " ";
 		std::cout << "Th: "<< tf::getYaw(estimate_pose->pose.pose.orientation) << endl;
-*/
+    */
 		geometry_msgs::Twist input; //to send the velocities
 
 		//No hay que corregir angulo
@@ -133,8 +134,10 @@ class NodeSync
     }
 
 		}else{
-			input.linear.x = 0;
-			input.angular.z = 0.5;
+			
+      
+        input.linear.x = 0;
+        input.angular.z = 0.5;
 		}
 		//Hemos llegado al goal, parar.
 		if(abs(Goal.pose.position.x - estimate_pose->pose.pose.position.x) < 0.1 
@@ -177,6 +180,8 @@ class NodeSync
 
   bool noGoal; 
   bool primerMensaje;
+
+  float anteriorAlpha;
 
 };
 

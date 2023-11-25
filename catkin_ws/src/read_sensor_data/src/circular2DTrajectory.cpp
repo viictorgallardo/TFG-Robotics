@@ -9,6 +9,8 @@
 #include <unistd.h>
 #include "std_msgs/Bool.h"
 
+#include <vector>
+
 #include <iostream>
 #include <fstream>
 
@@ -23,6 +25,17 @@ using namespace std;
 class CircularTrajectory{
     public:
         CircularTrajectory(){
+
+        
+            posicionesRobots.push_back({-4,-4,0.5});
+            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({3.75,-3.75,1.5});
+
+            numRobots = 3;
+
+            radioCirculo = 1.6;
+
+
             numPedirSiguienteRecibidos = 0;
 
             ofstream trazasSalida("src/read_sensor_data/src/aux/salida_logs.txt", ios::out);
@@ -95,146 +108,65 @@ class CircularTrajectory{
                 //Los 3 robots han llegado a sus metas, asignar nuevas
                 if(numPedirSiguienteRecibidos == 3){
                     numPedirSiguienteRecibidos = 0;
-                    //Para robot0... mas tarde se hara con odometria
-                    u01 = - 1.6*  sin(posRobot0[2]) - ki1 * posRobot0[0] + ki1* 1.6* cos(posRobot0[2]);
-                    u02 =  1.6* cos(posRobot0[2]) - ki2*posRobot0[1] + ki2* 1.6* sin(posRobot0[2]);
 
-                    //Necesitamos la diferencia de angulos entre el robot y sus vecinos
-                    w0menos1 = normalizarAngulo(posRobot0[2] - posRobot1[2]);
-                    w0menos2 = normalizarAngulo(posRobot0[2] - posRobot2[2]);
-                    // Sumatorio de todos los vecinos r1 y r2
-                    mu0 =  calcularAlpha( abs(w0menos1),  r , R)* (w0menos1/abs(w0menos1))
-                            + calcularAlpha(abs(w0menos2), r , R)* (w0menos2/abs(w0menos2));
 
-                    //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w0 = 1 + ki1 * (posRobot0[0] -  1.6* cos(posRobot0[2])) * (- 1.6* sin(posRobot0[2]))
-                            + ki2 * (posRobot0[1] -  1.6* sin(posRobot0[2])) * ( 1.6* cos(posRobot0[2]))
-                            - (ci * (normalizarAngulo(posRobot0[2] - wTarget)) * kw )+ mu0*kw; 
+                    for(int i = 0; i < numRobots; i++){
+                            //Para robot0... mas tarde se hara con odometria
+                        u1 = - radioCirculo*  sin(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
+                        u2 =  radioCirculo* cos(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
 
+
+                        double mu = 0;
+                        //Vecindario para un robot
+                        for(int j = 0 ; j < numRobots; j++){
+                            if(i != j){
+                                double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
+                                if(abs(wimenosj ) < R){
+                                    wimenosj = normalizarAngulo(wimenosj);
+                                    mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
+                                }
+                            }
+                        }
                     
 
-                    posRobot0[0] = posRobot0[0] + T * u01;
-                    posRobot0[1] = posRobot0[1] + T * u02;
-                    posRobot0[2] = normalizarAngulo(posRobot0[2] + normalizarAngulo(T* w0));
+                        //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
+                        w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
+                                + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
+                                - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) * kw )+ mu*kw; 
 
-                    ROS_INFO("POS ROBOT 0 %f , %f , %f" , posRobot0[0], posRobot0[1], posRobot0[2]);
+                        
 
-                    trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " <<  normalizarAngulo(posRobot0[2] - wTarget)  << endl;
+                        posicionesRobots[i].x = posicionesRobots[i].x + T * u1;
+                        posicionesRobots[i].y = posicionesRobots[i].y + T * u2;
+                        posicionesRobots[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
 
-                    // ¿Que valor se le da a wtarget?
+                        ROS_INFO("POS ROBOT %f, %f , %f , %f" , i , posicionesRobots[i].x, posicionesRobots[i].y, posicionesRobots[i].w);
 
-                    
-            
-                    // poner velocidad
+                        //trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " <<  normalizarAngulo(posRobot0[2] - wTarget)  << endl;
 
-                    Goal.pose.position.x = posRobot0[0];
-                    Goal.pose.position.y = posRobot0[1];
+                        // ¿Que valor se le da a wtarget?
 
-                    goal_pub_0.publish(Goal);
+                        
+                
+                        // poner velocidad
 
+                        Goal.pose.position.x = posicionesRobots[i].x;
+                        Goal.pose.position.y = posicionesRobots[i].y;
 
-                    //Vamos a escribir la trayectoria del robot 0
-                    coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << endl;
+                        if(i == 0){
+                            goal_pub_0.publish(Goal);
+                        }else if(i == 1){
+                            goal_pub_1.publish(Goal);
+                        }else if(i == 2){
+                            goal_pub_2.publish(Goal);
+                        }
 
-
-                    //Para robot1... mas tarde se hara con odometria
-                    u11 = - 1.6* sin(posRobot1[2]) - ki1 * posRobot1[0] + ki1* 1.6* cos(posRobot1[2]);
-                    u12 =  1.6*cos(posRobot1[2]) - ki2*posRobot1[1] + ki2* 1.6* sin(posRobot1[2]);
-
-
-
-                    //Necesitamos la diferencia de angulos entre el robot y sus vecinos
-                    w1menos0 = normalizarAngulo(posRobot1[2] - posRobot0[2]);
-                    w1menos2 = normalizarAngulo(posRobot1[2] - posRobot2[2]);
-
-
-                    // Sumatorio de todos los vecinos r0 y r2
-                    mu1 =  calcularAlpha(abs(w1menos0), r , R)* (w1menos0/abs(w1menos0)) +
-                            calcularAlpha(abs(w1menos2), r , R)* w1menos2/abs(w1menos2);
-
-                    //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w1 = 1 + ki1 * (posRobot1[0] -  1.6* cos(posRobot1[2])) * (- 1.6* sin(posRobot1[2]))
-                            + ki2 * (posRobot1[1] -  1.6* sin(posRobot1[2])) * ( 1.6* cos(posRobot1[2]))
-                            - (ci * (normalizarAngulo(posRobot1[2] - wTarget)) * kw) + mu1*kw;
-
-                    // ¿Que valor se le da a wtarget?
-
-                    //ROS_INFO("VALOR DEL PRIMER OPERANDO %f" , ki1 * (posRobot1[0] -  1.6* cos(posRobot1[2])) * (- 1.6* sin(posRobot1[2])));
-                    //ROS_INFO("VALOR DEL SEGUNDO OPERANDO %f",  ki2 * (posRobot1[1] -  1.6* sin(posRobot1[2])) * ( 1.6* cos(posRobot1[2])));
-                    //ROS_INFO("VALOR DEL TERCER OPERANDO %f" , ci * (posRobot1[2] - wTarget));
-                    //ROS_INFO("VALOR DE MU %f" , mu1);
-
-                    posRobot1[0] = posRobot1[0] + T * u11;
-                    posRobot1[1] = posRobot1[1] + T * u12;
-                    posRobot1[2] = normalizarAngulo(posRobot1[2] + normalizarAngulo(T* w1));
-
-                    ROS_INFO("POS ROBOT 1 %f , %f , %f" , posRobot1[0], posRobot1[1], posRobot1[2]);
-            
-                    // poner velocidad
+                        
 
 
-                    //Vamos a escribir la trayectoria del robot 1
-                    coordenadas1 << posRobot1[0] << "," << posRobot1[1] << "," << posRobot1[2] << "," << wTarget << endl;
-
-
-                    trazasSalida << "Posicion robot 1 " << posRobot1[0] << "   " << posRobot1[1] << "   " <<  posRobot1[2] <<  "  wi - w* " <<  normalizarAngulo(posRobot1[2] - wTarget) <<  endl;
-
-                    Goal.pose.position.x = posRobot1[0];
-                    Goal.pose.position.y = posRobot1[1];
-
-                    goal_pub_1.publish(Goal);
-
-                    //Vamos a escribir la trayectoria del robot 1
-                    //archivo1 << posRobot1[0] << "," << posRobot1[1] << "," << posRobot1[2] << "," << wTarget << endl;
-
-
-                    // Visualiza las coordenadas como un marcador en RViz
-                    //visual_tools->publishSphere(Eigen::Affine3d(Eigen::Translation3d(posRobot0[0], posRobot0[1], posRobot0[2])), rviz_visual_tools::colors::GREEN, rviz_visual_tools::LARGE);
-                    //visual_tools->trigger();
-
-                    //simula el periodo cada cuanto se controla
-
-
-
-                    //Para robot2... mas tarde se hara con odometria
-                    u21 = - 1.6* sin(posRobot2[2]) - ki1 * posRobot2[0] + ki1* 1.6* cos(posRobot2[2]);
-                    u22 =  1.6*cos(posRobot2[2]) - ki2*posRobot2[1] + ki2* 1.6* sin(posRobot2[2]);
-
-
-
-                    //Necesitamos la diferencia de angulos entre el robot y sus vecinos
-                    w2menos0 = normalizarAngulo(posRobot2[2] - posRobot0[2]);
-                    w2menos1 = normalizarAngulo(posRobot2[2] - posRobot1[2]);
-
-
-                    // Sumatorio de todos los vecinos
-                    mu2 =  calcularAlpha(abs(w2menos0), r , R)* w2menos0/(abs(w2menos0))
-                            + calcularAlpha(abs(w2menos1), r , R)* w2menos1/(abs(w2menos1));
-
-                    //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w2 = 1 + ki1 * (posRobot2[0] -  1.6* cos(posRobot2[2])) * (- 1.6* sin(posRobot2[2]))
-                            + ki2 * (posRobot2[1] -  1.6* sin(posRobot2[2])) * ( 1.6* cos(posRobot2[2]))
-                            - (ci * (normalizarAngulo(posRobot2[2] - wTarget)) * kw) + mu2*kw;
-
-                    // ¿Que valor se le da a wtarget?
-
-                    posRobot2[0] = posRobot2[0] + T * u21;
-                    posRobot2[1] = posRobot2[1] + T * u22;
-                    posRobot2[2] = normalizarAngulo(posRobot2[2] + normalizarAngulo(T* w2));
-
-                    //Vamos a escribir la trayectoria del robot 2
-                    coordenadas2 << posRobot2[0] << "," << posRobot2[1] << "," << posRobot2[2] << "," << wTarget << endl;
-
-                    ROS_INFO("POS ROBOT 2 %f , %f , %f" , posRobot2[0], posRobot2[1], posRobot2[2]);
-
-                    trazasSalida << "Posicion robot 2 " << posRobot2[0] <<"   " <<  posRobot2[1] << "   "  << posRobot2[2] <<  "  wi - w* " <<  normalizarAngulo(posRobot2[2] - wTarget) << endl;
-            
-                    // poner velocidad
-
-                    Goal.pose.position.x = posRobot2[0];
-                    Goal.pose.position.y = posRobot2[1];
-
-                    goal_pub_2.publish(Goal);
+                        //Vamos a escribir la trayectoria del robot 0
+                        //coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << endl;
+                    }
 
 
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
@@ -251,6 +183,13 @@ class CircularTrajectory{
 
 
     private:
+
+
+        struct PosiRobot{
+            double x;
+            double y;
+            double w;
+        };
 
         ros::NodeHandle nh_;
 
@@ -273,6 +212,12 @@ class CircularTrajectory{
         ofstream coordenadas2;
 
 
+        vector<PosiRobot> posicionesRobots;
+        int numRobots;
+
+        double radioCirculo;
+
+
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
         double ki1 = 3.5; // gains 1 
@@ -281,18 +226,18 @@ class CircularTrajectory{
         double ci = 2; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
+
+    
         
-        double posRobot0[3] = {-4 , -4, 0.5}; // x0,1   ,   x0,2 ,  w0
-        double posRobot1[3] = {-3.5 , 4, 1};
-        double posRobot2[3] = {3.75 , -3.75, 1.5};
-        double u01,u02,mu0,w0;
-        double u11, u12, mu1, w1;
-        double u21, u22, mu2, w2;
-        double w0menos1, w0menos2, w1menos0, w1menos2, w2menos0, w2menos1;
+        double u1,u2,mu,w0;
+    
+        
 
         int i = 0;
         int r = 0.2;
         int R = 20;
+
+        
 
 };
 

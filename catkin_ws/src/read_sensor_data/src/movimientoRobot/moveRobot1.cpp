@@ -21,6 +21,8 @@ class NodeSync
     pose_sub_.subscribe(nh_, "/pose", 1);
     goal_sub_ = nh_.subscribe("/robot_1/goal", 1, &NodeSync::goalCb, this);
 
+
+    anteriorAlpha = 0;
     //Canal que manda si cada robot quiere una nueva meta( True = si quiere False = En caso contrario)
     //Al principio siempre quiere una nueva meta
     
@@ -135,7 +137,8 @@ class NodeSync
     }
 		}else{
 			input.linear.x = 0;
-			input.angular.z = 0.5;
+      input.angular.z = 0.5;
+      
 		}
 		//Hemos llegado al goal, parar.
 		if(abs(Goal.pose.position.x - estimate_pose->pose.pose.position.x) < 0.1 
@@ -177,6 +180,9 @@ class NodeSync
 
   bool noGoal; 
   bool primerMensaje;
+
+
+  float anteriorAlpha;
 
 };
 
