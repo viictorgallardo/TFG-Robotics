@@ -95,7 +95,7 @@ class NodeSync
 		if(!noGoal){
 			//std::cout << "meta x: "<< Goal.pose.position.x << " ";
 		//std::cout << "meta y: "<< Goal.pose.position.y << " ";
-		
+		/*
     //Cogemos la odometria del robot
 		float ex = estimate_pose->pose.pose.position.x - Goal.pose.position.x;
 		float ey = estimate_pose->pose.pose.position.y - Goal.pose.position.y;
@@ -104,8 +104,8 @@ class NodeSync
 		if (beta < -M_PI) beta = 2*M_PI - abs(beta);
 		if (beta > M_PI) beta = -2*M_PI + beta;
 		//angle to the goal
-		float alpha = beta - tf::getYaw(estimate_pose->pose.pose.orientation);
-    /*
+		float alpha = beta - abs(tf::getYaw(estimate_pose->pose.pose.orientation));
+    
 		std::cout << "ex: "<< ex << " ";
 		std::cout << "ey: "<< ey << " ";
 
@@ -117,6 +117,25 @@ class NodeSync
 		std::cout << "Y: "<< estimate_pose->pose.pose.position.y << " ";
 		std::cout << "Th: "<< tf::getYaw(estimate_pose->pose.pose.orientation) << endl;
     */
+
+
+      // Calculating the difference angle using atan2
+    float ex = Goal.pose.position.x - estimate_pose->pose.pose.position.x;
+    float ey = Goal.pose.position.y - estimate_pose->pose.pose.position.y;
+    float beta = atan2(ey, ex);
+
+    // Get the current yaw of the robot
+    float current_yaw = tf::getYaw(q);
+
+    // Calculate the difference in yaw (alpha)
+    float alpha = beta - current_yaw;
+
+    // Ensure alpha is within the range -π to π
+    if (alpha > M_PI) {
+        alpha -= 2 * M_PI;
+    } else if (alpha < -M_PI) {
+        alpha += 2 * M_PI;
+    }
 		geometry_msgs::Twist input; //to send the velocities
 
 		//No hay que corregir angulo
@@ -142,6 +161,7 @@ class NodeSync
 		//Hemos llegado al goal, parar.
 		if(abs(Goal.pose.position.x - estimate_pose->pose.pose.position.x) < 0.1 
 		&& abs(Goal.pose.position.y - estimate_pose->pose.pose.position.y) < 0.1 ){
+      noGoal = true;
 			input.linear.x = 0;
 			input.angular.z = 0;
       std_msgs::Bool msg;
