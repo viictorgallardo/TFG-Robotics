@@ -22,16 +22,33 @@ using namespace std;
 double normalizarAngulo(double angulo) {
     const double pi = M_PI; // Valor constante de π
 
+
+
+    double theta_out = angulo;
+    
+    while (theta_out > pi) {
+        theta_out -= 2 * pi;
+    }
+    
+    while (theta_out < -pi) {
+        theta_out += 2 * pi;
+    }
+    
+    return theta_out;
+
+
     // Calcula el ángulo normalizado entre -pi y pi
-    double anguloNormalizado = fmod(angulo + pi, 2*pi) - pi;
+    //double anguloNormalizado = fmod(angulo + pi, 2*pi) - pi;
    
 
+
+  
 
     //if (anguloNormalizado < 0) {
      //   anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
     //}
     //cout << "Angulo normalizado " << anguloNormalizado << endl;
-    return anguloNormalizado;
+    //return anguloNormalizado;
 }
 
 
@@ -127,7 +144,7 @@ int main(int argc, char **argv)
     double wTarget = 0; // w*
     double ki1 = 3.5; // gains 1 
     double ki2 = 3.5; // gains 2
-    double kw = 0.01; // ganancia de la w para evitar que cambie mucho
+    double kw = 1; // ganancia de la w para evitar que cambie mucho
     double ci = 2; // ganancia ci
 
     //Hay que diferenciar el publicador de cada robot
@@ -141,17 +158,18 @@ int main(int argc, char **argv)
     posicionesRobots.push_back({-3.5,4,1});
     posicionesRobots.push_back({3.75,-3.75,1.5});
     
-    double u1,u2,mu,w0;
+    double u1,u2,w0;
   
     double wimenosj;
 
     int iter = 0;
     int r = 0.2;
     int R = 20;
+    double mu = 0;
     while(iter <10000){
         iter++;
 
-        ROS_INFO("ITERACION %d",iter);
+        //ROS_INFO("ITERACION %d",iter);
         trazasSalida << "ITERACION " << iter << " DEL BUCLE"   << endl;
 
         for(int i = 0; i < numRobots; i++){
@@ -160,13 +178,14 @@ int main(int argc, char **argv)
             u2 =  radioCirculo* cos(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
 
 
-            double mu = 0;
+            mu = 0;
             //Vecindario para un robot
             for(int j = 0 ; j < numRobots; j++){
                 if(i != j){
                     double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                     if(abs(wimenosj ) < R){
                         wimenosj = normalizarAngulo(wimenosj);
+                        cout << "Valores : " << wimenosj << endl;
                         mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
                     }
                 }
@@ -176,7 +195,7 @@ int main(int argc, char **argv)
             //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
             w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
                     + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
-                    - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) * kw )+ mu*kw; 
+                    - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
 
             
 
@@ -203,7 +222,7 @@ int main(int argc, char **argv)
             
 
         }
-         wTarget = normalizarAngulo(wTarget + (T * 1) * kw);
+        wTarget = normalizarAngulo(wTarget + (T * 1));
         sleep(0.1);
         
     }

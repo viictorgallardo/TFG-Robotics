@@ -55,19 +55,24 @@ class CircularTrajectory{
             
         }
 
+                
         double normalizarAngulo(double angulo) {
             const double pi = M_PI; // Valor constante de π
 
-            // Calcula el ángulo normalizado entre -pi y pi
-            double anguloNormalizado = fmod(angulo + pi, 2*pi) - pi;
-        
 
 
-            //if (anguloNormalizado < 0) {
-            //   anguloNormalizado += dosPi; // Asegura que el ángulo esté en el rango [0, 2π]
-            //}
-            //cout << "Angulo normalizado " << anguloNormalizado << endl;
-            return anguloNormalizado;
+            double theta_out = angulo;
+            
+            while (theta_out > pi) {
+                theta_out -= 2 * pi;
+            }
+            
+            while (theta_out < -pi) {
+                theta_out += 2 * pi;
+            }
+            
+            return theta_out;
+
         }
         //Calcula el valor de alpha(s) según la figura 19 del paper 
         double calcularAlpha(double wVecino, double r, double R ){
@@ -132,7 +137,7 @@ class CircularTrajectory{
                         //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
                         w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
                                 + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
-                                - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) * kw )+ mu*kw; 
+                                - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget))) + normalizarAngulo(mu*kw); 
 
                         
 
@@ -171,7 +176,7 @@ class CircularTrajectory{
 
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
-                    wTarget = normalizarAngulo(wTarget + (T * 1) * kw);
+                    wTarget = normalizarAngulo(wTarget + (T * 1));
 
                     sleep(0.1);
                     
@@ -222,7 +227,7 @@ class CircularTrajectory{
         double wTarget = 0; // w*
         double ki1 = 3.5; // gains 1 
         double ki2 = 3.5; // gains 2
-        double kw = 0.01; // ganancia de la w para evitar que cambie mucho
+        double kw = 0; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
@@ -252,6 +257,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "circularTrajectory");
 
     CircularTrajectory synchronizer;
+    
 
     ros::spin();
 

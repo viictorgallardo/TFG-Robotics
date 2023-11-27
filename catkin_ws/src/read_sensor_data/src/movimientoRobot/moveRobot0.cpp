@@ -137,26 +137,36 @@ class NodeSync
     }
 		geometry_msgs::Twist input; //to send the velocities
 
-		//No hay que corregir angulo
-		if(abs(alpha) < 0.1){
-			input.linear.x = 0.5;
+    float tolerance = 0.1;  // Tolerancia para detener el giro cuando esté cerca del objetivo
+
+    // Comprueba si alpha indica que el objetivo está a la izquierda o a la derecha
+    if (alpha > tolerance) {
+        // Gira a la izquierda
+        // Asigna una velocidad angular positiva para girar a la izquierda
+        // Utiliza angular_speed como la velocidad angular que necesitas
+        input.linear.x = 0;
+        input.angular.z = 0.5;
+
+    } else if (alpha < -tolerance) {
+        // Gira a la derecha
+        // Asigna una velocidad angular negativa para girar a la derecha
+        // Utiliza -angular_speed como la velocidad angular que necesitas
+
+        input.linear.x = 0;
+        input.angular.z = -0.5;
+    } else {
+      input.linear.x = 0.5;
 			input.angular.z = 0;
 
       for(int laser : laser_scan->ranges){
       //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
-      if(laser < 0.2){
-          ROS_INFO("OBSTACULO DETECTADO");
-          input.linear.x = 0;
-          input.angular.z = 0;
+        if(laser < 0.1){
+            ROS_INFO("OBSTACULO DETECTADO");
+            input.linear.x = 0;
+            input.angular.z = 0;
+        }
       }
     }
-
-    
-		}else{
-        input.linear.x = 0;
-        input.angular.z = 0.5;
-			
-		}
 		//Hemos llegado al goal, parar.
 		if(abs(Goal.pose.position.x - estimate_pose->pose.pose.position.x) < 0.1 
 		&& abs(Goal.pose.position.y - estimate_pose->pose.pose.position.y) < 0.1 ){
