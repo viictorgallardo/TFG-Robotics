@@ -158,9 +158,11 @@ class NodeSync
       input.linear.x = 0.5;
 			input.angular.z = 0;
 
-      for(int laser : laser_scan->ranges){
+      for(double laser : laser_scan->ranges){
       //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
-        if(laser < 0.1){
+      
+        if(laser < 0.5){
+          cout << " El valor del laser es " << laser << endl;
             ROS_INFO("OBSTACULO DETECTADO");
             input.linear.x = 0;
             input.angular.z = 0;
