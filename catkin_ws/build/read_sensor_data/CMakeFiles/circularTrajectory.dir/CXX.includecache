@@ -33,6 +33,8 @@ iostream
 -
 fstream
 -
+string
+-
 csignal
 -
 cstdlib

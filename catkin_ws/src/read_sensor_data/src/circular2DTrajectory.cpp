@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include <csignal>
 #include <cstdlib>
@@ -24,6 +25,7 @@ using namespace std;
 
 class CircularTrajectory{
     public:
+        //Constructor que utiliza el nodo para comunicarse con los robots
         CircularTrajectory(){
 
         
@@ -38,11 +40,6 @@ class CircularTrajectory{
 
             numPedirSiguienteRecibidos = 0;
 
-            ofstream trazasSalida("src/read_sensor_data/src/aux/salida_logs.txt", ios::out);
-            ofstream coordenadas("src/read_sensor_data/src/aux/coordenadasR0.txt",ios::out);
-            ofstream coordenadas1("src/read_sensor_data/src/aux/coordenadasR1.txt",ios::out);
-            ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt",ios::out);
-
             goal_pub_0 = nh_.advertise<geometry_msgs::PoseStamped>("robot_0/goal", 1);
             goal_pub_1 = nh_.advertise<geometry_msgs::PoseStamped>("robot_1/goal", 1);
             goal_pub_2 = nh_.advertise<geometry_msgs::PoseStamped>("robot_2/goal", 1);
@@ -51,6 +48,29 @@ class CircularTrajectory{
             pedirSiguienteGoal_sub0_ = nh_.subscribe("/robot_0/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
             pedirSiguienteGoal_sub1_ = nh_.subscribe("/robot_1/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
             pedirSiguienteGoal_sub2_ = nh_.subscribe("/robot_2/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
+
+            
+        }
+
+
+        //Constructor que realiza unicamente la fase de calculo
+        CircularTrajectory(int iters){
+
+        
+            posicionesRobots.push_back({-4,-4,0.5});
+            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({3.75,-3.75,1.5});
+
+            numRobots = 3;
+
+            radioCirculo = 1.6;
+
+
+            numPedirSiguienteRecibidos = 0;
+
+
+
+            calcularIGoal(iters);
 
             
         }
@@ -89,13 +109,6 @@ class CircularTrajectory{
         }
 
 
-
-        ~CircularTrajectory() {
-            trazasSalida.close();
-            coordenadas.close();
-            coordenadas1.close();
-            coordenadas2.close();
-    }
 
 
     protected:
@@ -187,6 +200,83 @@ class CircularTrajectory{
         }
 
 
+
+        void calcularIGoal(int N){
+
+            ofstream trazasSalida("src/read_sensor_data/src/aux/salida_logs.txt", ios::out);
+            ofstream coordenadas("src/read_sensor_data/src/aux/coordenadasR0.txt",ios::out);
+            ofstream coordenadas1("src/read_sensor_data/src/aux/coordenadasR1.txt",ios::out);
+            ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt",ios::out);
+
+            int iter = 0;
+            while(iter <N){
+                iter++;
+
+                //ROS_INFO("ITERACION %d",iter);
+                trazasSalida << "ITERACION " << iter << " DEL BUCLE"   << endl;
+
+                for(int i = 0; i < numRobots; i++){
+                        //Para robot0... mas tarde se hara con odometria
+                    u1 = - radioCirculo*  sin(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
+                    u2 =  radioCirculo* cos(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
+
+
+                    mu = 0;
+                    //Vecindario para un robot
+                    for(int j = 0 ; j < numRobots; j++){
+                        if(i != j){
+                            double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
+                            if(abs(wimenosj ) < R){
+                                wimenosj = normalizarAngulo(wimenosj);
+                                cout << "Valores : " << wimenosj << endl;
+                                mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
+                            }
+                        }
+                    }
+                
+
+                    //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
+                    w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
+                            + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
+                            - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
+
+                    
+
+                    posicionesRobots[i].x = posicionesRobots[i].x + T * u1;
+                    posicionesRobots[i].y = posicionesRobots[i].y + T * u2;
+                    posicionesRobots[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
+
+                    
+
+                    trazasSalida << "Posicion robot "<< i << " "<< posicionesRobots[i].x <<"   " <<  posicionesRobots[i].y
+                    << "   "  << posicionesRobots[i].w <<  "  wi - w* " 
+                    <<  normalizarAngulo(posicionesRobots[i].w - wTarget) << "   " <<   mu*kw << endl;
+
+                    if(i == 0){
+                        coordenadas << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
+                    posicionesRobots[i].w << "," << wTarget << endl;
+                    }else if( i == 1){
+                        coordenadas1 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
+                    posicionesRobots[i].w << "," << wTarget << endl;
+                    }else if(i == 2){
+                        coordenadas2 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
+                    posicionesRobots[i].w << "," << wTarget << endl;
+                    }
+                    
+
+                }
+                wTarget = normalizarAngulo(wTarget + (T * 1));
+                sleep(0.1);
+        
+            }
+
+            trazasSalida.close();
+            coordenadas.close();
+            coordenadas1.close();
+            coordenadas2.close();
+        }
+
+
     private:
 
 
@@ -210,11 +300,6 @@ class CircularTrajectory{
         geometry_msgs::PoseStamped Goal;
 
         int numPedirSiguienteRecibidos;
-
-        ofstream trazasSalida;
-        ofstream coordenadas;
-        ofstream coordenadas1;
-        ofstream coordenadas2;
 
 
         vector<PosiRobot> posicionesRobots;
@@ -254,12 +339,24 @@ class CircularTrajectory{
 int main(int argc, char **argv)
 {
     
-    ros::init(argc, argv, "circularTrajectory");
+    if(argc == 2){
+        string aux = argv[1];
+        if(aux == "calcular"){
+            ros::init(argc, argv, "circularTrajectory");
+            CircularTrajectory synchronizer(10000);
+        }else{
+            cout << " PArametro " << argv[1] << endl;
+            cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;
+        }
+    }else{
+        
+        ros::init(argc, argv, "circularTrajectory");
+        CircularTrajectory synchronizer;
+        ros::spin();
 
-    CircularTrajectory synchronizer;
+    }
+   
     
-
-    ros::spin();
 
 }
 
