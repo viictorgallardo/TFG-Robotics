@@ -56,7 +56,7 @@ double normalizarAngulo(double angulo) {
 
 //Calcula el valor de alpha(s) según la figura 19 del paper 
 double calcularAlpha(double wVecino, double r, double R ){
-    //cout  << "Wvecino:  "<< wVecino  << endl;
+    cout  << "Wvecino:  "<< wVecino  << endl;
     if (wVecino > R){
         cout << "LIMITE SUPERIOR R PASADO" << endl;
         return 0;
@@ -87,6 +87,44 @@ struct PosiRobot{
             double w;
 };
 
+/*
+double derivadaXi1(double wi){
+    return -(8000*sin(wi)*(3*pow(sin(wi),2) + 6*pow(cos(wi),2) + 10))/(pow(3*pow(sin(wi),2) + 10,2));
+}
+
+double derivadaXi2(double wi){
+    return -(8000*(3*pow(sin(wi),4) + (3*pow(cos(wi),2) + 10)* pow(sin(wi),2) - 10*pow(cos(wi),2)))/(pow(3*pow(sin(wi),2) + 10,2));
+}
+
+
+double derivadaXi1(double x){
+    double numerator = -1040 * sin(x) + 240 * sin(x) * pow(cos(x), 2) - 480 * cos(x) * sin(x) * cos(x);
+    double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
+    double result = numerator / denominator;
+    return result;
+}
+
+double derivadaXi2(double x){
+    double numerator = 800 * pow(cos(x), 2) - 560 * pow(sin(x), 2) - 240 * pow(sin(x), 2) * pow(cos(x), 2);
+    double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
+    double result = numerator / denominator;
+    return result;
+}
+*/
+
+double derivadaXi1(double x){
+    double numerator = 800*(-sin(x)*(1 + 0.3*pow(sin(x),2))) - 0.6*pow(cos(x),2)*sin(x);
+    double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
+    double result = numerator / denominator;
+    return result;
+}
+
+double derivadaXi2(double x){
+    double numerator = 800 * cos(2*x) * ( 1 + 0.3*pow(sin(x),2)) -0.6*pow(cos(x),2)*pow(sin(x),2);
+    double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
+    double result = numerator / denominator;
+    return result;
+}
 
 //Se define un caso hardcodeado de trayectoria circular 2d para 3 robots
 // Va a ir publicando los controladores(nuevas posiciones) en los topics goal para cada robot.
@@ -144,7 +182,7 @@ int main(int argc, char **argv)
     double wTarget = 0; // w*
     double ki1 = 2; // gains 1 
     double ki2 = 2; // gains 2
-    double kw = 1; // ganancia de la w para evitar que cambie mucho
+    double kw = 0; // ganancia de la w para evitar que cambie mucho
     double ci = 2; // ganancia ci
 
     //Hay que diferenciar el publicador de cada robot
@@ -154,24 +192,25 @@ int main(int argc, char **argv)
 
     double radioCirculo = 1.6;
 
-    posicionesRobots.push_back({-4,-4,0.5});
-    posicionesRobots.push_back({-3.5,4,1});
-    posicionesRobots.push_back({3.75,-3.75,1.5});
+    posicionesRobots.push_back({-1000,-1000,0.5});
+    posicionesRobots.push_back({-1000,1000,1});
+    posicionesRobots.push_back({1000,-1000,1.5});
     
     double u1,u2,w0;
 
-    //Derivadas obtenidas del paper
-    double derivadaXi1 = -(8000*sin(wi)*(3*pow(sin(wi),2) + 6*pow(cos(wi),2) + 10))/(pow(3*pow(sin(wi),2) + 10,2));
-    double derivadaXi2 = -(8000*(3*pow(sin(wi),4) + (3*pow(cos(wi),2) + 10)* pow(sin(wi),2) - 10*pow(cos(wi),2)))/(pow(3*pow(sin(wi),2) + 10,2));
+    //double x_i1 = 800*cos(wi)/(1+ 0.3*pow(sin(wi),2));
+    //double x_i2 = 800*sin(wi)*cos(wi)/(1+0.3*pow(sin(wi),2));
 
 
     double wimenosj;
 
     int iter = 0;
+
+    //ESTAN NORMALIZADAS
     int r = 0.2;
-    int R = 20;
+    int R = 10;
     double mu = 0;
-    while(iter <10000){
+    while(iter <1000){
         iter++;
 
         //ROS_INFO("ITERACION %d",iter);
@@ -179,8 +218,8 @@ int main(int argc, char **argv)
 
         for(int i = 0; i < numRobots; i++){
                 //Para robot0... mas tarde se hara con odometria
-            u1 = derivadaXi1 - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
-            u2 =  derivadaXi2 - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
+            u1 = derivadaXi1(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* (800*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2)));
+            u2 =  derivadaXi2(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* (800*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2)));
 
 
             mu = 0;
@@ -198,8 +237,10 @@ int main(int argc, char **argv)
         
 
             //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-            w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
-                    + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
+            w0 = 1 + ki1 * (posicionesRobots[i].x -  (800*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
+             * (derivadaXi1(posicionesRobots[i].w))
+                    + ki2 * (posicionesRobots[i].y -  (800*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2))))
+                     * ( derivadaXi2(posicionesRobots[i].w))
                     - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
 
             

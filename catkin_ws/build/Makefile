@@ -311,6 +311,19 @@ roscpp_generate_messages_lisp/fast:
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_lisp
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named roscpp_generate_messages_nodejs
 
 # Build rule for target.
@@ -519,30 +532,17 @@ moveRobot0/fast:
 .PHONY : moveRobot0/fast
 
 #=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_lisp
+# Target rules for targets named lissajousNumeric
 
 # Build rule for target.
-rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_lisp
-.PHONY : rosgraph_msgs_generate_messages_lisp
+lissajousNumeric: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lissajousNumeric
+.PHONY : lissajousNumeric
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named circularNumeric
-
-# Build rule for target.
-circularNumeric: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 circularNumeric
-.PHONY : circularNumeric
-
-# fast build rule for target.
-circularNumeric/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/circularNumeric.dir/build.make read_sensor_data/CMakeFiles/circularNumeric.dir/build
-.PHONY : circularNumeric/fast
+lissajousNumeric/fast:
+	$(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/build
+.PHONY : lissajousNumeric/fast
 
 #=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_cpp
@@ -1777,6 +1777,7 @@ help:
 	@echo "... gtest"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... moveRobot1"
@@ -1793,8 +1794,7 @@ help:
 	@echo "... readOdomScan"
 	@echo "... teleop_twist_keyboard"
 	@echo "... moveRobot0"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... circularNumeric"
+	@echo "... lissajousNumeric"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_eus"

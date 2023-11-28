@@ -198,6 +198,21 @@ roscpp_generate_messages_lisp/fast:
 .PHONY : roscpp_generate_messages_lisp/fast
 
 # Convenience name for target.
+read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
 read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 .PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
@@ -438,34 +453,19 @@ moveRobot0/fast:
 .PHONY : moveRobot0/fast
 
 # Convenience name for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule
+.PHONY : read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+lissajousNumeric: read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_lisp
+.PHONY : lissajousNumeric
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-read_sensor_data/CMakeFiles/circularNumeric.dir/rule:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/circularNumeric.dir/rule
-.PHONY : read_sensor_data/CMakeFiles/circularNumeric.dir/rule
-
-# Convenience name for target.
-circularNumeric: read_sensor_data/CMakeFiles/circularNumeric.dir/rule
-
-.PHONY : circularNumeric
-
-# fast build rule for target.
-circularNumeric/fast:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/circularNumeric.dir/build.make read_sensor_data/CMakeFiles/circularNumeric.dir/build
-.PHONY : circularNumeric/fast
+lissajousNumeric/fast:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/build
+.PHONY : lissajousNumeric/fast
 
 # Convenience name for target.
 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
@@ -512,32 +512,32 @@ rosgraph_msgs_generate_messages_eus/fast:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
-src/circular2DNumerica.o: src/circular2DNumerica.cpp.o
+src/Lissajous2DNumeric.o: src/Lissajous2DNumeric.cpp.o
 
-.PHONY : src/circular2DNumerica.o
+.PHONY : src/Lissajous2DNumeric.o
 
 # target to build an object file
-src/circular2DNumerica.cpp.o:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/circularNumeric.dir/build.make read_sensor_data/CMakeFiles/circularNumeric.dir/src/circular2DNumerica.cpp.o
-.PHONY : src/circular2DNumerica.cpp.o
+src/Lissajous2DNumeric.cpp.o:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/src/Lissajous2DNumeric.cpp.o
+.PHONY : src/Lissajous2DNumeric.cpp.o
 
-src/circular2DNumerica.i: src/circular2DNumerica.cpp.i
+src/Lissajous2DNumeric.i: src/Lissajous2DNumeric.cpp.i
 
-.PHONY : src/circular2DNumerica.i
+.PHONY : src/Lissajous2DNumeric.i
 
 # target to preprocess a source file
-src/circular2DNumerica.cpp.i:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/circularNumeric.dir/build.make read_sensor_data/CMakeFiles/circularNumeric.dir/src/circular2DNumerica.cpp.i
-.PHONY : src/circular2DNumerica.cpp.i
+src/Lissajous2DNumeric.cpp.i:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/src/Lissajous2DNumeric.cpp.i
+.PHONY : src/Lissajous2DNumeric.cpp.i
 
-src/circular2DNumerica.s: src/circular2DNumerica.cpp.s
+src/Lissajous2DNumeric.s: src/Lissajous2DNumeric.cpp.s
 
-.PHONY : src/circular2DNumerica.s
+.PHONY : src/Lissajous2DNumeric.s
 
 # target to generate assembly for a file
-src/circular2DNumerica.cpp.s:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/circularNumeric.dir/build.make read_sensor_data/CMakeFiles/circularNumeric.dir/src/circular2DNumerica.cpp.s
-.PHONY : src/circular2DNumerica.cpp.s
+src/Lissajous2DNumeric.cpp.s:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/src/Lissajous2DNumeric.cpp.s
+.PHONY : src/Lissajous2DNumeric.cpp.s
 
 src/circular2DTrajectory.o: src/circular2DTrajectory.cpp.o
 
@@ -737,6 +737,7 @@ help:
 	@echo "... install/strip"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... moveRobot1"
@@ -755,8 +756,7 @@ help:
 	@echo "... readOdomScan"
 	@echo "... teleop_twist_keyboard"
 	@echo "... moveRobot0"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... circularNumeric"
+	@echo "... lissajousNumeric"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... test"
 	@echo "... edit_cache"
@@ -764,9 +764,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... install/local"
-	@echo "... src/circular2DNumerica.o"
-	@echo "... src/circular2DNumerica.i"
-	@echo "... src/circular2DNumerica.s"
+	@echo "... src/Lissajous2DNumeric.o"
+	@echo "... src/Lissajous2DNumeric.i"
+	@echo "... src/Lissajous2DNumeric.s"
 	@echo "... src/circular2DTrajectory.o"
 	@echo "... src/circular2DTrajectory.i"
 	@echo "... src/circular2DTrajectory.s"
