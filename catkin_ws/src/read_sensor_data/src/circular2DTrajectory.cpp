@@ -57,11 +57,12 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
         
-            posicionesRobots.push_back({-4,-4,0.5});
-            posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({3.75,-3.75,1.5});
+            posicionesRobots.push_back({-1,-1,0.5});
+            posicionesRobots.push_back({-1,1,1});
+            posicionesRobots.push_back({1,-1,1.5});
+            posicionesRobots.push_back({-1,-2,2});
 
-            numRobots = 3;
+            numRobots = 4;
 
             radioCirculo = 1.6;
 
@@ -207,6 +208,7 @@ class CircularTrajectory{
             ofstream coordenadas("src/read_sensor_data/src/aux/coordenadasR0.txt",ios::out);
             ofstream coordenadas1("src/read_sensor_data/src/aux/coordenadasR1.txt",ios::out);
             ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt",ios::out);
+            ofstream coordenadas3("src/read_sensor_data/src/aux/coordenadasR3.txt",ios::out);
 
             int iter = 0;
             while(iter <N){
@@ -260,6 +262,9 @@ class CircularTrajectory{
                     posicionesRobots[i].w << "," << wTarget << endl;
                     }else if(i == 2){
                         coordenadas2 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
+                    posicionesRobots[i].w << "," << wTarget << endl;
+                    }else if(i == 3){
+                        coordenadas3 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
                     posicionesRobots[i].w << "," << wTarget << endl;
                     }
                     

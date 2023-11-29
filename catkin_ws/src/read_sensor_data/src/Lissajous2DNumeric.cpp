@@ -113,14 +113,14 @@ double derivadaXi2(double x){
 */
 
 double derivadaXi1(double x){
-    double numerator = 800*(-sin(x)*(1 + 0.3*pow(sin(x),2))) - 0.6*pow(cos(x),2)*sin(x);
+    double numerator = 1.6*(-sin(x)*(1 + 0.3*pow(sin(x),2)) - 0.6*pow(cos(x),2)*sin(x));
     double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
     double result = numerator / denominator;
     return result;
 }
 
 double derivadaXi2(double x){
-    double numerator = 800 * cos(2*x) * ( 1 + 0.3*pow(sin(x),2)) -0.6*pow(cos(x),2)*pow(sin(x),2);
+    double numerator = 1.6 * (cos(2*x) * ( 1 + 0.3*pow(sin(x),2)) -0.6*pow(cos(x),2)*pow(sin(x),2));
     double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
     double result = numerator / denominator;
     return result;
@@ -182,7 +182,7 @@ int main(int argc, char **argv)
     double wTarget = 0; // w*
     double ki1 = 2; // gains 1 
     double ki2 = 2; // gains 2
-    double kw = 0; // ganancia de la w para evitar que cambie mucho
+    double kw = 1; // ganancia de la w para evitar que cambie mucho
     double ci = 2; // ganancia ci
 
     //Hay que diferenciar el publicador de cada robot
@@ -192,9 +192,9 @@ int main(int argc, char **argv)
 
     double radioCirculo = 1.6;
 
-    posicionesRobots.push_back({-1000,-1000,0.5});
-    posicionesRobots.push_back({-1000,1000,1});
-    posicionesRobots.push_back({1000,-1000,1.5});
+    posicionesRobots.push_back({-4,-4,0});
+    posicionesRobots.push_back({-4,4,1});
+    posicionesRobots.push_back({4,-4,2});
     
     double u1,u2,w0;
 
@@ -210,7 +210,7 @@ int main(int argc, char **argv)
     int r = 0.2;
     int R = 10;
     double mu = 0;
-    while(iter <1000){
+    while(iter <10000){
         iter++;
 
         //ROS_INFO("ITERACION %d",iter);
@@ -218,10 +218,10 @@ int main(int argc, char **argv)
 
         for(int i = 0; i < numRobots; i++){
                 //Para robot0... mas tarde se hara con odometria
-            u1 = derivadaXi1(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* (800*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2)));
-            u2 =  derivadaXi2(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* (800*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2)));
+            u1 = derivadaXi1(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* ((1.6*cos(posicionesRobots[i].w))/(1+ 0.3*pow(sin(posicionesRobots[i].w),2)));
+            u2 =  derivadaXi2(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* ((1.6*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w))/(1+0.3*pow(sin(posicionesRobots[i].w),2)));
 
-
+            /*
             mu = 0;
             //Vecindario para un robot
             for(int j = 0 ; j < numRobots; j++){
@@ -243,7 +243,10 @@ int main(int argc, char **argv)
                      * ( derivadaXi2(posicionesRobots[i].w))
                     - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
 
-            
+            */
+
+            w0 += 1 ;
+            normalizarAngulo(w0);
 
             posicionesRobots[i].x = posicionesRobots[i].x + T * u1;
             posicionesRobots[i].y = posicionesRobots[i].y + T * u2;
