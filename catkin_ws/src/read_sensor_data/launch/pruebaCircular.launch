@@ -1,14 +1,17 @@
 <launch>
+
+
 	<node name="stage_sim" pkg="stage_ros" type="stageros" args="$(find read_sensor_data)/world/circularTrajectory.world" output="screen"/>
   
-	<node name="robot0" pkg="read_sensor_data" type="moveRobot0" output="screen">
+	<node name="robot0" pkg="read_sensor_data" type="moveRobot" output="screen" args="0">
         <remap from="/pose" to="/robot_0/base_pose_ground_truth"/>
 		<remap from="/scan" to="/robot_0/base_scan"/>
 		<remap from="/cmd_vel" to="/robot_0/cmd_vel"/>
         <remap from="/pedirSiguienteGoal" to="/robot_0/pedirSiguienteGoal"/>
 	</node>
 
-    <node name="robot1" pkg="read_sensor_data" type="moveRobot1" output="screen">
+    <node name="robot1" pkg="read_sensor_data" type="moveRobot" output="screen" args="1">
+		<param name="robot_id" value="1"/>
 		<remap from="/pose" to="/robot_1/base_pose_ground_truth"/>
 		<remap from="/scan" to="/robot_1/base_scan"/>
 		<remap from="/cmd_vel" to="/robot_1/cmd_vel"/>
@@ -16,7 +19,8 @@
 	</node>
 
 
-    <node name="robot2" pkg="read_sensor_data" type="moveRobot2" output="screen">
+    <node name="robot2" pkg="read_sensor_data" type="moveRobot" output="screen" args="2">
+		<param name="robot_id" value="2"/>
 		<remap from="/pose" to="/robot_2/base_pose_ground_truth"/>
 		<remap from="/scan" to="/robot_2/base_scan"/>
 		<remap from="/cmd_vel" to="/robot_2/cmd_vel"/>

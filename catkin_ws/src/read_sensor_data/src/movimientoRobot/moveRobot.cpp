@@ -13,16 +13,19 @@ using namespace std;
 class NodeSync
 {
  public:
-  NodeSync()
+  NodeSync(string robot_id)
   {
+    //Cada nodo escucha por su topic correspondiente
+    r_id = robot_id;    
+    string goal_sub_aux = "/robot_" + robot_id + "/goal";
+    cout << "La cadena es " << goal_sub_aux << endl;
+
     noGoal = true;
     //Estos dos no se ponen a robot_0 porque ya se remapearon en el start.launch
     scan_sub_.subscribe(nh_, "/scan", 1);
     pose_sub_.subscribe(nh_, "/pose", 1);
-    goal_sub_ = nh_.subscribe("/robot_1/goal", 1, &NodeSync::goalCb, this);
+    goal_sub_ = nh_.subscribe(goal_sub_aux, 1, &NodeSync::goalCb, this);
 
-
-    anteriorAlpha = 0;
     //Canal que manda si cada robot quiere una nueva meta( True = si quiere False = En caso contrario)
     //Al principio siempre quiere una nueva meta
     
@@ -105,9 +108,22 @@ class NodeSync
 		if (beta < -M_PI) beta = 2*M_PI - abs(beta);
 		if (beta > M_PI) beta = -2*M_PI + beta;
 		//angle to the goal
-		float alpha = beta - abs(tf::getYaw(estimate_pose->pose.pose.orientation));
-    */
-      // Calculating the difference angle using atan2
+		float alpha = beta - tf::getYaw(estimate_pose->pose.pose.orientation);
+  
+		std::cout << "ex: "<< ex << " ";
+		std::cout << "ey: "<< ey << " ";
+
+		std::cout << "Rho: "<< rho << " ";
+		std::cout << "Alpha: "<< alpha << " ";
+		std::cout << "Beta: "<< beta << endl;
+
+		std::cout << "X: "<< estimate_pose->pose.pose.position.x << " ";
+		std::cout << "Y: "<< estimate_pose->pose.pose.position.y << " ";
+		std::cout << "Th: "<< tf::getYaw(estimate_pose->pose.pose.orientation) << endl;
+  */
+
+
+        // Calculating the difference angle using atan2
     float ex = Goal.pose.position.x - estimate_pose->pose.pose.position.x;
     float ey = Goal.pose.position.y - estimate_pose->pose.pose.position.y;
     float beta = atan2(ey, ex);
@@ -116,7 +132,7 @@ class NodeSync
     float current_yaw = tf::getYaw(q);
 
     // Calculate the difference in yaw (alpha)
-    float alpha =beta - current_yaw;
+    float alpha = beta- current_yaw;
 
     // Ensure alpha is within the range -π to π
     if (alpha > M_PI) {
@@ -124,18 +140,6 @@ class NodeSync
     } else if (alpha < -M_PI) {
         alpha += 2 * M_PI;
     }
-    /*
-		std::cout << "ex: "<< ex << " ";
-		std::cout << "ey: "<< ey << " ";
-
-		//std::cout << "Rho: "<< rho << " ";
-		std::cout << "Alpha: "<< alpha << " ";
-		std::cout << "Beta: "<< beta << endl;
-
-		std::cout << "X: "<< estimate_pose->pose.pose.position.x << " ";
-		std::cout << "Y: "<< estimate_pose->pose.pose.position.y << " ";
-		std::cout << "Th: "<< tf::getYaw(estimate_pose->pose.pose.orientation) << endl;
-    */
 		geometry_msgs::Twist input; //to send the velocities
 
     float tolerance = 0.1;  // Tolerancia para detener el giro cuando esté cerca del objetivo
@@ -161,8 +165,10 @@ class NodeSync
 
       for(double laser : laser_scan->ranges){
       //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
+      
         if(laser < 0.5){
-            //ROS_INFO("OBSTACULO DETECTADO");
+          cout << " El valor del laser es " << laser << endl;
+            ROS_INFO("OBSTACULO DETECTADO");
             input.linear.x = 0;
             input.angular.z = 0;
         }
@@ -182,12 +188,17 @@ class NodeSync
 		//input.linear = rho;
 
 
+    /*HAY QUE CHEKEAR EL LASER ANTES DE PUBLICAR LA VELOCIDAD*/
+
+    
+
     
 
 
 
 
 		velocity_pub_.publish(input);
+    anteriorAlpha = alpha;
 
 		}
       
@@ -211,15 +222,22 @@ class NodeSync
   bool primerMensaje;
 
 
-  float anteriorAlpha;
+  //Angulo antiguo para mejorar el giro si falla
+  double anteriorAlpha; 
+  string r_id;
 
 };
 
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "read_odom_scan");
+ 
+  
 
-  NodeSync synchronizer;
+  std::string robot_id = argv[1];
+  ROS_INFO("Soy el nodo %s", robot_id.c_str());
+
+  NodeSync synchronizer(robot_id);
 
   ros::spin();
 }
