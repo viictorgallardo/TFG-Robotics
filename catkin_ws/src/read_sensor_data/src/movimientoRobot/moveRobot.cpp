@@ -34,6 +34,8 @@ class NodeSync
     primerMensaje = true;
     ros::Duration(0.5).sleep();
 
+    hayObstaculo_pub_ = nh_.advertise<std_msgs::Bool>("/hayObstaculo", 1, true);
+
     
 
     //Tampoco se pone robot0 ya esta remapeado
@@ -122,7 +124,6 @@ class NodeSync
 		std::cout << "Th: "<< tf::getYaw(estimate_pose->pose.pose.orientation) << endl;
   */
 
-
         // Calculating the difference angle using atan2
     float ex = Goal.pose.position.x - estimate_pose->pose.pose.position.x;
     float ey = Goal.pose.position.y - estimate_pose->pose.pose.position.y;
@@ -163,6 +164,7 @@ class NodeSync
       input.linear.x = 0.5;
 			input.angular.z = 0;
 
+      bool hayObstaculo = false;
       for(double laser : laser_scan->ranges){
       //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
       
@@ -171,7 +173,15 @@ class NodeSync
             ROS_INFO("OBSTACULO DETECTADO");
             input.linear.x = 0;
             input.angular.z = 0;
+            hayObstaculo = true;
+
         }
+      }
+      if(hayObstaculo == true){
+        std_msgs::Bool msg;
+        msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
+        hayObstaculo_pub_.publish(msg);
+        sleep(2);
       }
     }
 		//Hemos llegado al goal, parar.
@@ -211,6 +221,7 @@ class NodeSync
   ros::Subscriber goal_sub_;
   ros::Publisher velocity_pub_;
   ros::Publisher pedirSiguienteGoal_pub;
+  ros::Publisher hayObstaculo_pub_;
 
   typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::LaserScan, nav_msgs::Odometry> MySyncPolicy;
   typedef message_filters::Synchronizer<MySyncPolicy> Sync;

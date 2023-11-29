@@ -11,7 +11,6 @@
 	</node>
 
     <node name="robot1" pkg="read_sensor_data" type="moveRobot" output="screen" args="1">
-		<param name="robot_id" value="1"/>
 		<remap from="/pose" to="/robot_1/base_pose_ground_truth"/>
 		<remap from="/scan" to="/robot_1/base_scan"/>
 		<remap from="/cmd_vel" to="/robot_1/cmd_vel"/>
@@ -20,11 +19,17 @@
 
 
     <node name="robot2" pkg="read_sensor_data" type="moveRobot" output="screen" args="2">
-		<param name="robot_id" value="2"/>
 		<remap from="/pose" to="/robot_2/base_pose_ground_truth"/>
 		<remap from="/scan" to="/robot_2/base_scan"/>
 		<remap from="/cmd_vel" to="/robot_2/cmd_vel"/>
         <remap from="/pedirSiguienteGoal" to="/robot_2/pedirSiguienteGoal"/>
+	</node>
+
+	<node name="robot3" pkg="read_sensor_data" type="moveRobot" output="screen" args="3">
+		<remap from="/pose" to="/robot_3/base_pose_ground_truth"/>
+		<remap from="/scan" to="/robot_3/base_scan"/>
+		<remap from="/cmd_vel" to="/robot_3/cmd_vel"/>
+        <remap from="/pedirSiguienteGoal" to="/robot_3/pedirSiguienteGoal"/>
 	</node>
 
 	

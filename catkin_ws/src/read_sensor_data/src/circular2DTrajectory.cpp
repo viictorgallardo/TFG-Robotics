@@ -32,8 +32,9 @@ class CircularTrajectory{
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({3.75,-3.75,1.5});
+            posicionesRobots.push_back({2.75,-5.75,2});
 
-            numRobots = 3;
+            numRobots = 4;
 
             radioCirculo = 1.6;
 
@@ -43,11 +44,16 @@ class CircularTrajectory{
             goal_pub_0 = nh_.advertise<geometry_msgs::PoseStamped>("robot_0/goal", 1);
             goal_pub_1 = nh_.advertise<geometry_msgs::PoseStamped>("robot_1/goal", 1);
             goal_pub_2 = nh_.advertise<geometry_msgs::PoseStamped>("robot_2/goal", 1);
+            goal_pub_3 = nh_.advertise<geometry_msgs::PoseStamped>("robot_3/goal", 1);
 
             //TODO:Se podria usar solo uno y remapear en el launch
             pedirSiguienteGoal_sub0_ = nh_.subscribe("/robot_0/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
             pedirSiguienteGoal_sub1_ = nh_.subscribe("/robot_1/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
             pedirSiguienteGoal_sub2_ = nh_.subscribe("/robot_2/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
+            pedirSiguienteGoal_sub3_ = nh_.subscribe("/robot_3/pedirSiguienteGoal", 1, &CircularTrajectory::pedirSiguienteGoal, this);
+
+
+            hayObstaculo_sub = nh_.subscribe("/hayObstaculo", 1, &CircularTrajectory::hayObstaculo, this);
 
             
         }
@@ -114,7 +120,14 @@ class CircularTrajectory{
 
     protected:
 
-        
+        void hayObstaculo(const std_msgs::Bool msg){
+            if(msg.data == true){
+                sleep(3);
+                ROS_INFO("HAY OBSTACULO Y VOY A MANDAR METAS");
+                numPedirSiguienteRecibidos=numRobots -1;
+                pedirSiguienteGoal(msg);
+            }
+        } 
 
         void pedirSiguienteGoal(const std_msgs::Bool msg){
             
@@ -125,7 +138,7 @@ class CircularTrajectory{
 
                 numPedirSiguienteRecibidos++;
                 //Los 3 robots han llegado a sus metas, asignar nuevas
-                if(numPedirSiguienteRecibidos == 3){
+                if(numPedirSiguienteRecibidos == numRobots){
                     numPedirSiguienteRecibidos = 0;
 
 
@@ -178,6 +191,8 @@ class CircularTrajectory{
                             goal_pub_1.publish(Goal);
                         }else if(i == 2){
                             goal_pub_2.publish(Goal);
+                        }else if(i == 3){
+                            goal_pub_3.publish(Goal);
                         }
 
                         
@@ -297,10 +312,14 @@ class CircularTrajectory{
         ros::Publisher goal_pub_0;
         ros::Publisher goal_pub_1;
         ros::Publisher goal_pub_2;
+        ros::Publisher goal_pub_3;
 
         ros::Subscriber pedirSiguienteGoal_sub0_;
         ros::Subscriber pedirSiguienteGoal_sub1_;
         ros::Subscriber pedirSiguienteGoal_sub2_;
+        ros::Subscriber pedirSiguienteGoal_sub3_;
+
+        ros::Subscriber hayObstaculo_sub;
 
         geometry_msgs::PoseStamped Goal;
 
