@@ -31,7 +31,7 @@ ruta_coordenadas_r1 = os.path.join(directorio_actual, 'coordenadasR1.txt')
 
 ruta_coordenadas_r2 = os.path.join(directorio_actual, 'coordenadasR2.txt')
 
-ruta_coordenadas_r3 = os.path.join(directorio_actual, 'coordenadasR3.txt')
+#ruta_coordenadas_r3 = os.path.join(directorio_actual, 'coordenadasR3.txt')
 
 salida_logs = os.path.join(directorio_actual, 'salida_logs.txt')
 
@@ -59,19 +59,19 @@ with open(ruta_coordenadas_r2, 'r') as archivo:
         coordenadas_x_2.append(x)
         coordenadas_y_2.append(y)
 
-#Lee las coordenadas del archivo
-with open(ruta_coordenadas_r3, 'r') as archivo:
-    for linea in archivo:
-        x, y, _, _ = map(float, linea.strip().split(','))
-        coordenadas_x_3.append(x)
-        coordenadas_y_3.append(y)
+# #Lee las coordenadas del archivo
+# with open(ruta_coordenadas_r3, 'r') as archivo:
+#     for linea in archivo:
+#         x, y, _, _ = map(float, linea.strip().split(','))
+#         coordenadas_x_3.append(x)
+#         coordenadas_y_3.append(y)
 
 
 #Crea un gráfico de dispersión con las coordenadas
 plt.scatter(coordenadas_x, coordenadas_y, label='Coordenadas 0', color='blue')
 plt.scatter(coordenadas_x_1, coordenadas_y_1, label='Coordenadas 1', color='green')
 plt.scatter(coordenadas_x_2, coordenadas_y_2, label='Coordenadas 2', color='red')
-plt.scatter(coordenadas_x_3, coordenadas_y_3, label='Coordenadas 3', color='yellow')
+#plt.scatter(coordenadas_x_3, coordenadas_y_3, label='Coordenadas 3', color='yellow')
 
 #Personaliza el gráfico si lo deseas
 plt.title('Gráfico de Coordenadas')

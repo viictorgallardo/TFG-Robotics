@@ -63,14 +63,14 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
         
-            posicionesRobots.push_back({-1,-1,0.5});
-            posicionesRobots.push_back({-1,1,1});
-            posicionesRobots.push_back({1,-1,1.5});
-            posicionesRobots.push_back({-1,-2,2});
+            posicionesRobots.push_back({-1000,-1000,0.5});
+            posicionesRobots.push_back({-1000,1000,1});
+            posicionesRobots.push_back({1000,-1000,1.5});
+            
 
-            numRobots = 4;
+            numRobots = 3;
 
-            radioCirculo = 1.6;
+            radioCirculo = 800.0;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -223,7 +223,7 @@ class CircularTrajectory{
             ofstream coordenadas("src/read_sensor_data/src/aux/coordenadasR0.txt",ios::out);
             ofstream coordenadas1("src/read_sensor_data/src/aux/coordenadasR1.txt",ios::out);
             ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt",ios::out);
-            ofstream coordenadas3("src/read_sensor_data/src/aux/coordenadasR3.txt",ios::out);
+            //ofstream coordenadas3("src/read_sensor_data/src/aux/coordenadasR3.txt",ios::out);
 
             int iter = 0;
             while(iter <N){
@@ -279,8 +279,8 @@ class CircularTrajectory{
                         coordenadas2 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
                     posicionesRobots[i].w << "," << wTarget << endl;
                     }else if(i == 3){
-                        coordenadas3 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
-                    posicionesRobots[i].w << "," << wTarget << endl;
+                        //coordenadas3 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
+                    //posicionesRobots[i].w << "," << wTarget << endl;
                     }
                     
 
@@ -334,10 +334,10 @@ class CircularTrajectory{
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 3.5; // gains 1 
-        double ki2 = 3.5; // gains 2
+        double ki1 = 10; // gains 1 
+        double ki2 = 10; // gains 2
         double kw = 1; // ganancia de la w para evitar que cambie mucho
-        double ci = 2; // ganancia ci
+        double ci = 5; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
 
