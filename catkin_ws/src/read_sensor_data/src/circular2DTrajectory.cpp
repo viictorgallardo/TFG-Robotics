@@ -32,9 +32,9 @@ class CircularTrajectory{
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({3.75,-3.75,1.5});
-            posicionesRobots.push_back({2.75,-5.75,2});
+            //posicionesRobots.push_back({2.75,-5.75,2});
 
-            numRobots = 4;
+            numRobots = 3;
 
             radioCirculo = 1.6;
 
@@ -66,9 +66,9 @@ class CircularTrajectory{
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({3.75,-3.75,1.5});
-            posicionesRobots.push_back({2.75,-5.75,2});
+            //posicionesRobots.push_back({2.75,-5.75,2});
 
-            numRobots = 4;
+            numRobots = 3;
 
             radioCirculo = 1.6;
 
@@ -205,7 +205,7 @@ class CircularTrajectory{
 
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
-                    wTarget = normalizarAngulo(wTarget + (T * 1));
+                    wTarget = normalizarAngulo(wTarget + (T * 0.1));
 
                     sleep(0.1);
                     
@@ -285,7 +285,7 @@ class CircularTrajectory{
                     
 
                 }
-                wTarget = normalizarAngulo(wTarget + (T * 1));
+                wTarget = normalizarAngulo(wTarget + (T * 0.1));
                 sleep(0.1);
         
             }
