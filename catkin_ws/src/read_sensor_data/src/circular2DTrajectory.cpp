@@ -36,7 +36,7 @@ class CircularTrajectory{
 
             numRobots = 3;
 
-            radioCirculo = 1.6;
+            radioCirculo = 2.1;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -63,14 +63,14 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
         
-            posicionesRobots.push_back({-10000,-10000,0.5});
-            posicionesRobots.push_back({-10000,10000,1});
-            posicionesRobots.push_back({10000,-10000,1.5});
-            
+            posicionesRobots.push_back({-4,-4,0.5});
+            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({3.75,-3.75,1.5});
+            //posicionesRobots.push_back({2.75,-5.75,2});
 
             numRobots = 3;
 
-            radioCirculo = 800.0;
+            radioCirculo = 2.1;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -334,8 +334,8 @@ class CircularTrajectory{
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 3.5; // gains 1 
-        double ki2 = 3.5; // gains 2
+        double ki1 = 3; // gains 1 
+        double ki2 = 3; // gains 2
         double kw = 1; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
 
