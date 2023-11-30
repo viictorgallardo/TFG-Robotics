@@ -110,17 +110,21 @@ double derivadaXi2(double x){
     double result = numerator / denominator;
     return result;
 }
+
 */
 
+
+double radioCirculo = 800;
+
 double derivadaXi1(double x){
-    double numerator = 1.6*(-sin(x)*(1 + 0.3*pow(sin(x),2)) - 0.6*pow(cos(x),2)*sin(x));
+    double numerator = radioCirculo*(-sin(x)*(1 + 0.3*pow(sin(x),2)) - 0.6*pow(cos(x),2)*sin(x));
     double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
     double result = numerator / denominator;
     return result;
 }
 
 double derivadaXi2(double x){
-    double numerator = 1.6 * (cos(2*x) * ( 1 + 0.3*pow(sin(x),2)) -0.6*pow(cos(x),2)*pow(sin(x),2));
+    double numerator = radioCirculo * (cos(2*x) * ( 1 + 0.3*pow(sin(x),2)) -0.6*pow(cos(x),2)*pow(sin(x),2));
     double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
     double result = numerator / denominator;
     return result;
@@ -180,17 +184,17 @@ int main(int argc, char **argv)
 
     double T = 0.1; // 100 milisegundos
     double wTarget = 0; // w*
-    double ki1 = 2; // gains 1 
-    double ki2 = 2; // gains 2
+    double ki1 = 10; // gains 1 
+    double ki2 = 10; // gains 2
     double kw = 1; // ganancia de la w para evitar que cambie mucho
-    double ci = 2; // ganancia ci
+    double ci = 4; // ganancia ci
 
     //Hay que diferenciar el publicador de cada robot
 
     vector<PosiRobot> posicionesRobots;
     int numRobots = 3;
 
-    double radioCirculo = 1.6;
+    
 
     posicionesRobots.push_back({-4,-4,0});
     posicionesRobots.push_back({-4,4,1});
@@ -218,8 +222,8 @@ int main(int argc, char **argv)
 
         for(int i = 0; i < numRobots; i++){
                 //Para robot0... mas tarde se hara con odometria
-            u1 = derivadaXi1(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* ((1.6*cos(posicionesRobots[i].w))/(1+ 0.3*pow(sin(posicionesRobots[i].w),2)));
-            u2 =  derivadaXi2(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* ((1.6*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w))/(1+0.3*pow(sin(posicionesRobots[i].w),2)));
+            u1 = derivadaXi1(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* ((radioCirculo*cos(posicionesRobots[i].w))/(1+ 0.3*pow(sin(posicionesRobots[i].w),2)));
+            u2 =  derivadaXi2(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* ((radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w))/(1+0.3*pow(sin(posicionesRobots[i].w),2)));
 
             /*
             mu = 0;
