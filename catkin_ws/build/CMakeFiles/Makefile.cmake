@@ -360,6 +360,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "gtest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
   "gtest/googletest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
   "gtest/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "read_sensor_data/CMakeFiles/lissajousTrajectory.dir/DependInfo.cmake"
   "read_sensor_data/CMakeFiles/lissajousNumeric.dir/DependInfo.cmake"
   "read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/DependInfo.cmake"
   "read_sensor_data/CMakeFiles/readOdomScan.dir/DependInfo.cmake"

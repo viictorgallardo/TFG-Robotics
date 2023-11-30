@@ -29,10 +29,10 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({-4,-4,0.5});
+            posicionesRobots.push_back({-4,-4,0});
             posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({3.75,-3.75,1.5});
-            //posicionesRobots.push_back({2.75,-5.75,2});
+            posicionesRobots.push_back({3.75,-3.75,2});
+            
 
             numRobots = 3;
 
@@ -63,14 +63,14 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
         
-            posicionesRobots.push_back({-10000,-10000,0.5});
-            posicionesRobots.push_back({-10000,10000,1});
-            posicionesRobots.push_back({10000,-10000,1.5});
+            posicionesRobots.push_back({-4,-4,0});
+            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({3.75,-3.75,2});
             
 
             numRobots = 3;
 
-            radioCirculo = 800.0;
+            radioCirculo = 1.6;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -120,6 +120,21 @@ class CircularTrajectory{
 
     protected:
 
+        double derivadaXi1(double x){
+            double numerator = radioCirculo*(-sin(x)*(1 + 0.3*pow(sin(x),2)) - 0.6*pow(cos(x),2)*sin(x));
+            double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
+            double result = numerator / denominator;
+            return result;
+        }
+
+        double derivadaXi2(double x){
+            double numerator = radioCirculo * (cos(2*x) * ( 1 + 0.3*pow(sin(x),2)) -0.6*pow(cos(x),2)*pow(sin(x),2));
+            double denominator = pow(1 + 0.3 * pow(sin(x), 2), 2);
+            double result = numerator / denominator;
+            return result;
+        }
+
+
         void hayObstaculo(const std_msgs::Bool msg){
             if(msg.data == true){
                 sleep(3);
@@ -144,17 +159,18 @@ class CircularTrajectory{
 
                     for(int i = 0; i < numRobots; i++){
                             //Para robot0... mas tarde se hara con odometria
-                        u1 = - radioCirculo*  sin(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
-                        u2 =  radioCirculo* cos(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
+                        u1 = derivadaXi1(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* ((radioCirculo*cos(posicionesRobots[i].w))/(1+ 0.3*pow(sin(posicionesRobots[i].w),2)));
+                        u2 =  derivadaXi2(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* ((radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w))/(1+0.3*pow(sin(posicionesRobots[i].w),2)));
 
-
-                        double mu = 0;
+                        
+                        mu = 0;
                         //Vecindario para un robot
                         for(int j = 0 ; j < numRobots; j++){
                             if(i != j){
                                 double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                                 if(abs(wimenosj ) < R){
                                     wimenosj = normalizarAngulo(wimenosj);
+                                    cout << "Valores : " << wimenosj << endl;
                                     mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
                                 }
                             }
@@ -162,9 +178,13 @@ class CircularTrajectory{
                     
 
                         //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                        w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
-                                + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
-                                - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget))) + normalizarAngulo(mu*kw); 
+                        w0 = 1 + ki1 * (posicionesRobots[i].x - (radioCirculo*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
+                        * (derivadaXi1(posicionesRobots[i].w))
+                                + ki2 * (posicionesRobots[i].y -  (radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2))))
+                                * ( derivadaXi2(posicionesRobots[i].w))
+                                - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
+
+                        
 
                         
 
@@ -172,7 +192,8 @@ class CircularTrajectory{
                         posicionesRobots[i].y = posicionesRobots[i].y + T * u2;
                         posicionesRobots[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
 
-                        ROS_INFO("POS ROBOT %f, %f , %f , %f" , i , posicionesRobots[i].x, posicionesRobots[i].y, posicionesRobots[i].w);
+            
+                        ROS_INFO("POS ROBOT %f, %f , %f " , posicionesRobots[i].x, posicionesRobots[i].y, posicionesRobots[i].w);
 
                         //trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " <<  normalizarAngulo(posRobot0[2] - wTarget)  << endl;
 
@@ -229,15 +250,14 @@ class CircularTrajectory{
             while(iter <N){
                 iter++;
 
-                //ROS_INFO("ITERACION %d",iter);
                 trazasSalida << "ITERACION " << iter << " DEL BUCLE"   << endl;
 
                 for(int i = 0; i < numRobots; i++){
                         //Para robot0... mas tarde se hara con odometria
-                    u1 = - radioCirculo*  sin(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
-                    u2 =  radioCirculo* cos(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
+                    u1 = derivadaXi1(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* ((radioCirculo*cos(posicionesRobots[i].w))/(1+ 0.3*pow(sin(posicionesRobots[i].w),2)));
+                    u2 =  derivadaXi2(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* ((radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w))/(1+0.3*pow(sin(posicionesRobots[i].w),2)));
 
-
+                    
                     mu = 0;
                     //Vecindario para un robot
                     for(int j = 0 ; j < numRobots; j++){
@@ -253,9 +273,13 @@ class CircularTrajectory{
                 
 
                     //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
-                            + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
+                    w0 = 1 + ki1 * (posicionesRobots[i].x - (radioCirculo*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
+                    * (derivadaXi1(posicionesRobots[i].w))
+                            + ki2 * (posicionesRobots[i].y -  (radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2))))
+                            * ( derivadaXi2(posicionesRobots[i].w))
                             - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
+
+                    
 
                     
 
@@ -263,7 +287,7 @@ class CircularTrajectory{
                     posicionesRobots[i].y = posicionesRobots[i].y + T * u2;
                     posicionesRobots[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
 
-                    
+                                                        
 
                     trazasSalida << "Posicion robot "<< i << " "<< posicionesRobots[i].x <<"   " <<  posicionesRobots[i].y
                     << "   "  << posicionesRobots[i].w <<  "  wi - w* " 
@@ -334,8 +358,8 @@ class CircularTrajectory{
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 3.5; // gains 1 
-        double ki2 = 3.5; // gains 2
+        double ki1 = 3; // gains 1 
+        double ki2 = 3; // gains 2
         double kw = 1; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
 
@@ -348,7 +372,7 @@ class CircularTrajectory{
         
 
         int i = 0;
-        int r = 0.2;
+        int r = 0.4;
         int R = 20;
 
         

@@ -114,7 +114,7 @@ double derivadaXi2(double x){
 */
 
 
-double radioCirculo = 800;
+double radioCirculo = 1.6;
 
 double derivadaXi1(double x){
     double numerator = radioCirculo*(-sin(x)*(1 + 0.3*pow(sin(x),2)) - 0.6*pow(cos(x),2)*sin(x));
@@ -184,8 +184,8 @@ int main(int argc, char **argv)
 
     double T = 0.1; // 100 milisegundos
     double wTarget = 0; // w*
-    double ki1 = 10; // gains 1 
-    double ki2 = 10; // gains 2
+    double ki1 = 3; // gains 1 
+    double ki2 = 3; // gains 2
     double kw = 1; // ganancia de la w para evitar que cambie mucho
     double ci = 4; // ganancia ci
 
@@ -197,8 +197,8 @@ int main(int argc, char **argv)
     
 
     posicionesRobots.push_back({-4,-4,0});
-    posicionesRobots.push_back({-4,4,1});
-    posicionesRobots.push_back({4,-4,2});
+    posicionesRobots.push_back({-3.5,4,1});
+    posicionesRobots.push_back({3.75,-3.75,2});
     
     double u1,u2,w0;
 
@@ -225,7 +225,7 @@ int main(int argc, char **argv)
             u1 = derivadaXi1(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* ((radioCirculo*cos(posicionesRobots[i].w))/(1+ 0.3*pow(sin(posicionesRobots[i].w),2)));
             u2 =  derivadaXi2(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* ((radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w))/(1+0.3*pow(sin(posicionesRobots[i].w),2)));
 
-            /*
+            
             mu = 0;
             //Vecindario para un robot
             for(int j = 0 ; j < numRobots; j++){
@@ -241,16 +241,15 @@ int main(int argc, char **argv)
         
 
             //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-            w0 = 1 + ki1 * (posicionesRobots[i].x -  (800*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
+            w0 = 1 + ki1 * (posicionesRobots[i].x - (radioCirculo*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
              * (derivadaXi1(posicionesRobots[i].w))
-                    + ki2 * (posicionesRobots[i].y -  (800*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2))))
+                    + ki2 * (posicionesRobots[i].y -  (radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2))))
                      * ( derivadaXi2(posicionesRobots[i].w))
                     - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
 
-            */
+            
 
-            w0 += 1 ;
-            normalizarAngulo(w0);
+            
 
             posicionesRobots[i].x = posicionesRobots[i].x + T * u1;
             posicionesRobots[i].y = posicionesRobots[i].y + T * u2;

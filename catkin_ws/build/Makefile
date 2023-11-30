@@ -285,6 +285,19 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named lissajousTrajectory
+
+# Build rule for target.
+lissajousTrajectory: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lissajousTrajectory
+.PHONY : lissajousTrajectory
+
+# fast build rule for target.
+lissajousTrajectory/fast:
+	$(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build
+.PHONY : lissajousTrajectory/fast
+
+#=============================================================================
 # Target rules for targets named lissajousNumeric
 
 # Build rule for target.
@@ -1749,6 +1762,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... lissajousTrajectory"
 	@echo "... lissajousNumeric"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"

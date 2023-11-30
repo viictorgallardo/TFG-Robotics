@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+read_sensor_data/CMakeFiles/lissajousTrajectory.dir/rule:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/lissajousTrajectory.dir/rule
+.PHONY : read_sensor_data/CMakeFiles/lissajousTrajectory.dir/rule
+
+# Convenience name for target.
+lissajousTrajectory: read_sensor_data/CMakeFiles/lissajousTrajectory.dir/rule
+
+.PHONY : lissajousTrajectory
+
+# fast build rule for target.
+lissajousTrajectory/fast:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build
+.PHONY : lissajousTrajectory/fast
+
+# Convenience name for target.
 read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule
 .PHONY : read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule
@@ -509,6 +524,33 @@ src/Lissajous2DNumeric.cpp.s:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/src/Lissajous2DNumeric.cpp.s
 .PHONY : src/Lissajous2DNumeric.cpp.s
 
+src/Lissajous2DTrajectory.o: src/Lissajous2DTrajectory.cpp.o
+
+.PHONY : src/Lissajous2DTrajectory.o
+
+# target to build an object file
+src/Lissajous2DTrajectory.cpp.o:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/src/Lissajous2DTrajectory.cpp.o
+.PHONY : src/Lissajous2DTrajectory.cpp.o
+
+src/Lissajous2DTrajectory.i: src/Lissajous2DTrajectory.cpp.i
+
+.PHONY : src/Lissajous2DTrajectory.i
+
+# target to preprocess a source file
+src/Lissajous2DTrajectory.cpp.i:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/src/Lissajous2DTrajectory.cpp.i
+.PHONY : src/Lissajous2DTrajectory.cpp.i
+
+src/Lissajous2DTrajectory.s: src/Lissajous2DTrajectory.cpp.s
+
+.PHONY : src/Lissajous2DTrajectory.s
+
+# target to generate assembly for a file
+src/Lissajous2DTrajectory.cpp.s:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/src/Lissajous2DTrajectory.cpp.s
+.PHONY : src/Lissajous2DTrajectory.cpp.s
+
 src/circular2DTrajectory.o: src/circular2DTrajectory.cpp.o
 
 .PHONY : src/circular2DTrajectory.o
@@ -654,6 +696,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... lissajousTrajectory"
 	@echo "... lissajousNumeric"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"
@@ -681,6 +724,9 @@ help:
 	@echo "... src/Lissajous2DNumeric.o"
 	@echo "... src/Lissajous2DNumeric.i"
 	@echo "... src/Lissajous2DNumeric.s"
+	@echo "... src/Lissajous2DTrajectory.o"
+	@echo "... src/Lissajous2DTrajectory.i"
+	@echo "... src/Lissajous2DTrajectory.s"
 	@echo "... src/circular2DTrajectory.o"
 	@echo "... src/circular2DTrajectory.i"
 	@echo "... src/circular2DTrajectory.s"
