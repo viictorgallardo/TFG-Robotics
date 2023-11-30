@@ -21,6 +21,7 @@ class NodeSync
     cout << "La cadena es " << goal_sub_aux << endl;
 
     noGoal = true;
+    hayObstaculo = false;
     //Estos dos no se ponen a robot_0 porque ya se remapearon en el start.launch
     scan_sub_.subscribe(nh_, "/scan", 1);
     pose_sub_.subscribe(nh_, "/pose", 1);
@@ -98,7 +99,7 @@ class NodeSync
     /*BUCLE DE CONTROL DE VELOCIDADES*/
 
 
-		if(!noGoal){
+		if(!noGoal && hayObstaculo == false){
 			//std::cout << "meta x: "<< Goal.pose.position.x << " ";
 		//std::cout << "meta y: "<< Goal.pose.position.y << " ";
 		/*
@@ -164,7 +165,7 @@ class NodeSync
       input.linear.x = 0.5;
 			input.angular.z = 0;
 
-      bool hayObstaculo = false;
+      
       for(double laser : laser_scan->ranges){
       //Se mira si los 3 rayos centrales intersectan con algo a menos de 15 unidades de distancia
       
@@ -181,7 +182,8 @@ class NodeSync
         std_msgs::Bool msg;
         msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
         hayObstaculo_pub_.publish(msg);
-        sleep(2);
+        sleep(3);
+        hayObstaculo = false;
       }
     }
 		//Hemos llegado al goal, parar.
@@ -236,6 +238,7 @@ class NodeSync
   //Angulo antiguo para mejorar el giro si falla
   double anteriorAlpha; 
   string r_id;
+  bool hayObstaculo;
 
 };
 

@@ -29,15 +29,14 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({-4,-4,0});
+            posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({3.75,-3.75,2});
+            posicionesRobots.push_back({2,3.75,1.5});
             
 
             numRobots = 3;
 
-            radioCirculo = 1.6;
-
+            radioCirculo = 2;
 
             numPedirSiguienteRecibidos = 0;
 
@@ -63,14 +62,14 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
         
-            posicionesRobots.push_back({-4,-4,0});
+            posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({3.75,-3.75,2});
+            posicionesRobots.push_back({2,3.75,1.5});
             
 
             numRobots = 3;
 
-            radioCirculo = 1.6;
+            radioCirculo = 2;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -137,7 +136,6 @@ class CircularTrajectory{
 
         void hayObstaculo(const std_msgs::Bool msg){
             if(msg.data == true){
-                sleep(3);
                 ROS_INFO("HAY OBSTACULO Y VOY A MANDAR METAS");
                 numPedirSiguienteRecibidos=numRobots -1;
                 pedirSiguienteGoal(msg);
@@ -226,7 +224,7 @@ class CircularTrajectory{
 
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
-                    wTarget = normalizarAngulo(wTarget + (T * 1));
+                    wTarget = normalizarAngulo(wTarget + (T * 0.5));
 
                     sleep(0.1);
                     
@@ -263,7 +261,7 @@ class CircularTrajectory{
                     for(int j = 0 ; j < numRobots; j++){
                         if(i != j){
                             double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
-                            if(abs(wimenosj ) < R){
+                            if(abs(wimenosj) < R){
                                 wimenosj = normalizarAngulo(wimenosj);
                                 cout << "Valores : " << wimenosj << endl;
                                 mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
@@ -358,9 +356,9 @@ class CircularTrajectory{
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 3; // gains 1 
-        double ki2 = 3; // gains 2
-        double kw = 1; // ganancia de la w para evitar que cambie mucho
+        double ki1 = 2; // gains 1 
+        double ki2 = 2; // gains 2
+        double kw = 2; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
@@ -372,8 +370,8 @@ class CircularTrajectory{
         
 
         int i = 0;
-        int r = 0.4;
-        int R = 20;
+        int r = 0.2;
+        int R = 10;
 
         
 

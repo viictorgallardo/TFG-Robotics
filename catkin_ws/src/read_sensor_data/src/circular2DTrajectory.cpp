@@ -36,7 +36,7 @@ class CircularTrajectory{
 
             numRobots = 3;
 
-            radioCirculo = 2.1;
+            radioCirculo = 1.6;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -70,7 +70,7 @@ class CircularTrajectory{
 
             numRobots = 3;
 
-            radioCirculo = 2.1;
+            radioCirculo = 1.6;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -334,8 +334,8 @@ class CircularTrajectory{
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 3; // gains 1 
-        double ki2 = 3; // gains 2
+        double ki1 = 3.5; // gains 1 
+        double ki2 = 3.5; // gains 2
         double kw = 1; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
 
