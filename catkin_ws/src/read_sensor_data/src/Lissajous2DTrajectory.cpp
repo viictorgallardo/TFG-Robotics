@@ -36,7 +36,7 @@ class CircularTrajectory{
 
             numRobots = 3;
 
-            radioCirculo = 1.6;
+            radioCirculo = 2.4;
 
             numPedirSiguienteRecibidos = 0;
 
@@ -69,7 +69,7 @@ class CircularTrajectory{
 
             numRobots = 3;
 
-            radioCirculo = 1.6;
+            radioCirculo = 2.4;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -106,6 +106,8 @@ class CircularTrajectory{
             if (wVecino > R){
                 cout << "LIMITE SUPERIOR R PASADO" << endl;
                 return 0;
+            }else if(wVecino < r){
+                return 10000;
             }else if(wVecino > r && wVecino < R){
                 return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
             }
@@ -366,8 +368,8 @@ class CircularTrajectory{
         
 
         int i = 0;
-        double r = 0;
-        double R = 0.8;
+        double r = 0.5;
+        double R = 1;
 
         
 
