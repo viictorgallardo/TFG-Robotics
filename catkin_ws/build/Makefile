@@ -298,19 +298,6 @@ lissajousTrajectory/fast:
 .PHONY : lissajousTrajectory/fast
 
 #=============================================================================
-# Target rules for targets named lissajousNumeric
-
-# Build rule for target.
-lissajousNumeric: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lissajousNumeric
-.PHONY : lissajousNumeric
-
-# fast build rule for target.
-lissajousNumeric/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/build
-.PHONY : lissajousNumeric/fast
-
-#=============================================================================
 # Target rules for targets named teleop_twist_keyboard
 
 # Build rule for target.
@@ -1763,7 +1750,6 @@ help:
 	@echo "... gtest_main"
 	@echo "... gtest"
 	@echo "... lissajousTrajectory"
-	@echo "... lissajousNumeric"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"
 	@echo "... circularTrajectory"

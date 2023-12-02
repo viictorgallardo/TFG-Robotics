@@ -183,21 +183,6 @@ lissajousTrajectory/fast:
 .PHONY : lissajousTrajectory/fast
 
 # Convenience name for target.
-read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule
-.PHONY : read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule
-
-# Convenience name for target.
-lissajousNumeric: read_sensor_data/CMakeFiles/lissajousNumeric.dir/rule
-
-.PHONY : lissajousNumeric
-
-# fast build rule for target.
-lissajousNumeric/fast:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/build
-.PHONY : lissajousNumeric/fast
-
-# Convenience name for target.
 read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule
 .PHONY : read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule
@@ -497,33 +482,6 @@ rosgraph_msgs_generate_messages_py/fast:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
-src/Lissajous2DNumeric.o: src/Lissajous2DNumeric.cpp.o
-
-.PHONY : src/Lissajous2DNumeric.o
-
-# target to build an object file
-src/Lissajous2DNumeric.cpp.o:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/src/Lissajous2DNumeric.cpp.o
-.PHONY : src/Lissajous2DNumeric.cpp.o
-
-src/Lissajous2DNumeric.i: src/Lissajous2DNumeric.cpp.i
-
-.PHONY : src/Lissajous2DNumeric.i
-
-# target to preprocess a source file
-src/Lissajous2DNumeric.cpp.i:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/src/Lissajous2DNumeric.cpp.i
-.PHONY : src/Lissajous2DNumeric.cpp.i
-
-src/Lissajous2DNumeric.s: src/Lissajous2DNumeric.cpp.s
-
-.PHONY : src/Lissajous2DNumeric.s
-
-# target to generate assembly for a file
-src/Lissajous2DNumeric.cpp.s:
-	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f read_sensor_data/CMakeFiles/lissajousNumeric.dir/build.make read_sensor_data/CMakeFiles/lissajousNumeric.dir/src/Lissajous2DNumeric.cpp.s
-.PHONY : src/Lissajous2DNumeric.cpp.s
-
 src/Lissajous2DTrajectory.o: src/Lissajous2DTrajectory.cpp.o
 
 .PHONY : src/Lissajous2DTrajectory.o
@@ -697,7 +655,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... lissajousTrajectory"
-	@echo "... lissajousNumeric"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"
 	@echo "... circularTrajectory"
@@ -721,9 +678,6 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... src/Lissajous2DNumeric.o"
-	@echo "... src/Lissajous2DNumeric.i"
-	@echo "... src/Lissajous2DNumeric.s"
 	@echo "... src/Lissajous2DTrajectory.o"
 	@echo "... src/Lissajous2DTrajectory.i"
 	@echo "... src/Lissajous2DTrajectory.s"

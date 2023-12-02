@@ -40,7 +40,6 @@
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/edit_cache.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/test.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/lissajousTrajectory.dir
-/home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/lissajousNumeric.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/readOdomScan.dir
 /home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data/CMakeFiles/circularTrajectory.dir

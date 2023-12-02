@@ -29,14 +29,14 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({-4,-4,0.5});
+            posicionesRobots.push_back({4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({2,3.75,1.5});
             
 
             numRobots = 3;
 
-            radioCirculo = 2;
+            radioCirculo = 1.6;
 
             numPedirSiguienteRecibidos = 0;
 
@@ -62,14 +62,14 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
         
-            posicionesRobots.push_back({-4,-4,0.5});
+            posicionesRobots.push_back({4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({2,3.75,1.5});
             
 
             numRobots = 3;
 
-            radioCirculo = 2;
+            radioCirculo = 1.6;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -106,9 +106,6 @@ class CircularTrajectory{
             if (wVecino > R){
                 cout << "LIMITE SUPERIOR R PASADO" << endl;
                 return 0;
-            }else if(wVecino < r){
-                cout << "LIMITE SUPERIOR r PASADO" << endl;
-                return 1000000;
             }else if(wVecino > r && wVecino < R){
                 return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
             }
@@ -224,9 +221,8 @@ class CircularTrajectory{
 
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
-                    wTarget = normalizarAngulo(wTarget + (T * 0.5));
+                    wTarget = normalizarAngulo(wTarget + (T * 1));
 
-                    sleep(0.1);
                     
                 }
                         
@@ -358,7 +354,7 @@ class CircularTrajectory{
         double wTarget = 0; // w*
         double ki1 = 2; // gains 1 
         double ki2 = 2; // gains 2
-        double kw = 2; // ganancia de la w para evitar que cambie mucho
+        double kw = 1; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
@@ -370,8 +366,8 @@ class CircularTrajectory{
         
 
         int i = 0;
-        int r = 0.2;
-        int R = 10;
+        double r = 0;
+        double R = 0.8;
 
         
 
