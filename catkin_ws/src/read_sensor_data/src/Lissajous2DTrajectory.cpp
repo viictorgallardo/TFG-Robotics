@@ -107,7 +107,7 @@ class CircularTrajectory{
                 cout << "LIMITE SUPERIOR R PASADO" << endl;
                 return 0;
             }else if(wVecino < r){
-                return 10000;
+                return 1;
             }else if(wVecino > r && wVecino < R){
                 return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
             }
@@ -368,8 +368,8 @@ class CircularTrajectory{
         
 
         int i = 0;
-        double r = 0.5;
-        double R = 1;
+        double r = 0.1;
+        double R = 20;
 
         
 
