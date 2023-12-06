@@ -8,6 +8,7 @@
 #include <cmath>
 #include <unistd.h>
 #include "std_msgs/Bool.h"
+#include "std_msgs/String.h"
 
 #include <vector>
 
@@ -29,7 +30,7 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({4,-4,0.5});
+            posicionesRobots.push_back({2,-3,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({2,3.75,1.5});
             
@@ -62,7 +63,7 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
         
-            posicionesRobots.push_back({4,-4,0.5});
+            posicionesRobots.push_back({2,-3,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({2,3.75,1.5});
             
@@ -102,7 +103,7 @@ class CircularTrajectory{
         }
         //Calcula el valor de alpha(s) según la figura 19 del paper 
         double calcularAlpha(double wVecino, double r, double R ){
-            cout  << "Wvecino:  "<< wVecino  << endl;
+            //cout  << "Wvecino:  "<< wVecino  << endl;
             if (wVecino > R){
                 cout << "LIMITE SUPERIOR R PASADO" << endl;
                 return 0;
@@ -133,22 +134,38 @@ class CircularTrajectory{
         }
 
 
-        void hayObstaculo(const std_msgs::Bool msg){
-            if(msg.data == true){
-                ROS_INFO("HAY OBSTACULO Y VOY A MANDAR METAS");
-                numPedirSiguienteRecibidos=numRobots -1;
-                pedirSiguienteGoal(msg);
+        void hayObstaculo(const std_msgs::String msg){
+            string aux = msg.data;
+            if(isdigit(aux[0])){
+                sleep(3);
+                //ROS_INFO("HAY OBSTACULO Y VOY A MANDAR METAS");
+                //numPedirSiguienteRecibidos=numRobots -1;
+                //pedirSiguienteGoal(msg);
             }
         } 
 
-        void pedirSiguienteGoal(const std_msgs::Bool msg){
+        void pedirSiguienteGoal(const std_msgs::String msg){
             
-            ROS_INFO("He recibido un pedir siguiente");
-            
+            string aux = msg.data;
+            double info_msg[3]; // guarda id, x , y
             //Si el robot 0 quiere una nueva meta se calcula...
-            if(msg.data == true){
+            if(isdigit(aux[0])){
 
                 numPedirSiguienteRecibidos++;
+                stringstream ss(aux);
+                string token;
+                int x = 0;
+                while (std::getline(ss, token, ',')) {
+                    double numero = std::stod(token);
+                    info_msg[x] = numero;
+                    x++;
+                }
+                //Se actualiza las posiciones de los robots con la odometria real
+                posicionesRobots[info_msg[0]].x = info_msg[1];
+                posicionesRobots[info_msg[0]].y = info_msg[2]; 
+
+                ROS_INFO("He recibido un pedir siguiente de %f con posiciones %f, %f" ,info_msg[0], info_msg[1], info_msg[2]);
+                
                 //Los 3 robots han llegado a sus metas, asignar nuevas
                 if(numPedirSiguienteRecibidos == numRobots){
                     numPedirSiguienteRecibidos = 0;
@@ -167,7 +184,7 @@ class CircularTrajectory{
                                 double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                                 if(abs(wimenosj ) < R){
                                     wimenosj = normalizarAngulo(wimenosj);
-                                    cout << "Valores : " << wimenosj << endl;
+                                    //cout << "Valores : " << wimenosj << endl;
                                     mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
                                 }
                             }
@@ -190,7 +207,7 @@ class CircularTrajectory{
                         posicionesRobots[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
 
             
-                        ROS_INFO("POS ROBOT %f, %f , %f " , posicionesRobots[i].x, posicionesRobots[i].y, posicionesRobots[i].w);
+                        //ROS_INFO("POS ROBOT %f, %f , %f " , posicionesRobots[i].x, posicionesRobots[i].y, posicionesRobots[i].w);
 
                         //trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " <<  normalizarAngulo(posRobot0[2] - wTarget)  << endl;
 
@@ -223,7 +240,7 @@ class CircularTrajectory{
 
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
-                    wTarget = normalizarAngulo(wTarget + (T * 1));
+                    wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
 
                     
                 }
@@ -305,7 +322,7 @@ class CircularTrajectory{
                     
 
                 }
-                wTarget = normalizarAngulo(wTarget + (T * 1));
+                wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
                 sleep(0.1);
         
             }
@@ -358,6 +375,7 @@ class CircularTrajectory{
         double ki2 = 2; // gains 2
         double kw = 1; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
+        double multiplicadorW = 1;
 
         //Hay que diferenciar el publicador de cada robot
 

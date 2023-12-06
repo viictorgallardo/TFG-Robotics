@@ -6,6 +6,9 @@
 #include <tf/transform_datatypes.h>
 #include "ros/ros.h"
 #include "std_msgs/Bool.h"
+#include "std_msgs/String.h"
+
+#include <string>
 
 
 using namespace std;
@@ -30,12 +33,12 @@ class NodeSync
     //Canal que manda si cada robot quiere una nueva meta( True = si quiere False = En caso contrario)
     //Al principio siempre quiere una nueva meta
     
-    pedirSiguienteGoal_pub = nh_.advertise<std_msgs::Bool>("/pedirSiguienteGoal", 1, true);
+    pedirSiguienteGoal_pub = nh_.advertise<std_msgs::String>("/pedirSiguienteGoal", 1, true);
 
     primerMensaje = true;
     ros::Duration(0.5).sleep();
 
-    hayObstaculo_pub_ = nh_.advertise<std_msgs::Bool>("/hayObstaculo", 1, true);
+    hayObstaculo_pub_ = nh_.advertise<std_msgs::String>("/hayObstaculo", 1, true);
 
     
 
@@ -74,8 +77,8 @@ class NodeSync
       //Esto se hace hasta que nos responda el circularTrajectory, despues solo se hara una vez
       //alcancemos la meta
       primerMensaje = false;
-      std_msgs::Bool msg;
-      msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
+      std_msgs::String msg;
+      msg.data = r_id + "," + to_string(estimate_pose->pose.pose.position.x) + "," + to_string(estimate_pose->pose.pose.position.y); //Formato id,x,y para pasar la odometria al calculador
       pedirSiguienteGoal_pub.publish(msg);
       ROS_INFO("Se ha publicado el mensaje");
     }
@@ -179,10 +182,10 @@ class NodeSync
         }
       }
       if(hayObstaculo == true){
-        std_msgs::Bool msg;
-        msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
+        std_msgs::String msg;
+        msg.data = r_id; // Aquí asignas True si quieres recibir un nuevo valor de meta
         hayObstaculo_pub_.publish(msg);
-        sleep(3);
+        sleep(5);
         hayObstaculo = false;
       }
     }
@@ -192,8 +195,8 @@ class NodeSync
       noGoal = true;
 			input.linear.x = 0;
 			input.angular.z = 0;
-      std_msgs::Bool msg;
-      msg.data = true; // Aquí asignas True si quieres recibir un nuevo valor de meta
+      std_msgs::String msg;
+      msg.data = r_id + "," + to_string(estimate_pose->pose.pose.position.x) + "," + to_string(estimate_pose->pose.pose.position.y); //Formato id,x,y para pasar la odometria al calculador
       pedirSiguienteGoal_pub.publish(msg);
 		}
 		//input.angular = alpha;
