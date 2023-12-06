@@ -17,6 +17,11 @@ coordenadas_x_3 = []
 coordenadas_y_3 = []
 
 
+distancias1 = []
+distancias2 = []
+distancias3 = []
+
+
 mu_0 = []
 mu_1 = []
 mu_2 = []
@@ -34,6 +39,8 @@ ruta_coordenadas_r2 = os.path.join(directorio_actual, 'coordenadasR2.txt')
 ruta_coordenadas_r3 = os.path.join(directorio_actual, 'coordenadasR3.txt')
 
 salida_logs = os.path.join(directorio_actual, 'salida_logs.txt')
+
+distancias = os.path.join(directorio_actual, 'distancias.txt')
 
 
 #Lee las coordenadas del archivo
@@ -116,6 +123,38 @@ plt.scatter( iteraciones_totales, mu_2, label='Mu 2', color='red')
 
 #Personaliza el gráfico si lo deseas
 plt.title('Gráfico de Repulsión')
+plt.xlabel('Eje X')
+plt.ylabel('Eje Y')
+plt.legend()
+
+#Muestra el gráfico
+plt.show()
+
+
+
+
+
+cuenta = 0
+#Lee las coordenadas del archivo
+with open(distancias, 'r') as archivo:
+    for linea in archivo:
+        x, y, z = map(float, linea.strip().split(','))
+        distancias1.append(x)
+        distancias2.append(y)
+        distancias3.append(z)
+        cuenta = cuenta + 1
+
+
+
+iteraciones_totales = range(0,cuenta)
+        
+#Crea un gráfico de dispersión con las coordenadas
+plt.scatter( iteraciones_totales, distancias1, label='W2 - W3', color='blue')
+plt.scatter( iteraciones_totales, distancias2, label='W3 - W4', color='green')
+plt.scatter( iteraciones_totales, distancias3, label='W4 - W1', color='red')
+
+#Personaliza el gráfico si lo deseas
+plt.title('Gráfico de distancias en el Platooning')
 plt.xlabel('Eje X')
 plt.ylabel('Eje Y')
 plt.legend()

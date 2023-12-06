@@ -168,8 +168,8 @@ class CircularTrajectory{
                         for(int j = 0 ; j < numRobots; j++){
                             if(i != j){
                                 double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
+                                wimenosj = normalizarAngulo(wimenosj);
                                 if(abs(wimenosj ) < R){
-                                    wimenosj = normalizarAngulo(wimenosj);
                                     mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
                                 }
                             }
@@ -239,6 +239,7 @@ class CircularTrajectory{
             ofstream coordenadas1("src/read_sensor_data/src/aux/coordenadasR1.txt",ios::out);
             ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt",ios::out);
             ofstream coordenadas3("src/read_sensor_data/src/aux/coordenadasR3.txt",ios::out);
+            ofstream distancias("src/read_sensor_data/src/aux/distancias.txt",ios::out);
 
             int iter = 0;
             while(iter <N){
@@ -258,13 +259,14 @@ class CircularTrajectory{
                     for(int j = 0 ; j < numRobots; j++){
                         if(i != j){
                             double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
+                            wimenosj = normalizarAngulo(wimenosj);
                             if(abs(wimenosj ) < R){
-                                wimenosj = normalizarAngulo(wimenosj);
                                 cout << "Valores : " << wimenosj << endl;
                                 mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
                             }
                         }
                     }
+
                 
 
                     //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
@@ -300,6 +302,13 @@ class CircularTrajectory{
                     
 
                 }
+
+                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
+                double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[3].w);
+                double muestraW3 = normalizarAngulo(posicionesRobots[3].w - posicionesRobots[1].w);
+                distancias << abs(muestraW1) << "," <<
+                        abs(muestraW2) << ","<<
+                        abs(muestraW3) << endl;
                 wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
                 sleep(0.1);
         
@@ -309,6 +318,7 @@ class CircularTrajectory{
             coordenadas.close();
             coordenadas1.close();
             coordenadas2.close();
+            distancias.close();
         }
 
 
