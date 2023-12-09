@@ -35,9 +35,9 @@ class CircularTrajectory{
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({2,3.75,1.5});
-            posicionesRobots.push_back({2.75,-3.75,2});
+            //posicionesRobots.push_back({2.75,-3.75,2});
 
-            numRobots = 4;
+            numRobots = 3;
 
             radioCirculo = 1.6;
 
@@ -69,9 +69,9 @@ class CircularTrajectory{
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({2,3.75,1.5});
-            posicionesRobots.push_back({2.75,-3.75,2});
+            //posicionesRobots.push_back({2.75,-3.75,2});
 
-            numRobots = 4;
+            numRobots = 3;
 
             radioCirculo = 1.6;
 
@@ -113,6 +113,13 @@ class CircularTrajectory{
             }else if(wVecino > r && wVecino < R){
                 return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
             }
+        }
+
+
+
+        // Función para calcular la distancia entre dos puntos (x, y) y (x1, y1)
+        double calcularDistancia(double x, double y, double x1, double y1) {
+            return std::sqrt(std::pow(x1 - x, 2) + std::pow(y1 - y, 2));
         }
 
 
@@ -302,13 +309,18 @@ class CircularTrajectory{
                     
 
                 }
+                
+                
+                //double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
+                //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
 
-                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
-                double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[3].w);
-                double muestraW3 = normalizarAngulo(posicionesRobots[3].w - posicionesRobots[1].w);
+                double muestraW1 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[2].x,posicionesRobots[2].y);
+                double muestraW2 = calcularDistancia(posicionesRobots[2].x,posicionesRobots[2].y,posicionesRobots[0].x,posicionesRobots[0].y);
+                //double muestraW3 = normalizarAngulo(posicionesRobots[3].w - posicionesRobots[1].w);
                 distancias << abs(muestraW1) << "," <<
-                        abs(muestraW2) << ","<<
-                        abs(muestraW3) << endl;
+                        abs(muestraW2) << 
+                         endl;
+                
                 wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
                 sleep(0.1);
         
@@ -373,7 +385,7 @@ class CircularTrajectory{
         
 
         int i = 0;
-        double r = 0.1;
+        double r = 0;
         int R = 20;
 
         //Multiplicador de W* para cambiar velocidad de platooning
@@ -395,7 +407,7 @@ int main(int argc, char **argv)
         string aux = argv[1];
         if(aux == "calcular"){
             ros::init(argc, argv, "circularTrajectory");
-            CircularTrajectory synchronizer(10000);
+            CircularTrajectory synchronizer(1000);
         }else{
             cout << " PArametro " << argv[1] << endl;
             cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;
