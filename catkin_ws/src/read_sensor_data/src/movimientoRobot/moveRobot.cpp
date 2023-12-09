@@ -237,6 +237,7 @@ class NodeSync
   bool noGoal; 
   bool primerMensaje;
 
+  double valorUmbralLaser;
 
   //Angulo antiguo para mejorar el giro si falla
   double anteriorAlpha; 

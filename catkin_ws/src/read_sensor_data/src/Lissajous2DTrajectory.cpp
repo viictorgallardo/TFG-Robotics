@@ -32,10 +32,10 @@ class CircularTrajectory{
         
             posicionesRobots.push_back({2,-3,0.5});
             posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({2,3.75,1.5});
+            //posicionesRobots.push_back({2,2,1.5});
             
 
-            numRobots = 3;
+            numRobots = 2;
 
             radioCirculo = 2.4;
 
@@ -65,10 +65,10 @@ class CircularTrajectory{
         
             posicionesRobots.push_back({2,-3,0.5});
             posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({2,3.75,1.5});
+            //posicionesRobots.push_back({2,2,1.5});
             
 
-            numRobots = 3;
+            numRobots = 2;
 
             radioCirculo = 2.4;
 
@@ -103,7 +103,7 @@ class CircularTrajectory{
         }
         //Calcula el valor de alpha(s) según la figura 19 del paper 
         double calcularAlpha(double wVecino, double r, double R ){
-            //cout  << "Wvecino:  "<< wVecino  << endl;
+            cout  << "Wvecino:  "<< wVecino  << endl;
             if (wVecino > R){
                 cout << "LIMITE SUPERIOR R PASADO" << endl;
                 return 0;
@@ -182,8 +182,9 @@ class CircularTrajectory{
                         for(int j = 0 ; j < numRobots; j++){
                             if(i != j){
                                 double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
+                                wimenosj = normalizarAngulo(wimenosj);
                                 if(abs(wimenosj ) < R){
-                                    wimenosj = normalizarAngulo(wimenosj);
+                                    
                                     //cout << "Valores : " << wimenosj << endl;
                                     mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
                                 }
@@ -257,6 +258,7 @@ class CircularTrajectory{
             ofstream coordenadas("src/read_sensor_data/src/aux/coordenadasR0.txt",ios::out);
             ofstream coordenadas1("src/read_sensor_data/src/aux/coordenadasR1.txt",ios::out);
             ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt",ios::out);
+            ofstream distancias("src/read_sensor_data/src/aux/distancias.txt",ios::out);
             //ofstream coordenadas3("src/read_sensor_data/src/aux/coordenadasR3.txt",ios::out);
 
             int iter = 0;
@@ -276,8 +278,8 @@ class CircularTrajectory{
                     for(int j = 0 ; j < numRobots; j++){
                         if(i != j){
                             double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
+                            wimenosj = normalizarAngulo(wimenosj);
                             if(abs(wimenosj) < R){
-                                wimenosj = normalizarAngulo(wimenosj);
                                 cout << "Valores : " << wimenosj << endl;
                                 mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
                             }
@@ -322,6 +324,14 @@ class CircularTrajectory{
                     
 
                 }
+
+                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
+                double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
+                distancias << abs(muestraW1) << "," <<
+                        abs(muestraW2) << ","<<
+                        endl;
+
+
                 wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
                 sleep(0.1);
         
@@ -331,6 +341,7 @@ class CircularTrajectory{
             coordenadas.close();
             coordenadas1.close();
             coordenadas2.close();
+            distancias.close();
         }
 
 
@@ -371,9 +382,9 @@ class CircularTrajectory{
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 2; // gains 1 
-        double ki2 = 2; // gains 2
-        double kw = 1; // ganancia de la w para evitar que cambie mucho
+        double ki1 = 2.75; // gains 1 
+        double ki2 = 2.75; // gains 2
+        double kw = 1.25; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
         double multiplicadorW = 1;
 
@@ -387,7 +398,7 @@ class CircularTrajectory{
 
         int i = 0;
         double r = 0.1;
-        double R = 20;
+        double R = 1;
 
         
 
@@ -405,7 +416,7 @@ int main(int argc, char **argv)
         string aux = argv[1];
         if(aux == "calcular"){
             ros::init(argc, argv, "circularTrajectory");
-            CircularTrajectory synchronizer(10000);
+            CircularTrajectory synchronizer(100);
         }else{
             cout << " PArametro " << argv[1] << endl;
             cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;
