@@ -113,6 +113,9 @@ class CircularTrajectory{
             }else if(wVecino > r && wVecino < R){
                 return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
             }
+            else if(wVecino < r){
+                return 10;
+            }
         }
 
 
@@ -407,7 +410,7 @@ int main(int argc, char **argv)
         string aux = argv[1];
         if(aux == "calcular"){
             ros::init(argc, argv, "circularTrajectory");
-            CircularTrajectory synchronizer(1000);
+            CircularTrajectory synchronizer(10000);
         }else{
             cout << " PArametro " << argv[1] << endl;
             cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;

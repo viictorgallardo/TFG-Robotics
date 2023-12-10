@@ -30,14 +30,12 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({2,-3,0.5});
-            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({-4,-4,0});
+            posicionesRobots.push_back({3.5,4,1});
             //posicionesRobots.push_back({2,2,1.5});
             
 
             numRobots = 2;
-
-            radioCirculo = 2.4;
 
             numPedirSiguienteRecibidos = 0;
 
@@ -63,14 +61,13 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
         
-            posicionesRobots.push_back({2,-3,0.5});
-            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({-4,-4,0});
+            posicionesRobots.push_back({3.5,4,1});
             //posicionesRobots.push_back({2,2,1.5});
             
 
             numRobots = 2;
 
-            radioCirculo = 2.4;
 
 
             numPedirSiguienteRecibidos = 0;
@@ -326,9 +323,8 @@ class CircularTrajectory{
                 }
 
                 double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
-                double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
-                distancias << abs(muestraW1) << "," <<
-                        abs(muestraW2) << ","<<
+                //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
+                distancias << abs(muestraW1) << 
                         endl;
 
 
@@ -377,27 +373,26 @@ class CircularTrajectory{
         vector<PosiRobot> posicionesRobots;
         int numRobots;
 
-        double radioCirculo;
+        double radioCirculo = 2.1;
 
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 2.75; // gains 1 
-        double ki2 = 2.75; // gains 2
-        double kw = 1.25; // ganancia de la w para evitar que cambie mucho
+        double ki1 = 2.5; // gains 1 
+        double ki2 = 2.5; // gains 2
+        double kw = 1; // ganancia de la w para evitar que cambie mucho
         double ci = 2; // ganancia ci
-        double multiplicadorW = 1;
 
         //Hay que diferenciar el publicador de cada robot
 
-    
+        double multiplicadorW = 1;
         
         double u1,u2,mu,w0;
     
         
 
         int i = 0;
-        double r = 0.1;
+        double r = 0.7;
         double R = 1;
 
         
@@ -416,7 +411,7 @@ int main(int argc, char **argv)
         string aux = argv[1];
         if(aux == "calcular"){
             ros::init(argc, argv, "circularTrajectory");
-            CircularTrajectory synchronizer(100);
+            CircularTrajectory synchronizer(10000);
         }else{
             cout << " PArametro " << argv[1] << endl;
             cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;
