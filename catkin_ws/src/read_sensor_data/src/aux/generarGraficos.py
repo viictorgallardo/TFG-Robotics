@@ -26,6 +26,19 @@ mu_0 = []
 mu_1 = []
 mu_2 = []
 
+#ERRORES DE POSICION
+
+erroresX0 = []
+erroresY0 = []
+
+erroresX1 = []
+erroresY1 = []
+
+erroresX2 = []
+erroresY2 = []
+
+
+
 
 directorio_actual = os.getcwd()
 
@@ -46,25 +59,33 @@ distancias = os.path.join(directorio_actual, 'distancias.txt')
 #Lee las coordenadas del archivo
 with open(ruta_coordenadas_ro, 'r') as archivo:
     for linea in archivo:
-        x, y, _, _ = map(float, linea.strip().split(','))
+        x, y, _, _ , errorX, errorY = map(float, linea.strip().split(','))
         coordenadas_x.append(x)
         coordenadas_y.append(y)
+        erroresX0.append(errorX)
+        erroresY0.append(errorY)
+        
 
 
 #Lee las coordenadas del archivo
 with open(ruta_coordenadas_r1, 'r') as archivo:
     for linea in archivo:
-        x, y, _, _ = map(float, linea.strip().split(','))
+        x, y, _, _ , errorX, errorY = map(float, linea.strip().split(','))
         coordenadas_x_1.append(x)
         coordenadas_y_1.append(y)
+        erroresX1.append(errorX)
+        erroresY1.append(errorY)
+
 
 
 #Lee las coordenadas del archivo
 with open(ruta_coordenadas_r2, 'r') as archivo:
     for linea in archivo:
-        x, y, _, _ = map(float, linea.strip().split(','))
+        x, y, _, _ ,errorX, errorY = map(float, linea.strip().split(','))
         coordenadas_x_2.append(x)
         coordenadas_y_2.append(y)
+        erroresX2.append(errorX)
+        erroresY2.append(errorY)
 
 # #Lee las coordenadas del archivo
 #with open(ruta_coordenadas_r3, 'r') as archivo:
@@ -160,4 +181,44 @@ plt.ylabel('Eje Y')
 plt.legend()
 
 #Muestra el gráfico
+plt.show()
+
+
+#ERRORES DE POSICION
+print(len(erroresX0))
+print(len(erroresX1))
+print(len(erroresX2))
+print(len(erroresY0))
+print(len(erroresY1))
+print(len(erroresY2))
+
+
+# Gráfico de dispersión para errores en el eje X
+plt.scatter(range(len(erroresX0)), erroresX0, label='ErrorX0', color='red')
+plt.scatter(range(len(erroresX1)), erroresX1, label='ErrorX1', color='green')
+plt.scatter(range(len(erroresX2)), erroresX2, label='ErrorX2', color='blue')
+
+# Personalización del gráfico
+plt.title('Errores en el eje X')
+plt.xlabel('Índice')
+plt.ylabel('Valor')
+plt.legend()
+
+# Mostrar el gráfico
+plt.show()
+
+# Suponiendo que erroresY0, erroresY1 y erroresY2 son listas de datos
+
+# Gráfico de dispersión para errores en el eje Y
+plt.scatter(range(len(erroresY0)), erroresY0, label='ErrorY0', color='red')
+plt.scatter(range(len(erroresY1)), erroresY1, label='ErrorY1', color='green')
+plt.scatter(range(len(erroresY2)), erroresY2, label='ErrorY2', color='blue')
+
+# Personalización del gráfico
+plt.title('Errores en el eje Y')
+plt.xlabel('Índice')
+plt.ylabel('Valor')
+plt.legend()
+
+# Mostrar el gráfico
 plt.show()

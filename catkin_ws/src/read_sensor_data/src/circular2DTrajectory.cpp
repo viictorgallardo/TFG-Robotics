@@ -75,6 +75,8 @@ class CircularTrajectory{
 
             radioCirculo = 1.6;
 
+            cout << "Calculos para r : " << r << "y R: " << R << endl;
+
 
             numPedirSiguienteRecibidos = 0;
 
@@ -106,16 +108,20 @@ class CircularTrajectory{
         }
         //Calcula el valor de alpha(s) según la figura 19 del paper 
         double calcularAlpha(double wVecino, double r, double R ){
-            //cout  << "Wvecino:  "<< wVecino  << endl;
+            //cout  << "Wvecino:  "<< wVecino  << " r es " << r << endl;
+            //if(wVecino < r){
+                //cout << "LIMITE INFERIOR r PASADO" << endl;
+                //return (A/(pow(r,12)) - (B/pow(r,6)));
+                //return 1 - (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
+                //return 1;
+            //}
             if (wVecino > R){
                 cout << "LIMITE SUPERIOR R PASADO" << endl;
                 return 0;
             }else if(wVecino > r && wVecino < R){
                 return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
             }
-            else if(wVecino < r){
-                return 10;
-            }
+            
         }
 
 
@@ -271,7 +277,7 @@ class CircularTrajectory{
                             double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                             wimenosj = normalizarAngulo(wimenosj);
                             if(abs(wimenosj ) < R){
-                                cout << "Valores : " << wimenosj << endl;
+                                //cout << "Valores : " << wimenosj << endl;
                                 mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
                             }
                         }
@@ -296,18 +302,29 @@ class CircularTrajectory{
                     << "   "  << posicionesRobots[i].w <<  "  wi - w* " 
                     <<  normalizarAngulo(posicionesRobots[i].w - wTarget) << "   " <<   mu*kw << endl;
 
+
+                    
+                    
                     if(i == 0){
+                        errorX =  posicionesRobots[i].x - radioCirculo* cos(posicionesRobots[i].w);
+                        errorY = posicionesRobots[i].y - radioCirculo* sin(posicionesRobots[i].w);
                         coordenadas << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
-                    posicionesRobots[i].w << "," << wTarget << endl;
+                    posicionesRobots[i].w << "," << wTarget << "," << errorX << "," << errorY <<  endl;
                     }else if( i == 1){
+                        errorX =  posicionesRobots[i].x - radioCirculo* cos(posicionesRobots[i].w);
+                        errorY = posicionesRobots[i].y - radioCirculo* sin(posicionesRobots[i].w);
                         coordenadas1 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
-                    posicionesRobots[i].w << "," << wTarget << endl;
+                    posicionesRobots[i].w << "," << wTarget << ","  << errorX << "," << errorY <<  endl;
                     }else if(i == 2){
+                        errorX =  posicionesRobots[i].x - radioCirculo* cos(posicionesRobots[i].w);
+                        errorY = posicionesRobots[i].y - radioCirculo* sin(posicionesRobots[i].w);
                         coordenadas2 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
-                    posicionesRobots[i].w << "," << wTarget << endl;
+                    posicionesRobots[i].w << "," << wTarget << ","  <<  errorX << "," << errorY <<  endl;
                     }else if(i == 3){
+                        errorX =  posicionesRobots[i].x - radioCirculo* cos(posicionesRobots[i].w);
+                        errorY = posicionesRobots[i].y - radioCirculo* sin(posicionesRobots[i].w);
                         coordenadas3 << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
-                    posicionesRobots[i].w << "," << wTarget << endl;
+                    posicionesRobots[i].w << "," << wTarget << "," <<  errorX << "," << errorY <<  endl;
                     }
                     
 
@@ -390,6 +407,16 @@ class CircularTrajectory{
         int i = 0;
         double r = 0;
         int R = 20;
+
+        double A = 0.75;
+        double B = 0.3;
+
+
+        //METRICAS A SACAR
+
+        double errorX = 0;
+        double errorY = 0;
+
 
         //Multiplicador de W* para cambiar velocidad de platooning
         double multiplicadorW = 1;
