@@ -51,9 +51,35 @@ ruta_coordenadas_r2 = os.path.join(directorio_actual, 'coordenadasR2.txt')
 
 ruta_coordenadas_r3 = os.path.join(directorio_actual, 'coordenadasR3.txt')
 
+medidas_path = os.path.join(directorio_actual, 'medidas.txt')
+
 salida_logs = os.path.join(directorio_actual, 'salida_logs.txt')
 
 distancias = os.path.join(directorio_actual, 'distancias.txt')
+
+
+
+
+medidas = []
+
+#Lee las coordenadas del archivo
+with open(medidas_path, 'r') as archivo:
+    for linea in archivo:
+        valor = float(linea.strip())  # Convierte el valor de la línea a un número flotante
+        medidas.append(valor)
+
+# Genera el gráfico de dispersión
+#plt.scatter(range(250), medidas[0:250], label='Medidas', color='red')
+plt.scatter(range(len(medidas)), medidas, label='Medidas', color='red')
+
+# Personalización del gráfico
+plt.title('Medidas')
+plt.xlabel('Índice')
+plt.ylabel('Valor')
+plt.legend()
+
+plt.show()
+
 
 
 #Lee las coordenadas del archivo
@@ -222,3 +248,5 @@ plt.legend()
 
 # Mostrar el gráfico
 plt.show()
+
+

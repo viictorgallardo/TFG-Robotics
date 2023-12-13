@@ -34,10 +34,10 @@ class CircularTrajectory{
         
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({2,3.75,1.5});
+            //posicionesRobots.push_back({2,3.75,1.5});
             //posicionesRobots.push_back({2.75,-3.75,2});
 
-            numRobots = 3;
+            numRobots = 2;
 
             radioCirculo = 1.6;
 
@@ -106,9 +106,10 @@ class CircularTrajectory{
             return theta_out;
 
         }
+       
         //Calcula el valor de alpha(s) según la figura 19 del paper 
-        double calcularAlpha(double wVecino, double r, double R ){
-            //cout  << "Wvecino:  "<< wVecino  << " r es " << r << endl;
+        double calcularAlpha(double wVecino, double r, double R){
+            cout  << "Wvecino:  "<< wVecino  << " r es " << r << "y R: " << R << endl;
             //if(wVecino < r){
                 //cout << "LIMITE INFERIOR r PASADO" << endl;
                 //return (A/(pow(r,12)) - (B/pow(r,6)));
@@ -117,8 +118,10 @@ class CircularTrajectory{
             //}
             if (wVecino > R){
                 cout << "LIMITE SUPERIOR R PASADO" << endl;
+                 
                 return 0;
             }else if(wVecino > r && wVecino < R){
+                
                 return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
             }
             
@@ -256,6 +259,8 @@ class CircularTrajectory{
             ofstream coordenadas2("src/read_sensor_data/src/aux/coordenadasR2.txt",ios::out);
             ofstream coordenadas3("src/read_sensor_data/src/aux/coordenadasR3.txt",ios::out);
             ofstream distancias("src/read_sensor_data/src/aux/distancias.txt",ios::out);
+            ofstream medidas("src/read_sensor_data/src/aux/medidas.txt",ios::out);
+
 
             int iter = 0;
             while(iter <N){
@@ -278,7 +283,9 @@ class CircularTrajectory{
                             wimenosj = normalizarAngulo(wimenosj);
                             if(abs(wimenosj ) < R){
                                 //cout << "Valores : " << wimenosj << endl;
-                                mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
+                                double alfa = calcularAlpha( abs(wimenosj),  r , R);
+                                mu += alfa * (wimenosj/abs(wimenosj));
+                                medidas << alfa << endl;
                             }
                         }
                     }
@@ -351,6 +358,7 @@ class CircularTrajectory{
             coordenadas1.close();
             coordenadas2.close();
             distancias.close();
+            medidas.close();
         }
 
 
@@ -406,7 +414,7 @@ class CircularTrajectory{
 
         int i = 0;
         double r = 0;
-        int R = 20;
+        double R = 20;
 
         double A = 0.75;
         double B = 0.3;
