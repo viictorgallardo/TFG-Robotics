@@ -113,6 +113,23 @@ class CircularTrajectory{
 
 
 
+        //Nueva implementación de alpha 
+        double calcularAlpha2(double wVecino){
+            cout  << "Nueva Impl, Wvecino:  "<< wVecino  << " r es " << r << "y R: " << R << endl;
+            if (wVecino > R){
+                //cout << "LIMITE SUPERIOR R PASADO" << endl;
+                return 0;
+            }else if(wVecino > r && wVecino <= R){
+                return (R-wVecino)/((wVecino-r_tope)*(R-r));
+            }else if( wVecino > 0 && wVecino <= r){
+                return 1/(r-r_tope);
+            }
+            
+        }
+
+
+
+
 
     protected:
 
@@ -180,11 +197,11 @@ class CircularTrajectory{
                             if(i != j){
                                 double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                                 wimenosj = normalizarAngulo(wimenosj);
-                                if(abs(wimenosj ) < R){
+                                
                                     
                                     //cout << "Valores : " << wimenosj << endl;
-                                    mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
-                                }
+                                mu += calcularAlpha2( abs(wimenosj))* (wimenosj/abs(wimenosj));
+                            
                             }
                         }
                     
@@ -276,10 +293,10 @@ class CircularTrajectory{
                         if(i != j){
                             double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                             wimenosj = normalizarAngulo(wimenosj);
-                            if(abs(wimenosj) < R){
-                                cout << "Valores : " << wimenosj << endl;
-                                mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
-                            }
+                           
+                            cout << "Valores : " << wimenosj << endl;
+                            mu += calcularAlpha2( abs(wimenosj))* (wimenosj/abs(wimenosj));
+                            
                         }
                     }
                 
@@ -392,8 +409,10 @@ class CircularTrajectory{
         
 
         int i = 0;
-        double r = 0.7;
-        double R = 1;
+
+        double r_tope = 0.2;
+        double r = 0.4;
+        double R = 2;
 
         
 

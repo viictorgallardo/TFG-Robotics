@@ -32,7 +32,7 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({-4,-4,0.5});
+            posicionesRobots.push_back({-4,-4,0});
             posicionesRobots.push_back({-3.5,4,1});
             //posicionesRobots.push_back({2,3.75,1.5});
             //posicionesRobots.push_back({2.75,-3.75,2});
@@ -68,10 +68,10 @@ class CircularTrajectory{
         
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({2,3.75,1.5});
+            //posicionesRobots.push_back({2,3.75,1.5});
             //posicionesRobots.push_back({2.75,-3.75,2});
 
-            numRobots = 3;
+            numRobots = 2;
 
             radioCirculo = 1.6;
 
@@ -108,7 +108,7 @@ class CircularTrajectory{
         }
        
         //Calcula el valor de alpha(s) según la figura 19 del paper 
-        double calcularAlpha(double wVecino, double r, double R){
+        double calcularAlpha(double wVecino){
             cout  << "Wvecino:  "<< wVecino  << " r es " << r << "y R: " << R << endl;
             //if(wVecino < r){
                 //cout << "LIMITE INFERIOR r PASADO" << endl;
@@ -123,6 +123,22 @@ class CircularTrajectory{
             }else if(wVecino > r && wVecino < R){
                 
                 return (1/(normalizarAngulo(wVecino -r)) - (1/(R-r)));
+            }
+            
+        }
+
+
+
+        //Nueva implementación de alpha 
+        double calcularAlpha2(double wVecino){
+            cout  << "Nueva Impl, Wvecino:  "<< wVecino  << " r es " << r << "y R: " << R << endl;
+            if (wVecino > R){
+                //cout << "LIMITE SUPERIOR R PASADO" << endl;
+                return 0;
+            }else if(wVecino > r && wVecino <= R){
+                return (R-wVecino)/((wVecino-r_tope)*(R-r));
+            }else if( wVecino > 0 && wVecino <= r){
+                return 1/(r-r_tope);
             }
             
         }
@@ -188,9 +204,9 @@ class CircularTrajectory{
                             if(i != j){
                                 double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                                 wimenosj = normalizarAngulo(wimenosj);
-                                if(abs(wimenosj ) < R){
-                                    mu += calcularAlpha( abs(wimenosj),  r , R)* (wimenosj/abs(wimenosj));
-                                }
+                                
+                                mu += calcularAlpha2( abs(wimenosj))* (wimenosj/abs(wimenosj));
+                                
                             }
                         }
                     
@@ -281,12 +297,11 @@ class CircularTrajectory{
                         if(i != j){
                             double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                             wimenosj = normalizarAngulo(wimenosj);
-                            if(abs(wimenosj ) < R){
-                                //cout << "Valores : " << wimenosj << endl;
-                                double alfa = calcularAlpha( abs(wimenosj),  r , R);
-                                mu += alfa * (wimenosj/abs(wimenosj));
-                                medidas << alfa << endl;
-                            }
+                            //cout << "Valores : " << wimenosj << endl;
+                            double alfa = calcularAlpha2( abs(wimenosj));
+                            mu += alfa * (wimenosj/abs(wimenosj));
+                            medidas << alfa << endl;
+                            
                         }
                     }
 
@@ -341,11 +356,12 @@ class CircularTrajectory{
                 //double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
                 //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
 
-                double muestraW1 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[2].x,posicionesRobots[2].y);
-                double muestraW2 = calcularDistancia(posicionesRobots[2].x,posicionesRobots[2].y,posicionesRobots[0].x,posicionesRobots[0].y);
+                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[0].w);
+                //double muestraW1 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
+                //double muestraW2 = calcularDistancia(posicionesRobots[2].x,posicionesRobots[2].y,posicionesRobots[0].x,posicionesRobots[0].y);
                 //double muestraW3 = normalizarAngulo(posicionesRobots[3].w - posicionesRobots[1].w);
                 distancias << abs(muestraW1) << "," <<
-                        abs(muestraW2) << 
+                        0<< 
                          endl;
                 
                 wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
@@ -413,8 +429,14 @@ class CircularTrajectory{
         
 
         int i = 0;
-        double r = 0;
-        double R = 20;
+
+        //double r_tope = 0.078;
+        //double r = 0.15;
+        //double R = 0.78;
+
+        double r_tope = 0.2;
+        double r = 0.4;
+        double R = 1;
 
         double A = 0.75;
         double B = 0.3;
@@ -445,7 +467,7 @@ int main(int argc, char **argv)
         string aux = argv[1];
         if(aux == "calcular"){
             ros::init(argc, argv, "circularTrajectory");
-            CircularTrajectory synchronizer(10000);
+            CircularTrajectory synchronizer(1000);
         }else{
             cout << " PArametro " << argv[1] << endl;
             cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;
