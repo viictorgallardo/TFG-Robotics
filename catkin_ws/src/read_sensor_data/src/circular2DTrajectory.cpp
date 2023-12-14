@@ -323,6 +323,11 @@ class CircularTrajectory{
                     trazasSalida << "Posicion robot "<< i << " "<< posicionesRobots[i].x <<"   " <<  posicionesRobots[i].y
                     << "   "  << posicionesRobots[i].w <<  "  wi - w* " 
                     <<  normalizarAngulo(posicionesRobots[i].w - wTarget) << "   " <<   mu*kw << endl;
+                    /*if(i == 0){
+                        trazasSalida << calcularDistancia(posicionesRobots[i].x,posicionesRobots[i].y,posicionesRobots[1].x,posicionesRobots[1].y) << endl;;
+                    }else{
+                        trazasSalida << calcularDistancia(posicionesRobots[i].x,posicionesRobots[i].y,posicionesRobots[0].x,posicionesRobots[0].y) << endl;
+                    }*/
 
 
                     
@@ -351,13 +356,13 @@ class CircularTrajectory{
                     
 
                 }
-                
+                //trazasSalida << calcularDistancia(posicionesRobots[0].x,posicionesRobots[0].y,posicionesRobots[1].x,posicionesRobots[1].y) << endl;
                 
                 //double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
                 //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
 
-                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[0].w);
-                //double muestraW1 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
+                //double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[0].w);
+                double muestraW1 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
                 //double muestraW2 = calcularDistancia(posicionesRobots[2].x,posicionesRobots[2].y,posicionesRobots[0].x,posicionesRobots[0].y);
                 //double muestraW3 = normalizarAngulo(posicionesRobots[3].w - posicionesRobots[1].w);
                 distancias << abs(muestraW1) << "," <<
@@ -433,10 +438,15 @@ class CircularTrajectory{
         //double r_tope = 0.078;
         //double r = 0.15;
         //double R = 0.78;
-
-        double r_tope = 0.2;
-        double r = 0.4;
+        // Para 2 robots:
+        double r_tope = 0.15;
+        double r = 0.3;
         double R = 1;
+
+        //Para 3 robots
+        //double r_tope = 0.25;
+        //double r = 0.5;
+        //double R = 1;
 
         double A = 0.75;
         double B = 0.3;
