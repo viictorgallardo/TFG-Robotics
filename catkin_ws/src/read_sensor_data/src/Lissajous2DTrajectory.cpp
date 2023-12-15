@@ -31,7 +31,7 @@ class CircularTrajectory{
 
         
             posicionesRobots.push_back({-4,-4,0});
-            posicionesRobots.push_back({3.5,4,1});
+            posicionesRobots.push_back({-3.5,4,1});
             //posicionesRobots.push_back({2,2,1.5});
             
 
@@ -62,7 +62,7 @@ class CircularTrajectory{
 
         
             posicionesRobots.push_back({-4,-4,0});
-            posicionesRobots.push_back({3.5,4,1});
+            posicionesRobots.push_back({-3.5,4,1});
             //posicionesRobots.push_back({2,2,1.5});
             
 
@@ -125,6 +125,12 @@ class CircularTrajectory{
                 return 1/(r-r_tope);
             }
             
+        }
+        
+
+        // Función para calcular la distancia entre dos puntos (x, y) y (x1, y1)
+        double calcularDistancia(double x, double y, double x1, double y1) {
+            return std::sqrt(std::pow(x1 - x, 2) + std::pow(y1 - y, 2));
         }
 
 
@@ -339,10 +345,12 @@ class CircularTrajectory{
 
                 }
 
-                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
+                //double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
+                double muestraW1 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
                 //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
                 distancias << abs(muestraW1) << 
                         endl;
+
 
 
                 wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
@@ -395,10 +403,15 @@ class CircularTrajectory{
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 2.5; // gains 1 
-        double ki2 = 2.5; // gains 2
+        double ki1 = 3.5; // gains 1 
+        double ki2 = 3.5; // gains 2
+
+        //double ki1 = 2; // gains 1 
+        //double ki2 = 2; // gains 2
+        //double ci = 2;
+
         double kw = 1; // ganancia de la w para evitar que cambie mucho
-        double ci = 2; // ganancia ci
+        double ci = 1; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
 
@@ -412,7 +425,7 @@ class CircularTrajectory{
 
         double r_tope = 0.2;
         double r = 0.4;
-        double R = 2;
+        double R = 1;
 
         
 
