@@ -34,6 +34,9 @@ class CircularTrajectory{
             posicionesRobots.push_back({-3.5,4,1});
             //posicionesRobots.push_back({2,2,1.5});
             
+            posicionesRobotsNext.push_back({-4,-4,0});
+            posicionesRobotsNext.push_back({-3.5,4,1});
+
 
             numRobots = 2;
 
@@ -63,6 +66,9 @@ class CircularTrajectory{
         
             posicionesRobots.push_back({-4,-4,0});
             posicionesRobots.push_back({-3.5,4,1});
+
+            posicionesRobotsNext.push_back({-4,-4,0});
+            posicionesRobotsNext.push_back({-3.5,4,1});
             //posicionesRobots.push_back({2,2,1.5});
             
 
@@ -223,20 +229,25 @@ class CircularTrajectory{
 
                         
 
-                        posicionesRobots[i].x = posicionesRobots[i].x + T * u1;
-                        posicionesRobots[i].y = posicionesRobots[i].y + T * u2;
-                        posicionesRobots[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
+                        posicionesRobotsNext[i].x = posicionesRobots[i].x + T * u1;
+                        posicionesRobotsNext[i].y = posicionesRobots[i].y + T * u2;
+                        posicionesRobotsNext[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
 
             
                         //ROS_INFO("POS ROBOT %f, %f , %f " , posicionesRobots[i].x, posicionesRobots[i].y, posicionesRobots[i].w);
 
                         //trazasSalida << "Posicion robot 0 " << posRobot0[0] << "   " <<  posRobot0[1] << "   " << posRobot0[2] << "  wi - w* " <<  normalizarAngulo(posRobot0[2] - wTarget)  << endl;
 
-                        // ¿Que valor se le da a wtarget?
 
-                        
-                
-                        // poner velocidad
+
+                        //Vamos a escribir la trayectoria del robot 0
+                        //coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << endl;
+                    }
+
+                    for(int i = 0; i < numRobots; i++){
+                        posicionesRobots[i].x = posicionesRobotsNext[i].x;
+                        posicionesRobots[i].y = posicionesRobotsNext[i].y;
+                        posicionesRobots[i].w = posicionesRobotsNext[i].w;
 
                         Goal.pose.position.x = posicionesRobots[i].x;
                         Goal.pose.position.y = posicionesRobots[i].y;
@@ -250,15 +261,7 @@ class CircularTrajectory{
                         }else if(i == 3){
                             goal_pub_3.publish(Goal);
                         }
-
-                        
-
-
-                        //Vamos a escribir la trayectoria del robot 0
-                        //coordenadas << posRobot0[0] << "," << posRobot0[1] << "," << posRobot0[2] << "," << wTarget << endl;
                     }
-
-
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
                     wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
@@ -318,9 +321,9 @@ class CircularTrajectory{
 
                     
 
-                    posicionesRobots[i].x = posicionesRobots[i].x + T * u1;
-                    posicionesRobots[i].y = posicionesRobots[i].y + T * u2;
-                    posicionesRobots[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
+                    posicionesRobotsNext[i].x = posicionesRobots[i].x + T * u1;
+                    posicionesRobotsNext[i].y = posicionesRobots[i].y + T * u2;
+                    posicionesRobotsNext[i].w = normalizarAngulo(posicionesRobots[i].w + normalizarAngulo(T* w0));
 
                                                         
 
@@ -345,13 +348,18 @@ class CircularTrajectory{
 
                 }
 
-                //double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
-                double muestraW1 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
+                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[0].w);
+                //double muestraW1 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
                 //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
                 distancias << abs(muestraW1) << 
                         endl;
 
 
+                for(int i = 0; i < numRobots; i++){
+                    posicionesRobots[i].x = posicionesRobotsNext[i].x;
+                    posicionesRobots[i].y = posicionesRobotsNext[i].y;
+                    posicionesRobots[i].w = posicionesRobotsNext[i].w;
+                }
 
                 wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
                 sleep(0.1);
@@ -396,6 +404,7 @@ class CircularTrajectory{
 
 
         vector<PosiRobot> posicionesRobots;
+        vector<PosiRobot> posicionesRobotsNext;
         int numRobots;
 
         double radioCirculo = 2.1;
@@ -410,7 +419,7 @@ class CircularTrajectory{
         //double ki2 = 2; // gains 2
         //double ci = 2;
 
-        double kw = 1; // ganancia de la w para evitar que cambie mucho
+        double kw = 0.2; // ganancia de la w para evitar que cambie mucho
         double ci = 1; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
@@ -423,9 +432,9 @@ class CircularTrajectory{
 
         int i = 0;
 
-        double r_tope = 0.2;
-        double r = 0.4;
-        double R = 1;
+        double r_tope = 0.3;
+        double r = 0.5;
+        double R = 1.5;
 
         
 

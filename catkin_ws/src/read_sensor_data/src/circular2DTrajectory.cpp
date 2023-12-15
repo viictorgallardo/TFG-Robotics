@@ -32,13 +32,14 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({-4,-4,0});
+            posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             //posicionesRobots.push_back({2,3.75,1.5});
             //posicionesRobots.push_back({2.75,-3.75,2});
 
-            posicionesRobotsNext.push_back({-4,-4,0});
+            posicionesRobotsNext.push_back({-4,-4,0.5});
             posicionesRobotsNext.push_back({-3.5,4,1});
+            //posicionesRobotsNext.push_back({2,3.75,1.5});
 
             numRobots = 2;
 
@@ -71,10 +72,11 @@ class CircularTrajectory{
         
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
+            //posicionesRobots.push_back({2,3.75,1.5});
 
             posicionesRobotsNext.push_back({-4,-4,0.5});
             posicionesRobotsNext.push_back({-3.5,4,1});
-            //posicionesRobots.push_back({2,3.75,1.5});
+            //posicionesRobotsNext.push_back({2,3.75,1.5});
             //posicionesRobots.push_back({2.75,-3.75,2});
 
             numRobots = 2;
@@ -444,7 +446,7 @@ class CircularTrajectory{
         double wTarget = 0; // w*
         double ki1 = 3.5; // gains 1 
         double ki2 = 3.5; // gains 2
-        double kw = 0.2; // ganancia de la w para evitar que cambie mucho
+        double kw = 0.4; // ganancia de la w para evitar que cambie mucho
         double ci = 1; // ganancia ci
 
        
@@ -463,9 +465,9 @@ class CircularTrajectory{
         //double r = 0.15;
         //double R = 0.78;
         // Para 2 robots:
-        double r_tope = 0.3;
-        double r = 0.5;
-        double R = 1.5;
+        double r_tope = 0.1;
+        double r = 0.4;
+        double R = 1;
 
         //Para 3 robots
         //double r_tope = 0.25;
@@ -501,7 +503,7 @@ int main(int argc, char **argv)
         string aux = argv[1];
         if(aux == "calcular"){
             ros::init(argc, argv, "circularTrajectory");
-            CircularTrajectory synchronizer(30000);
+            CircularTrajectory synchronizer(10000);
         }else{
             cout << " PArametro " << argv[1] << endl;
             cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;
