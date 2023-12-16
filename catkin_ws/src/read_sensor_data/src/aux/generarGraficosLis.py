@@ -131,18 +131,19 @@ plt.legend()
 plt.show()
 
 
-
+distancias1 = []
+distancias2 = []
 
 
 cuenta = 0
 #Lee las coordenadas del archivo
 with open(distancias, 'r') as archivo:
     for linea in archivo:
-        #x, y = map(float, linea.strip().split(','))
-        #distancias1.append(x)
-        valor = float(linea.strip())  # Convierte cada línea a un número flotante
-        distancias1.append(valor)
-        #distancias2.append(y)
+        x, y = map(float, linea.strip().split(','))
+        distancias1.append(x)
+        #valor = float(linea.strip())  # Convierte cada línea a un número flotante
+        #distancias1.append(valor)
+        distancias2.append(y)
         #distancias3.append(z)
         cuenta = cuenta + 1
 
@@ -151,8 +152,22 @@ with open(distancias, 'r') as archivo:
 iteraciones_totales = range(0,cuenta)
         
 #Crea un gráfico de dispersión con las coordenadas
-plt.scatter( iteraciones_totales, distancias1, label='W2 - W3', color='red')
-#plt.scatter( iteraciones_totales, distancias2, label='W3 - W4', color='green')
+plt.scatter( iteraciones_totales, distancias1, label='W1 - W0', color='red')
+#plt.scatter( iteraciones_totales, distancias2, label='E1 - E0', color='green')
+#plt.scatter( iteraciones_totales, distancias3, label='W4 - W1', color='red')
+
+#Personaliza el gráfico si lo deseas
+plt.title('Gráfico de distancias en el Platooning')
+plt.xlabel('Eje X')
+plt.ylabel('Eje Y')
+plt.legend()
+
+#Muestra el gráfico
+plt.show()
+
+
+
+plt.scatter( iteraciones_totales, distancias2, label='E1 - E0', color='green')
 #plt.scatter( iteraciones_totales, distancias3, label='W4 - W1', color='red')
 
 #Personaliza el gráfico si lo deseas
