@@ -333,7 +333,7 @@ class CircularTrajectory{
                     
 
                     trazasSalida << "Posicion robot "<< i << " "<< posicionesRobots[i].x <<"   " <<  posicionesRobots[i].y
-                    << "   "  << posicionesRobots[i].w <<  "  wi - w* " 
+                    << "   "  << posicionesRobots[i].w << " w* "  <<  wTarget<<   "  wi - w* " 
                     <<  normalizarAngulo(posicionesRobots[i].w - wTarget) << "   " <<   mu*kw << endl;
                     /*if(i == 0){
                         trazasSalida << calcularDistancia(posicionesRobots[i].x,posicionesRobots[i].y,posicionesRobots[1].x,posicionesRobots[1].y) << endl;;

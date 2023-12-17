@@ -105,7 +105,7 @@ class CircularTrajectory{
 
         }
         //Calcula el valor de alpha(s) según la figura 19 del paper 
-        double calcularAlpha(double wVecino, double r, double R ){
+        double calcularAlpha(double wVecino ){
             cout  << "Wvecino:  "<< wVecino  << endl;
             if (wVecino > R){
                 cout << "LIMITE SUPERIOR R PASADO" << endl;
@@ -419,7 +419,7 @@ class CircularTrajectory{
         //double ki2 = 2; // gains 2
         //double ci = 2;
 
-        double kw = 0.4; // ganancia de la w para evitar que cambie mucho
+        double kw = 1; // ganancia de la w para evitar que cambie mucho
         double ci = 0.5; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
@@ -432,9 +432,9 @@ class CircularTrajectory{
 
         int i = 0;
 
-        double r_tope = 0.25;
-        double r = 0.5;
-        double R = 2;
+        double r_tope = 0.35;
+        double r = 0.7;
+        double R = 1;
 
         
 
