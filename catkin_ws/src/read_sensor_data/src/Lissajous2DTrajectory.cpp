@@ -419,7 +419,7 @@ class CircularTrajectory{
         //double ki2 = 2; // gains 2
         //double ci = 2;
 
-        double kw = 1.5; // ganancia de la w para evitar que cambie mucho
+        double kw = 1.2; // ganancia de la w para evitar que cambie mucho
         double ci = 0.5; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
