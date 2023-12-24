@@ -96,7 +96,7 @@ erratic( pose [ -4 -4 0 0 ] name "Robot1" color "blue")
 
 erratic( pose [ -3.5 4 0 0 ] name "Robot2" color "green")
 
-erratic( pose [ 2 3.75 0 0 ] name "Robot3" color "red")
+erratic( pose [ 4 4 0 0 ] name "Robot3" color "red")
 
 #erratic( pose [ 2.75 -3.75 0 0 ] name "Robot4" color "yellow")
 

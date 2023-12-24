@@ -30,15 +30,17 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({-4,-4,0});
+             posicionesRobots.push_back({-4,-4,0});
             posicionesRobots.push_back({-3.5,4,0.5});
-            //posicionesRobots.push_back({2,2,1.5});
-            
+            posicionesRobots.push_back({2,2,1});
+
             posicionesRobotsNext.push_back({-4,-4,0});
             posicionesRobotsNext.push_back({-3.5,4,0.5});
+            posicionesRobotsNext.push_back({4,4,1});
+            //posicionesRobots.push_back({2,2,1.5});
+            
 
-
-            numRobots = 2;
+            numRobots = 3;
 
             numPedirSiguienteRecibidos = 0;
 
@@ -66,13 +68,15 @@ class CircularTrajectory{
         
             posicionesRobots.push_back({-4,-4,0});
             posicionesRobots.push_back({-3.5,4,0.5});
+            posicionesRobots.push_back({2,2,1});
 
             posicionesRobotsNext.push_back({-4,-4,0});
             posicionesRobotsNext.push_back({-3.5,4,0.5});
+            posicionesRobotsNext.push_back({4,4,1});
             //posicionesRobots.push_back({2,2,1.5});
             
 
-            numRobots = 2;
+            numRobots = 3;
 
 
 
@@ -412,15 +416,15 @@ class CircularTrajectory{
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 2; // gains 1 
-        double ki2 = 2; // gains 2
+        double ki1 = 2.5; // gains 1 
+        double ki2 = 2.5; // gains 2
 
         //double ki1 = 2; // gains 1 
         //double ki2 = 2; // gains 2
         //double ci = 2;
 
-        double kw = 1.2; // ganancia de la w para evitar que cambie mucho
-        double ci = 0.5; // ganancia ci
+        double kw = 2; // ganancia de la w para evitar que cambie mucho
+        double ci = 1; // ganancia ci
 
         //Hay que diferenciar el publicador de cada robot
 
