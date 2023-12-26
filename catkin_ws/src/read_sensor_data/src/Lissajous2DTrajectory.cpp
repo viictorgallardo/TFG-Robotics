@@ -31,12 +31,12 @@ class CircularTrajectory{
 
         
              posicionesRobots.push_back({-4,-4,0});
-            posicionesRobots.push_back({-3.5,4,0.5});
-            posicionesRobots.push_back({2,2,1});
+            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({4,4,2});
 
             posicionesRobotsNext.push_back({-4,-4,0});
-            posicionesRobotsNext.push_back({-3.5,4,0.5});
-            posicionesRobotsNext.push_back({4,4,1});
+            posicionesRobotsNext.push_back({-3.5,4,1});
+            posicionesRobotsNext.push_back({4,4,2});
             //posicionesRobots.push_back({2,2,1.5});
             
 
@@ -67,12 +67,12 @@ class CircularTrajectory{
 
         
             posicionesRobots.push_back({-4,-4,0});
-            posicionesRobots.push_back({-3.5,4,0.5});
-            posicionesRobots.push_back({2,2,1});
+            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({4,4,2});
 
-            posicionesRobotsNext.push_back({-4,-4,0});
-            posicionesRobotsNext.push_back({-3.5,4,0.5});
-            posicionesRobotsNext.push_back({4,4,1});
+            posicionesRobotsNext.push_back({-3,-3,0});
+            posicionesRobotsNext.push_back({-2.5,3,1});
+            posicionesRobotsNext.push_back({4,4,2});
             //posicionesRobots.push_back({2,2,1.5});
             
 
@@ -354,8 +354,8 @@ class CircularTrajectory{
 
                 double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[0].w);
                 double muestraW2 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
-                //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
-                distancias << abs(muestraW1) <<  "," << abs(muestraW2) <<
+                double muestraW3  = calcularDistancia(posicionesRobots[2].x,posicionesRobots[2].y,posicionesRobots[0].x,posicionesRobots[0].y);
+                distancias << abs(muestraW1) <<  "," << abs(muestraW2) << "," << abs(muestraW3) <<
                         endl;
 
 
@@ -411,22 +411,26 @@ class CircularTrajectory{
         vector<PosiRobot> posicionesRobotsNext;
         int numRobots;
 
+        
         double radioCirculo = 2.1;
 
 
         double T = 0.1; // 100 milisegundos
         double wTarget = 0; // w*
-        double ki1 = 2.5; // gains 1 
-        double ki2 = 2.5; // gains 2
+        double ki1 = 2; // gains 1 
+        double ki2 = 2; // gains 2
 
         //double ki1 = 2; // gains 1 
         //double ki2 = 2; // gains 2
         //double ci = 2;
 
-        double kw = 2; // ganancia de la w para evitar que cambie mucho
-        double ci = 1; // ganancia ci
+        double kw = 1.5; // ganancia de la w para evitar que cambie mucho
+        double ci = 0.5; // ganancia ci
 
-        //Hay que diferenciar el publicador de cada robot
+
+	    double r_tope = 0.35;
+        double r = 0.7;
+        double R = 1;
 
         double multiplicadorW = 1;
         
@@ -436,11 +440,7 @@ class CircularTrajectory{
 
         int i = 0;
 
-        double r_tope = 0.35;
-        double r = 0.7;
-        double R = 1;
-
-        
+  
 
 };
 

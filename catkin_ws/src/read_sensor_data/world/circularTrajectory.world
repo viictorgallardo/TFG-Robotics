@@ -102,7 +102,7 @@ erratic( pose [ 4 4 0 0 ] name "Robot3" color "red")
 
 
 
-block( pose [ 4 4 0 0 ] name "obstacle" color "red")
+#block( pose [ 4 4 0 0 ] name "obstacle" color "red")
 
 
 

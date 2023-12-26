@@ -133,18 +133,19 @@ plt.show()
 
 distancias1 = []
 distancias2 = []
+distancias3 = []
 
 
 cuenta = 0
 #Lee las coordenadas del archivo
 with open(distancias, 'r') as archivo:
     for linea in archivo:
-        x, y = map(float, linea.strip().split(','))
+        x, y , z  = map(float, linea.strip().split(','))
         distancias1.append(x)
         #valor = float(linea.strip())  # Convierte cada línea a un número flotante
         #distancias1.append(valor)
         distancias2.append(y)
-        #distancias3.append(z)
+        distancias3.append(z)
         cuenta = cuenta + 1
 
 
@@ -168,7 +169,7 @@ plt.show()
 
 
 plt.scatter( iteraciones_totales, distancias2, label='E1 - E0', color='green')
-#plt.scatter( iteraciones_totales, distancias3, label='W4 - W1', color='red')
+plt.scatter( iteraciones_totales, distancias3, label='E2 - E0', color='red')
 
 #Personaliza el gráfico si lo deseas
 plt.title('Gráfico de distancias en el Platooning')
