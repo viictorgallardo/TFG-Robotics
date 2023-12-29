@@ -54,14 +54,14 @@ CMAKE_BINARY_DIR = /home/arob/Desktop/TFG-Robotics/catkin_ws/build
 
 # The main recursive "all" target.
 all: gtest/all
-all: read_sensor_data/all
+all: robot_core/all
 all: obstacle_detector-master/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
-preinstall: read_sensor_data/preinstall
+preinstall: robot_core/preinstall
 preinstall: obstacle_detector-master/preinstall
 
 .PHONY : preinstall
@@ -73,7 +73,7 @@ clean: CMakeFiles/clean_test_results.dir/clean
 clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
-clean: read_sensor_data/clean
+clean: robot_core/clean
 clean: obstacle_detector-master/clean
 
 .PHONY : clean
@@ -253,47 +253,47 @@ obstacle_detector-master/clean: obstacle_detector-master/CMakeFiles/obstacle_det
 .PHONY : obstacle_detector-master/clean
 
 #=============================================================================
-# Directory level rules for directory read_sensor_data
+# Directory level rules for directory robot_core
 
 # Recursive "all" directory target.
-read_sensor_data/all: read_sensor_data/CMakeFiles/lissajousTrajectory.dir/all
-read_sensor_data/all: read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/all
-read_sensor_data/all: read_sensor_data/CMakeFiles/readOdomScan.dir/all
-read_sensor_data/all: read_sensor_data/CMakeFiles/circularTrajectory.dir/all
-read_sensor_data/all: read_sensor_data/CMakeFiles/followTargets.dir/all
-read_sensor_data/all: read_sensor_data/CMakeFiles/moveRobot.dir/all
+robot_core/all: robot_core/CMakeFiles/lissajousTrajectory.dir/all
+robot_core/all: robot_core/CMakeFiles/teleop_twist_keyboard.dir/all
+robot_core/all: robot_core/CMakeFiles/readOdomScan.dir/all
+robot_core/all: robot_core/CMakeFiles/circularTrajectory.dir/all
+robot_core/all: robot_core/CMakeFiles/followTargets.dir/all
+robot_core/all: robot_core/CMakeFiles/moveRobot.dir/all
 
-.PHONY : read_sensor_data/all
+.PHONY : robot_core/all
 
 # Recursive "preinstall" directory target.
-read_sensor_data/preinstall:
+robot_core/preinstall:
 
-.PHONY : read_sensor_data/preinstall
+.PHONY : robot_core/preinstall
 
 # Recursive "clean" directory target.
-read_sensor_data/clean: read_sensor_data/CMakeFiles/lissajousTrajectory.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/readOdomScan.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/circularTrajectory.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/followTargets.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/moveRobot.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-read_sensor_data/clean: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+robot_core/clean: robot_core/CMakeFiles/lissajousTrajectory.dir/clean
+robot_core/clean: robot_core/CMakeFiles/teleop_twist_keyboard.dir/clean
+robot_core/clean: robot_core/CMakeFiles/readOdomScan.dir/clean
+robot_core/clean: robot_core/CMakeFiles/circularTrajectory.dir/clean
+robot_core/clean: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+robot_core/clean: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+robot_core/clean: robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+robot_core/clean: robot_core/CMakeFiles/followTargets.dir/clean
+robot_core/clean: robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+robot_core/clean: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+robot_core/clean: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+robot_core/clean: robot_core/CMakeFiles/roscpp_generate_messages_py.dir/clean
+robot_core/clean: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+robot_core/clean: robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+robot_core/clean: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+robot_core/clean: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+robot_core/clean: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+robot_core/clean: robot_core/CMakeFiles/moveRobot.dir/clean
+robot_core/clean: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+robot_core/clean: robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+robot_core/clean: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
-.PHONY : read_sensor_data/clean
+.PHONY : robot_core/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/doxygen.dir
@@ -540,571 +540,571 @@ gtest/googletest/CMakeFiles/gtest.dir/clean:
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/lissajousTrajectory.dir
+# Target rules for target robot_core/CMakeFiles/lissajousTrajectory.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/lissajousTrajectory.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build
+robot_core/CMakeFiles/lissajousTrajectory.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/lissajousTrajectory.dir/build.make robot_core/CMakeFiles/lissajousTrajectory.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/lissajousTrajectory.dir/build.make robot_core/CMakeFiles/lissajousTrajectory.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num=13,14 "Built target lissajousTrajectory"
-.PHONY : read_sensor_data/CMakeFiles/lissajousTrajectory.dir/all
+.PHONY : robot_core/CMakeFiles/lissajousTrajectory.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/lissajousTrajectory.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/lissajousTrajectory.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/lissajousTrajectory.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/lissajousTrajectory.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/lissajousTrajectory.dir/rule
+.PHONY : robot_core/CMakeFiles/lissajousTrajectory.dir/rule
 
 # Convenience name for target.
-lissajousTrajectory: read_sensor_data/CMakeFiles/lissajousTrajectory.dir/rule
+lissajousTrajectory: robot_core/CMakeFiles/lissajousTrajectory.dir/rule
 
 .PHONY : lissajousTrajectory
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/lissajousTrajectory.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/lissajousTrajectory.dir/clean
+robot_core/CMakeFiles/lissajousTrajectory.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/lissajousTrajectory.dir/build.make robot_core/CMakeFiles/lissajousTrajectory.dir/clean
+.PHONY : robot_core/CMakeFiles/lissajousTrajectory.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir
+# Target rules for target robot_core/CMakeFiles/teleop_twist_keyboard.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/build.make read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/build.make read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/build
+robot_core/CMakeFiles/teleop_twist_keyboard.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/teleop_twist_keyboard.dir/build.make robot_core/CMakeFiles/teleop_twist_keyboard.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/teleop_twist_keyboard.dir/build.make robot_core/CMakeFiles/teleop_twist_keyboard.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num=67,68 "Built target teleop_twist_keyboard"
-.PHONY : read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/all
+.PHONY : robot_core/CMakeFiles/teleop_twist_keyboard.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/teleop_twist_keyboard.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/teleop_twist_keyboard.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule
+.PHONY : robot_core/CMakeFiles/teleop_twist_keyboard.dir/rule
 
 # Convenience name for target.
-teleop_twist_keyboard: read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/rule
+teleop_twist_keyboard: robot_core/CMakeFiles/teleop_twist_keyboard.dir/rule
 
 .PHONY : teleop_twist_keyboard
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/build.make read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/clean
+robot_core/CMakeFiles/teleop_twist_keyboard.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/teleop_twist_keyboard.dir/build.make robot_core/CMakeFiles/teleop_twist_keyboard.dir/clean
+.PHONY : robot_core/CMakeFiles/teleop_twist_keyboard.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/readOdomScan.dir
+# Target rules for target robot_core/CMakeFiles/readOdomScan.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/readOdomScan.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/readOdomScan.dir/build.make read_sensor_data/CMakeFiles/readOdomScan.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/readOdomScan.dir/build.make read_sensor_data/CMakeFiles/readOdomScan.dir/build
+robot_core/CMakeFiles/readOdomScan.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/readOdomScan.dir/build.make robot_core/CMakeFiles/readOdomScan.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/readOdomScan.dir/build.make robot_core/CMakeFiles/readOdomScan.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num=61,62 "Built target readOdomScan"
-.PHONY : read_sensor_data/CMakeFiles/readOdomScan.dir/all
+.PHONY : robot_core/CMakeFiles/readOdomScan.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/readOdomScan.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/readOdomScan.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/readOdomScan.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/readOdomScan.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/readOdomScan.dir/rule
+.PHONY : robot_core/CMakeFiles/readOdomScan.dir/rule
 
 # Convenience name for target.
-readOdomScan: read_sensor_data/CMakeFiles/readOdomScan.dir/rule
+readOdomScan: robot_core/CMakeFiles/readOdomScan.dir/rule
 
 .PHONY : readOdomScan
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/readOdomScan.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/readOdomScan.dir/build.make read_sensor_data/CMakeFiles/readOdomScan.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/readOdomScan.dir/clean
+robot_core/CMakeFiles/readOdomScan.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/readOdomScan.dir/build.make robot_core/CMakeFiles/readOdomScan.dir/clean
+.PHONY : robot_core/CMakeFiles/readOdomScan.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/circularTrajectory.dir
+# Target rules for target robot_core/CMakeFiles/circularTrajectory.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/circularTrajectory.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/build
+robot_core/CMakeFiles/circularTrajectory.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/circularTrajectory.dir/build.make robot_core/CMakeFiles/circularTrajectory.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/circularTrajectory.dir/build.make robot_core/CMakeFiles/circularTrajectory.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num=1,2 "Built target circularTrajectory"
-.PHONY : read_sensor_data/CMakeFiles/circularTrajectory.dir/all
+.PHONY : robot_core/CMakeFiles/circularTrajectory.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/circularTrajectory.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/circularTrajectory.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/circularTrajectory.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/circularTrajectory.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/circularTrajectory.dir/rule
+.PHONY : robot_core/CMakeFiles/circularTrajectory.dir/rule
 
 # Convenience name for target.
-circularTrajectory: read_sensor_data/CMakeFiles/circularTrajectory.dir/rule
+circularTrajectory: robot_core/CMakeFiles/circularTrajectory.dir/rule
 
 .PHONY : circularTrajectory
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/circularTrajectory.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/circularTrajectory.dir/clean
+robot_core/CMakeFiles/circularTrajectory.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/circularTrajectory.dir/build.make robot_core/CMakeFiles/circularTrajectory.dir/clean
+.PHONY : robot_core/CMakeFiles/circularTrajectory.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir
+# Target rules for target robot_core/CMakeFiles/std_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/build
+robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_py: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+std_msgs_generate_messages_py: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 .PHONY : std_msgs_generate_messages_py
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir
+# Target rules for target robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_nodejs: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+std_msgs_generate_messages_nodejs: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
 
 .PHONY : std_msgs_generate_messages_nodejs
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir
+# Target rules for target robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_cpp: read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+roscpp_generate_messages_cpp: robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
 .PHONY : roscpp_generate_messages_cpp
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/followTargets.dir
+# Target rules for target robot_core/CMakeFiles/followTargets.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/followTargets.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/followTargets.dir/build.make read_sensor_data/CMakeFiles/followTargets.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/followTargets.dir/build.make read_sensor_data/CMakeFiles/followTargets.dir/build
+robot_core/CMakeFiles/followTargets.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/followTargets.dir/build.make robot_core/CMakeFiles/followTargets.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/followTargets.dir/build.make robot_core/CMakeFiles/followTargets.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num=3,4 "Built target followTargets"
-.PHONY : read_sensor_data/CMakeFiles/followTargets.dir/all
+.PHONY : robot_core/CMakeFiles/followTargets.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/followTargets.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/followTargets.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/followTargets.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/followTargets.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/followTargets.dir/rule
+.PHONY : robot_core/CMakeFiles/followTargets.dir/rule
 
 # Convenience name for target.
-followTargets: read_sensor_data/CMakeFiles/followTargets.dir/rule
+followTargets: robot_core/CMakeFiles/followTargets.dir/rule
 
 .PHONY : followTargets
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/followTargets.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/followTargets.dir/build.make read_sensor_data/CMakeFiles/followTargets.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/followTargets.dir/clean
+robot_core/CMakeFiles/followTargets.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/followTargets.dir/build.make robot_core/CMakeFiles/followTargets.dir/clean
+.PHONY : robot_core/CMakeFiles/followTargets.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir
+# Target rules for target robot_core/CMakeFiles/roscpp_generate_messages_eus.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/build
+robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_eus: read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+roscpp_generate_messages_eus: robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
 .PHONY : roscpp_generate_messages_eus
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
+# Target rules for target robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+rosgraph_msgs_generate_messages_nodejs: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_nodejs
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir
+# Target rules for target robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+std_msgs_generate_messages_lisp: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 .PHONY : std_msgs_generate_messages_lisp
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir
+# Target rules for target robot_core/CMakeFiles/roscpp_generate_messages_py.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/build
+robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_py.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_py: read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/rule
+roscpp_generate_messages_py: robot_core/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 .PHONY : roscpp_generate_messages_py
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/clean
+robot_core/CMakeFiles/roscpp_generate_messages_py.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_py.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir
+# Target rules for target robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_eus: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+std_msgs_generate_messages_eus: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 .PHONY : std_msgs_generate_messages_eus
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir
+# Target rules for target robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_nodejs: read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+roscpp_generate_messages_nodejs: robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 .PHONY : roscpp_generate_messages_nodejs
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
+# Target rules for target robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+rosgraph_msgs_generate_messages_cpp: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_cpp
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir
+# Target rules for target robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_cpp: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+std_msgs_generate_messages_cpp: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 
 .PHONY : std_msgs_generate_messages_cpp
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
+# Target rules for target robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_eus: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+rosgraph_msgs_generate_messages_eus: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_eus
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/moveRobot.dir
+# Target rules for target robot_core/CMakeFiles/moveRobot.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/moveRobot.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/moveRobot.dir/build.make read_sensor_data/CMakeFiles/moveRobot.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/moveRobot.dir/build.make read_sensor_data/CMakeFiles/moveRobot.dir/build
+robot_core/CMakeFiles/moveRobot.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/moveRobot.dir/build.make robot_core/CMakeFiles/moveRobot.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/moveRobot.dir/build.make robot_core/CMakeFiles/moveRobot.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num=15,16 "Built target moveRobot"
-.PHONY : read_sensor_data/CMakeFiles/moveRobot.dir/all
+.PHONY : robot_core/CMakeFiles/moveRobot.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/moveRobot.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/moveRobot.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/moveRobot.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/moveRobot.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/moveRobot.dir/rule
+.PHONY : robot_core/CMakeFiles/moveRobot.dir/rule
 
 # Convenience name for target.
-moveRobot: read_sensor_data/CMakeFiles/moveRobot.dir/rule
+moveRobot: robot_core/CMakeFiles/moveRobot.dir/rule
 
 .PHONY : moveRobot
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/moveRobot.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/moveRobot.dir/build.make read_sensor_data/CMakeFiles/moveRobot.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/moveRobot.dir/clean
+robot_core/CMakeFiles/moveRobot.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/moveRobot.dir/build.make robot_core/CMakeFiles/moveRobot.dir/clean
+.PHONY : robot_core/CMakeFiles/moveRobot.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
+# Target rules for target robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+rosgraph_msgs_generate_messages_lisp: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_lisp
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir
+# Target rules for target robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_lisp: read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+roscpp_generate_messages_lisp: robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
 .PHONY : roscpp_generate_messages_lisp
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
+# Target rules for target robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/arob/Desktop/TFG-Robotics/catkin_ws/build/CMakeFiles 0
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_py: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+rosgraph_msgs_generate_messages_py: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_py
 
 # clean rule for target.
-read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-.PHONY : read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_detector_nodelets.dir
@@ -1194,21 +1194,21 @@ obstacle_detector-master/CMakeFiles/scans_merger_node.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_tracker.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/all
@@ -1305,21 +1305,21 @@ obstacle_detector-master/CMakeFiles/obstacle_tracker.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/scans_merger.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/scans_merger.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/scans_merger.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/scans_merger.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/scans_merger.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
 obstacle_detector-master/CMakeFiles/scans_merger.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_eus.dir/all
@@ -1465,7 +1465,7 @@ obstacle_detector-master/CMakeFiles/obstacle_detector_gennodejs.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/all: obstacle_detector-master/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
@@ -1523,7 +1523,7 @@ obstacle_detector-master/CMakeFiles/obstacle_detector_geneus.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir/all: obstacle_detector-master/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/all
@@ -1581,7 +1581,7 @@ obstacle_detector-master/CMakeFiles/obstacle_detector_gencpp.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/all: obstacle_detector-master/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/all
@@ -1612,7 +1612,7 @@ obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_cpp.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/all: obstacle_detector-master/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/all
@@ -2511,21 +2511,21 @@ obstacle_detector-master/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/clea
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_publisher.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/all
@@ -2622,21 +2622,21 @@ obstacle_detector-master/CMakeFiles/obstacle_publisher.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_extractor.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_extractor.dir/all: obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_eus.dir/all
@@ -3084,7 +3084,7 @@ obstacle_detector-master/CMakeFiles/nodelet_generate_messages_py.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/all: obstacle_detector-master/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/all: obstacle_detector-master/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/all
@@ -3628,21 +3628,21 @@ obstacle_detector-master/CMakeFiles/tf_generate_messages_nodejs.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_gui.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_eus.dir/all
@@ -3951,21 +3951,21 @@ obstacle_detector-master/CMakeFiles/nav_msgs_generate_messages_lisp.dir/clean:
 # Target rules for target obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir
 
 # All Build rule for target.
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_py.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_py.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
 obstacle_detector-master/CMakeFiles/obstacle_detector_gui_autogen.dir/all: obstacle_detector-master/CMakeFiles/std_srvs_generate_messages_eus.dir/all

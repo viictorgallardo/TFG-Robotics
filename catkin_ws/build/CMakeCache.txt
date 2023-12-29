@@ -563,13 +563,19 @@ obstacle_tracker_LIB_DEPENDS:STATIC=general;/opt/ros/noetic/lib/libnodeletlib.so
 pluginlib_DIR:PATH=/opt/ros/noetic/share/pluginlib/cmake
 
 //Value Computed by CMake
-read_sensor_data_BINARY_DIR:STATIC=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/read_sensor_data
+read_sensor_data_BINARY_DIR:STATIC=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/robot_core
 
 //Value Computed by CMake
-read_sensor_data_SOURCE_DIR:STATIC=/home/arob/Desktop/TFG-Robotics/catkin_ws/src/read_sensor_data
+read_sensor_data_SOURCE_DIR:STATIC=/home/arob/Desktop/TFG-Robotics/catkin_ws/src/robot_core
 
 //The directory containing a CMake configuration file for resource_retriever.
 resource_retriever_DIR:PATH=/opt/ros/noetic/share/resource_retriever/cmake
+
+//Value Computed by CMake
+robot_core_BINARY_DIR:STATIC=/home/arob/Desktop/TFG-Robotics/catkin_ws/build/robot_core
+
+//Value Computed by CMake
+robot_core_SOURCE_DIR:STATIC=/home/arob/Desktop/TFG-Robotics/catkin_ws/src/robot_core
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake

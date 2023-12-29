@@ -1,0 +1,13 @@
+<launch>
+	<node name="stage_sim" pkg="stage_ros" type="stageros" args="$(find robot_core)/world/simple.world" output="screen"/>
+  
+	<node name="read_sync" pkg="robot_core" type="readOdomScan" output="screen">
+		<remap from="/pose" to="/robot_0/base_pose_ground_truth"/>
+		<remap from="/scan" to="/robot_0/base_scan"/>
+		<remap from="/cmd_vel" to="/robot_0/cmd_vel"/>
+	</node>
+
+	<node name="keyboards" pkg="robot_core" type="teleop_twist_keyboard" output="screen">
+		<remap from="/cmd_vel" to="/robot_1/cmd_vel"/>
+	</node>
+</launch>

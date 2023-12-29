@@ -1,0 +1,8 @@
+prefix=/home/arob/Desktop/TFG-Robotics/catkin_ws/devel
+
+Name: robot_core
+Description: Description of robot_core
+Version: 0.0.0
+Cflags: -I/home/arob/Desktop/TFG-Robotics/catkin_ws/src/robot_core/include
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs message_filters

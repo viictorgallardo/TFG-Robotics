@@ -294,7 +294,7 @@ lissajousTrajectory: cmake_check_build_system
 
 # fast build rule for target.
 lissajousTrajectory/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build.make read_sensor_data/CMakeFiles/lissajousTrajectory.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/lissajousTrajectory.dir/build.make robot_core/CMakeFiles/lissajousTrajectory.dir/build
 .PHONY : lissajousTrajectory/fast
 
 #=============================================================================
@@ -307,7 +307,7 @@ teleop_twist_keyboard: cmake_check_build_system
 
 # fast build rule for target.
 teleop_twist_keyboard/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/build.make read_sensor_data/CMakeFiles/teleop_twist_keyboard.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/teleop_twist_keyboard.dir/build.make robot_core/CMakeFiles/teleop_twist_keyboard.dir/build
 .PHONY : teleop_twist_keyboard/fast
 
 #=============================================================================
@@ -320,7 +320,7 @@ readOdomScan: cmake_check_build_system
 
 # fast build rule for target.
 readOdomScan/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/readOdomScan.dir/build.make read_sensor_data/CMakeFiles/readOdomScan.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/readOdomScan.dir/build.make robot_core/CMakeFiles/readOdomScan.dir/build
 .PHONY : readOdomScan/fast
 
 #=============================================================================
@@ -333,7 +333,7 @@ circularTrajectory: cmake_check_build_system
 
 # fast build rule for target.
 circularTrajectory/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/circularTrajectory.dir/build.make read_sensor_data/CMakeFiles/circularTrajectory.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/circularTrajectory.dir/build.make robot_core/CMakeFiles/circularTrajectory.dir/build
 .PHONY : circularTrajectory/fast
 
 #=============================================================================
@@ -346,7 +346,7 @@ std_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_py/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -359,7 +359,7 @@ std_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -372,7 +372,7 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
@@ -385,7 +385,7 @@ followTargets: cmake_check_build_system
 
 # fast build rule for target.
 followTargets/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/followTargets.dir/build.make read_sensor_data/CMakeFiles/followTargets.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/followTargets.dir/build.make robot_core/CMakeFiles/followTargets.dir/build
 .PHONY : followTargets/fast
 
 #=============================================================================
@@ -398,7 +398,7 @@ roscpp_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
@@ -411,7 +411,7 @@ rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -424,7 +424,7 @@ std_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -437,7 +437,7 @@ roscpp_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
@@ -450,7 +450,7 @@ std_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_eus/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -463,7 +463,7 @@ roscpp_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_nodejs/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -476,7 +476,7 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -489,7 +489,7 @@ std_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make read_sensor_data/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot_core/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -502,7 +502,7 @@ rosgraph_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -515,7 +515,7 @@ moveRobot: cmake_check_build_system
 
 # fast build rule for target.
 moveRobot/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/moveRobot.dir/build.make read_sensor_data/CMakeFiles/moveRobot.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/moveRobot.dir/build.make robot_core/CMakeFiles/moveRobot.dir/build
 .PHONY : moveRobot/fast
 
 #=============================================================================
@@ -528,7 +528,7 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -541,7 +541,7 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make read_sensor_data/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot_core/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
@@ -554,7 +554,7 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make read_sensor_data/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(MAKE) -f robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot_core/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
