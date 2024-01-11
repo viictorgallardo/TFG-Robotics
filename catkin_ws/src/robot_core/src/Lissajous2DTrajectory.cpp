@@ -40,7 +40,7 @@ class CircularTrajectory{
             //posicionesRobots.push_back({2,2,1.5});
             
 
-            numRobots = 3;
+        
 
             numPedirSiguienteRecibidos = 0;
 
@@ -76,7 +76,7 @@ class CircularTrajectory{
             //posicionesRobots.push_back({2,2,1.5});
             
 
-            numRobots = 3;
+        
 
 
 
@@ -130,9 +130,9 @@ class CircularTrajectory{
                 //cout << "LIMITE SUPERIOR R PASADO" << endl;
                 return 0;
             }else if(wVecino > r && wVecino <= R){
-                return (R-wVecino)/((wVecino-r_tope)*(R-r));
-            }else if( wVecino > 0 && wVecino <= r){
-                return 1/(r-r_tope);
+                return ((R-wVecino)/((wVecino-r_tope)*(R-r))) *(r-r_tope); // este factor normaliza
+            }else{
+                return (1/(r-r_tope)) * (r-r_tope);
             }
             
         }
@@ -211,23 +211,35 @@ class CircularTrajectory{
                         //Vecindario para un robot
                         for(int j = 0 ; j < numRobots; j++){
                             if(i != j){
+                                //Repulsión para dicha pareja de robots
                                 double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                                 wimenosj = normalizarAngulo(wimenosj);
-                                
+                                cout << "Valores : " << wimenosj << endl;
+                                double repulsionAux = calcularAlpha2(abs(wimenosj));
+                                //Mirar si por lo que sea han coincidido las 2 posiciones w
+                                if(abs(wimenosj) == 0){
+                                    if( i < j){
+                                        mu += repulsionAux* -1;
+                                    }else{
+                                        mu += repulsionAux* 1;
+                                    }
                                     
-                                    //cout << "Valores : " << wimenosj << endl;
-                                mu += calcularAlpha2( abs(wimenosj))* (wimenosj/abs(wimenosj));
-                            
+                                }else{
+                                // Comportamiento normal
+                                    mu += repulsionAux* (wimenosj/abs(wimenosj));
+                                }
+                                
+                                
                             }
                         }
                     
 
                         //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                        w0 = 1 + ki1 * (posicionesRobots[i].x - (radioCirculo*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
+                        w0 = dot_w_star + ki1 * (posicionesRobots[i].x - (radioCirculo*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
                         * (derivadaXi1(posicionesRobots[i].w))
                                 + ki2 * (posicionesRobots[i].y -  (radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2))))
                                 * ( derivadaXi2(posicionesRobots[i].w))
-                                - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
+                                - (C * (normalizarAngulo(posicionesRobots[i].w - wTarget)) * Kw) + normalizarAngulo(mu)*Kw*D; 
 
                         
 
@@ -268,7 +280,7 @@ class CircularTrajectory{
                     }
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
-                    wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
+                    wTarget = normalizarAngulo(wTarget + (T * dot_w_star));
 
                     
                 }
@@ -304,26 +316,40 @@ class CircularTrajectory{
                     //Vecindario para un robot
                     for(int j = 0 ; j < numRobots; j++){
                         if(i != j){
+                            //Repulsión para dicha pareja de robots
                             double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                             wimenosj = normalizarAngulo(wimenosj);
-                           
                             cout << "Valores : " << wimenosj << endl;
-                            mu += calcularAlpha2( abs(wimenosj))* (wimenosj/abs(wimenosj));
+                            double repulsionAux = calcularAlpha2(abs(wimenosj));
+                            //Mirar si por lo que sea han coincidido las 2 posiciones w
+                            if(abs(wimenosj) == 0){
+                                if( i < j){
+                                    mu += repulsionAux* -1;
+                                }else{
+                                    mu += repulsionAux* 1;
+                                }
+                                
+                            }else{
+                               // Comportamiento normal
+                                mu += repulsionAux* (wimenosj/abs(wimenosj));
+                            }
+                            
                             
                         }
                     }
                 
 
                     //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w0 = 1 + ki1 * (posicionesRobots[i].x - (radioCirculo*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
-                    * (derivadaXi1(posicionesRobots[i].w))
-                            + ki2 * (posicionesRobots[i].y -  (radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2))))
-                            * ( derivadaXi2(posicionesRobots[i].w))
-                            - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
+                    w0 = dot_w_star + ki1 * (posicionesRobots[i].x - (radioCirculo*cos(posicionesRobots[i].w)/(1+ 0.3*pow(sin(posicionesRobots[i].w),2))))
+                        * (derivadaXi1(posicionesRobots[i].w))
+                                + ki2 * (posicionesRobots[i].y -  (radioCirculo*sin(posicionesRobots[i].w)*cos(posicionesRobots[i].w)/(1+0.3*pow(sin(posicionesRobots[i].w),2))))
+                                * ( derivadaXi2(posicionesRobots[i].w))
+                                - (C * (normalizarAngulo(posicionesRobots[i].w - wTarget)) * Kw) + normalizarAngulo(mu)*Kw*D; 
 
-                    
+                    /*
+                    */
 
-                    
+                    cout << "La repulsion es " <<   normalizarAngulo(mu) << "y multiplicada " << normalizarAngulo(mu) * Kw * D << endl;
 
                     posicionesRobotsNext[i].x = posicionesRobots[i].x + T * u1;
                     posicionesRobotsNext[i].y = posicionesRobots[i].y + T * u2;
@@ -333,7 +359,7 @@ class CircularTrajectory{
 
                     trazasSalida << "Posicion robot "<< i << " "<< posicionesRobots[i].x <<"   " <<  posicionesRobots[i].y
                     << "   "  << posicionesRobots[i].w <<  "  wi - w* " 
-                    <<  normalizarAngulo(posicionesRobots[i].w - wTarget) << "   " <<   mu*kw << endl;
+                    <<  normalizarAngulo(posicionesRobots[i].w - wTarget) << "   " <<   normalizarAngulo(mu)*Kw*D<< endl;
 
                     if(i == 0){
                         coordenadas << posicionesRobots[i].x << "," << posicionesRobots[i].y << "," <<
@@ -365,8 +391,8 @@ class CircularTrajectory{
                     posicionesRobots[i].w = posicionesRobotsNext[i].w;
                 }
 
-                wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
-                sleep(0.1);
+                wTarget = normalizarAngulo(wTarget + (T * dot_w_star));
+                //sleep(0.1);
         
             }
 
@@ -409,13 +435,13 @@ class CircularTrajectory{
 
         vector<PosiRobot> posicionesRobots;
         vector<PosiRobot> posicionesRobotsNext;
-        int numRobots;
+        int numRobots = 3;
 
         
-        double radioCirculo = 2.1;
+        double radioCirculo = 2;
 
 
-        double T = 0.1; // 100 milisegundos
+    
         double wTarget = 0; // w*
         double ki1 = 2; // gains 1 
         double ki2 = 2; // gains 2
@@ -424,15 +450,20 @@ class CircularTrajectory{
         //double ki2 = 2; // gains 2
         //double ci = 2;
 
-        double kw = 1.5; // ganancia de la w para evitar que cambie mucho
-        double ci = 0.5; // ganancia ci
+        double T=0.01; // segundos
+        double dot_w_star = pow(-1,numRobots); // 1 rad per second
+        
+        double Kw=1;
+        double D = 2;
 
+	    double d_opt = 10*M_PI/180; // deseado al final.
+        double R = 1.5*d_opt; // 15 grados. % distancia en grados entre los angulos para ser considerados vecinos.
+        double r = 5 * M_PI/180; // por ejemplo son factibles.
+        double r_tope = 2*M_PI/180; 
 
-	    double r_tope = 0.35;
-        double r = 0.7;
-        double R = 1;
+        double factor_C = (r-r_tope) / ( (numRobots-1) * (d_opt - r_tope) * (1.5 * d_opt - r) );
+        double C = D * factor_C;
 
-        double multiplicadorW = 1;
         
         double u1,u2,mu,w0;
     
@@ -452,11 +483,12 @@ class CircularTrajectory{
 int main(int argc, char **argv)
 {
     
+    int max_iter = 10000;
     if(argc == 2){
         string aux = argv[1];
         if(aux == "calcular"){
             ros::init(argc, argv, "circularTrajectory");
-            CircularTrajectory synchronizer(10000);
+            CircularTrajectory synchronizer(max_iter);
         }else{
             cout << " PArametro " << argv[1] << endl;
             cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;
