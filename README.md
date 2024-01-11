@@ -1,11 +1,18 @@
 # TFG-Robotics
 TFG 2023-2024 Víctor Gallardo
 
-Platooning de TurtleBots. Este repositorio es un backup del TFG de Víctor Gallardo
+Control de una formación  de "platooning" usando un equipo de robots.
+ Este es el repositorio oficial del TFG de Víctor Gallardo
 
-El codigo se encuentra en src, solo existe de momento el nodo read_sensor_data.
-Este nodo contiene tanto codigo de seguimiento que se implemento en readOdomScan, 
-como las funciones auxiliares followTargets o teleop_twist que antes estaban en el paquete 
-arob_lab2
+Este trabajo pretende realizar una implementación del artículo _ en el que se consigue un platooning de robots con ordenación espontánea. Es una adaptación por lo que tiene algunos cambios
+con respecto al análisis matemático que ahí hacen.
 
-En el futuro es muy posible que se cambie la distribución de los directorios.
+Se puede encontrar todo el código dentro de robot_core donde lo más importante es:
+
+simular.launch : lanza una simulacion en STAGE para ver una ordenacion de trayectoria circular o Lissajous
+
+circular2DTrajectory: es el calculador de puntos de la trayectoria circular
+
+Lissajous2DTrajectory: es el calculador de puntos de la trayectoria Lissajous
+
+moveRobot.cpp: es el nodo de movimiento de los robots y detección de obstáculos.

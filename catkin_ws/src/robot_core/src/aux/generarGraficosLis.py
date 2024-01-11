@@ -27,6 +27,11 @@ mu_1 = []
 mu_2 = []
 
 
+w_0 = []
+w_1 = []
+w_2 = []
+
+
 directorio_actual = os.getcwd()
 
 # Ruta del archivo de coordenadasRO.txt en el directorio actual
@@ -113,12 +118,21 @@ with open(salida_logs, 'r') as archivo1:
         elif indice_robot == 2:
             mu_2.append(ultimo_numero)
 
+        wRobot = float(palabras[5])
+        if indice_robot == 0:
+            w_0.append(wRobot)
+        elif indice_robot == 1:
+            w_1.append(wRobot)
+        elif indice_robot == 2:
+            w_2.append(wRobot)
 
 iteraciones_totales = range(0,cuenta)
         
 #Crea un gráfico de dispersión con las coordenadas
 plt.scatter( iteraciones_totales, mu_0, label='Mu 0', color='blue')
 plt.scatter( iteraciones_totales, mu_1, label='Mu 1', color='green')
+
+
 #plt.scatter( iteraciones_totales, mu_2, label='Mu 2', color='red')
 
 #Personaliza el gráfico si lo deseas
@@ -129,6 +143,19 @@ plt.legend()
 
 #Muestra el gráfico
 plt.show()
+
+
+
+plt.scatter( iteraciones_totales, w_0, label='Evolución de w del robot 0', color='blue')
+plt.scatter( iteraciones_totales, w_1, label='Evolucion de w del robot 1', color='green')
+plt.title('Evolucion de w')
+plt.xlabel('Iteraciones')
+plt.ylabel('Valor')
+plt.legend()
+
+#Muestra el gráfico
+plt.show()
+
 
 
 distancias1 = []
