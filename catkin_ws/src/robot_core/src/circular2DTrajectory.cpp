@@ -41,7 +41,7 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({-3.5,4,1});
             posicionesRobotsNext.push_back({2,3.75,1.5});
 
-            numRobots = 3;
+            numRobots = 1;
 
             radioCirculo = 1.6;
 
@@ -79,7 +79,7 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({2,3.75,1.5});
             //posicionesRobots.push_back({2.75,-3.75,2});
 
-            numRobots = 3;
+            numRobots = 1;
 
             radioCirculo = 1.6;
 

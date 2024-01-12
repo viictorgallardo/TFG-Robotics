@@ -347,6 +347,9 @@ class CircularTrajectory{
                                 - (C * (normalizarAngulo(posicionesRobots[i].w - wTarget)) * Kw) + normalizarAngulo(mu)*Kw*D; 
 
                     /*
+                    SOLO TENIENDO EN CUENTA LA W SI QUE VA LA REPULSION COMO EN MATLAB
+                    w0 = dot_w_star 
+                                - (C * (normalizarAngulo(posicionesRobots[i].w - wTarget)) * Kw) + normalizarAngulo(mu)*Kw*D; 
                     */
 
                     cout << "La repulsion es " <<   normalizarAngulo(mu) << "y multiplicada " << normalizarAngulo(mu) * Kw * D << endl;
@@ -450,11 +453,11 @@ class CircularTrajectory{
         //double ki2 = 2; // gains 2
         //double ci = 2;
 
-        double T=0.01; // segundos
+        double T=0.1; // segundos
         double dot_w_star = pow(-1,numRobots); // 1 rad per second
         
         double Kw=1;
-        double D = 2;
+        double D = 1.5;
 
 	    double d_opt = 10*M_PI/180; // deseado al final.
         double R = 1.5*d_opt; // 15 grados. % distancia en grados entre los angulos para ser considerados vecinos.
