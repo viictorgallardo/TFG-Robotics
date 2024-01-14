@@ -229,8 +229,8 @@ class CircularTrajectory{
                     x++;
                 }
                 //Se actualiza las posiciones de los robots con la odometria real
-                posicionesRobots[info_msg[0]].x = info_msg[1];
-                posicionesRobots[info_msg[0]].y = info_msg[2]; 
+                //posicionesRobots[info_msg[0]].x = info_msg[1];
+                //posicionesRobots[info_msg[0]].y = info_msg[2]; 
 
                 ROS_INFO("He recibido un pedir siguiente de %f con posiciones %f, %f" ,info_msg[0], info_msg[1], info_msg[2]);
                 //Los 3 robots han llegado a sus metas, asignar nuevas
@@ -521,10 +521,10 @@ class CircularTrajectory{
         double Kw= 0.5;
         double D = 1;
 
-	    double d_opt = 10*M_PI/180; // deseado al final.
+	    double d_opt = 30*M_PI/180; // deseado al final.
         double R = 1.5*d_opt; // 15 grados. % distancia en grados entre los angulos para ser considerados vecinos.
-        double r = 5 * M_PI/180; // por ejemplo son factibles.
-        double r_tope = 2*M_PI/180; 
+        double r = 15 * M_PI/180; // por ejemplo son factibles.
+        double r_tope = 5*M_PI/180; 
 
 
         double factor_C = (r-r_tope) / ( (numRobots-1) * (d_opt - r_tope) * (1.5 * d_opt - r) );
