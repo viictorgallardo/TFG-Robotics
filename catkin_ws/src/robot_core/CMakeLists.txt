@@ -147,6 +147,7 @@ add_executable(followTargets src/followTargets.cpp)
 add_executable(teleop_twist_keyboard src/teleop_twist_keyboard.cpp)
 add_executable(circularTrajectory src/circular2DTrajectory.cpp)
 add_executable(moveRobot src/moveRobot.cpp)
+add_executable(moveRobotReal src/moveRobotReal.cpp)
 add_executable(lissajousTrajectory src/Lissajous2DTrajectory.cpp)
 
 ## Rename C++ executable without prefix
@@ -169,6 +170,7 @@ target_link_libraries(followTargets ${catkin_LIBRARIES})
 target_link_libraries(teleop_twist_keyboard ${catkin_LIBRARIES})
 target_link_libraries(circularTrajectory ${catkin_LIBRARIES})
 target_link_libraries(moveRobot ${catkin_LIBRARIES})
+target_link_libraries(moveRobotReal ${catkin_LIBRARIES})
 target_link_libraries(lissajousTrajectory ${catkin_LIBRARIES})
 
 #############
