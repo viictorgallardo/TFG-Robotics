@@ -32,18 +32,32 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            posicionesRobots.push_back({-4,-4,0.5});
-            posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({2,3.75,1.5});
-            //posicionesRobots.push_back({2.75,-3.75,2});
+            double x0 = 0 + radioCirculo * cos(0);
+            double y0 = 0 + radioCirculo * sin(0);
 
-            posicionesRobotsNext.push_back({-4,-4,0.5});
-            posicionesRobotsNext.push_back({-3.5,4,1});
-            posicionesRobotsNext.push_back({2,3.75,1.5});
+            cout << "X0 es " << x0 << " Y0 es " << y0 << endl;
 
-            numRobots = 1;
+            double x1 = 0 + radioCirculo * cos(1);
+            double y1 = 0 + radioCirculo * sin(1);
 
-            radioCirculo = 1.6;
+
+            cout << "X1 es " << x1 << " Y1 es " << y1 << endl;
+
+            double x2 = 0 + radioCirculo * cos(2);
+            double y2 = 0 + radioCirculo * sin(2);
+
+            cout << "X2 es " << x2 << " Y2 es " << y2 << endl;
+
+            posicionesRobots.push_back({x0,y0,0});
+            posicionesRobots.push_back({x1,y1,1});
+            posicionesRobots.push_back({x2,y2,2});
+
+            posicionesRobotsNext.push_back({x0,y0,0});
+            posicionesRobotsNext.push_back({x1,y1,1});
+            posicionesRobotsNext.push_back({x2,y2,2});
+        
+
+            
 
 
             numPedirSiguienteRecibidos = 0;
@@ -69,7 +83,31 @@ class CircularTrajectory{
         //Constructor que realiza unicamente la fase de calculo
         CircularTrajectory(int iters){
 
+            double x0 = 0 + radioCirculo * cos(0);
+            double y0 = 0 + radioCirculo * sin(0);
+
+            cout << "X0 es " << x0 << " Y0 es " << y0 << endl;
+
+            double x1 = 0 + radioCirculo * cos(1);
+            double y1 = 0 + radioCirculo * sin(1);
+
+
+            cout << "X1 es " << x1 << " Y1 es " << y1 << endl;
+
+            double x2 = 0 + radioCirculo * cos(2);
+            double y2 = 0 + radioCirculo * sin(2);
+
+            cout << "X2 es " << x2 << " Y2 es " << y2 << endl;
+
+            posicionesRobots.push_back({x0,y0,0});
+            posicionesRobots.push_back({x1,y1,1});
+            posicionesRobots.push_back({x2,y2,2});
+
+            posicionesRobotsNext.push_back({x0,y0,0});
+            posicionesRobotsNext.push_back({x1,y1,1});
+            posicionesRobotsNext.push_back({x2,y2,2});
         
+            /*
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({2,3.75,1.5});
@@ -77,16 +115,14 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({-4,-4,0.5});
             posicionesRobotsNext.push_back({-3.5,4,1});
             posicionesRobotsNext.push_back({2,3.75,1.5});
+            */
             //posicionesRobots.push_back({2.75,-3.75,2});
 
-            numRobots = 1;
-
-            radioCirculo = 1.6;
+            
 
             cout << "Calculos para r : " << r << "y R: " << R << endl;
 
 
-            numPedirSiguienteRecibidos = 0;
 
 
 
@@ -144,9 +180,9 @@ class CircularTrajectory{
                 //cout << "LIMITE SUPERIOR R PASADO" << endl;
                 return 0;
             }else if(wVecino > r && wVecino <= R){
-                return (R-wVecino)/((wVecino-r_tope)*(R-r));
-            }else if( wVecino > 0 && wVecino <= r){
-                return 1/(r-r_tope);
+                return ((R-wVecino)/((wVecino-r_tope)*(R-r))) *(r-r_tope); // este factor normaliza
+            }else{
+                return (1/(r-r_tope)) * (r-r_tope);
             }
             
         }
@@ -174,6 +210,8 @@ class CircularTrajectory{
         } 
 
         void pedirSiguienteGoal(const std_msgs::String msg){
+
+            double u1,u2,mu,w0;
             
             
             string aux = msg.data;
@@ -202,27 +240,42 @@ class CircularTrajectory{
 
                     for(int i = 0; i < numRobots; i++){
                             //Para robot0... mas tarde se hara con odometria
-                        u1 = - radioCirculo*  sin(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
-                        u2 =  radioCirculo* cos(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
+                        u1 = dot_w_star * (-radioCirculo*  sin(posicionesRobots[i].w)) - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
+                        u2 =  dot_w_star * (radioCirculo* cos(posicionesRobots[i].w)) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
 
 
-                        double mu = 0;
+                        mu = 0;
                         //Vecindario para un robot
                         for(int j = 0 ; j < numRobots; j++){
                             if(i != j){
+                                //Repulsión para dicha pareja de robots
                                 double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                                 wimenosj = normalizarAngulo(wimenosj);
+                                cout << "Valores : " << wimenosj << endl;
+                                double repulsionAux = calcularAlpha2(abs(wimenosj));
+                                //Mirar si por lo que sea han coincidido las 2 posiciones w
+                                if(abs(wimenosj) == 0){
+                                    if( i < j){
+                                        mu += repulsionAux* -1;
+                                    }else{
+                                        mu += repulsionAux* 1;
+                                    }
+                                    
+                                }else{
+                                // Comportamiento normal
+                                    mu += repulsionAux* (wimenosj/abs(wimenosj));
+                                }
                                 
-                                mu += calcularAlpha2( abs(wimenosj))* (wimenosj/abs(wimenosj));
                                 
                             }
                         }
                     
 
-                        //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                        w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
+                            //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
+                        w0 = dot_w_star + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
                                 + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
-                                - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget))) + normalizarAngulo(mu*kw); 
+                                - (C* (normalizarAngulo(posicionesRobots[i].w - wTarget) * Kw)) + normalizarAngulo(mu) * Kw * D; 
+
 
                         
 
@@ -267,7 +320,7 @@ class CircularTrajectory{
 
                     //Se actualiza la w virtual segun su derivada ( mirar paper )
                     // Se normaliza para que no salga de la esfera, es el angulo con el que deberia ir el platooning
-                    wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
+                    wTarget = normalizarAngulo(wTarget + (T * dot_w_star));
 
                     sleep(0.1);
                     
@@ -280,6 +333,7 @@ class CircularTrajectory{
 
 
         void calcularIGoal(int N){
+            double u1,u2,mu,w0;
 
             ofstream trazasSalida("src/robot_core/src/aux/salida_logs.txt", ios::out);
             ofstream coordenadas("src/robot_core/src/aux/coordenadasR0.txt",ios::out);
@@ -299,20 +353,33 @@ class CircularTrajectory{
 
                 for(int i = 0; i < numRobots; i++){
                         //Para robot0... mas tarde se hara con odometria
-                    u1 = - radioCirculo*  sin(posicionesRobots[i].w) - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
-                    u2 =  radioCirculo* cos(posicionesRobots[i].w) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
+                    u1 = dot_w_star * (-radioCirculo*  sin(posicionesRobots[i].w)) - ki1 * posicionesRobots[i].x + ki1* radioCirculo* cos(posicionesRobots[i].w);
+                    u2 =  dot_w_star * (radioCirculo* cos(posicionesRobots[i].w)) - ki2*posicionesRobots[i].y + ki2* radioCirculo* sin(posicionesRobots[i].w);
 
 
                     mu = 0;
                     //Vecindario para un robot
                     for(int j = 0 ; j < numRobots; j++){
                         if(i != j){
+                            //Repulsión para dicha pareja de robots
                             double wimenosj = posicionesRobots[i].w - posicionesRobots[j].w;
                             wimenosj = normalizarAngulo(wimenosj);
-                            //cout << "Valores : " << wimenosj << endl;
-                            double alfa = calcularAlpha2( abs(wimenosj));
-                            mu += alfa * (wimenosj/abs(wimenosj));
-                            medidas << alfa << endl;
+                            cout << "Valores : " << wimenosj << endl;
+                            double repulsionAux = calcularAlpha2(abs(wimenosj));
+                            medidas << repulsionAux << endl;
+                            //Mirar si por lo que sea han coincidido las 2 posiciones w
+                            if(abs(wimenosj) == 0){
+                                if( i < j){
+                                    mu += repulsionAux* -1;
+                                }else{
+                                    mu += repulsionAux* 1;
+                                }
+                                
+                            }else{
+                               // Comportamiento normal
+                                mu += repulsionAux* (wimenosj/abs(wimenosj));
+                            }
+                            
                             
                         }
                     }
@@ -320,9 +387,9 @@ class CircularTrajectory{
                 
 
                     //Ahora mismo se hace sin el termino de la repulsion para ver si hacen rendezvous con w*
-                    w0 = 1 + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
+                    w0 = dot_w_star + ki1 * (posicionesRobots[i].x -  radioCirculo* cos(posicionesRobots[i].w)) * (- radioCirculo* sin(posicionesRobots[i].w))
                             + ki2 * (posicionesRobots[i].y -  radioCirculo* sin(posicionesRobots[i].w)) * ( radioCirculo* cos(posicionesRobots[i].w))
-                            - (ci * (normalizarAngulo(posicionesRobots[i].w - wTarget)) + normalizarAngulo(mu*kw)); 
+                            - (C* (normalizarAngulo(posicionesRobots[i].w - wTarget) * Kw)) + normalizarAngulo(mu) * Kw * D; 
 
                     
 
@@ -334,7 +401,7 @@ class CircularTrajectory{
 
                     trazasSalida << "Posicion robot "<< i << " "<< posicionesRobots[i].x <<"   " <<  posicionesRobots[i].y
                     << "   "  << posicionesRobots[i].w << " w* "  <<  wTarget<<   "  wi - w* " 
-                    <<  normalizarAngulo(posicionesRobots[i].w - wTarget) << "   " <<   mu*kw << endl;
+                    <<  normalizarAngulo(posicionesRobots[i].w - wTarget) << "   " <<   mu*Kw << endl;
                     /*if(i == 0){
                         trazasSalida << calcularDistancia(posicionesRobots[i].x,posicionesRobots[i].y,posicionesRobots[1].x,posicionesRobots[1].y) << endl;;
                     }else{
@@ -390,8 +457,8 @@ class CircularTrajectory{
                 }
 
                 //Siguiente valor de w*
-                wTarget = normalizarAngulo(wTarget + (T * multiplicadorW));
-                sleep(0.1);
+                wTarget = normalizarAngulo(wTarget + (T * dot_w_star));
+                //sleep(0.1);
         
             }
 
@@ -435,55 +502,40 @@ class CircularTrajectory{
 
         vector<PosiRobot> posicionesRobots;
         vector<PosiRobot> posicionesRobotsNext;
-        int numRobots;
+        int numRobots = 3;
+        double radioCirculo = 1.8;
 
-        double radioCirculo;
 
-
-        double T = 0.1; // 100 milisegundos
+    
         double wTarget = 0; // w*
-        double ki1 = 3.5; // gains 1 
-        double ki2 = 3.5; // gains 2
-        double kw = 0.2; // ganancia de la w para evitar que cambie mucho
-        double ci = 1; // ganancia ci
+        double ki1 = 3; // gains 1 
+        double ki2 = 3; // gains 2
 
-       
+        //double ki1 = 2; // gains 1 
+        //double ki2 = 2; // gains 2
+        //double C= 2;
 
-        //Hay que diferenciar el publicador de cada robot
-
-    
+        double T=0.1; // segundos
+        double dot_w_star = pow(-1,numRobots); // 1 rad per second
         
-        double u1,u2,mu,w0;
-    
-        
+        double Kw= 0.5;
+        double D = 1;
 
-        int i = 0;
+	    double d_opt = 10*M_PI/180; // deseado al final.
+        double R = 1.5*d_opt; // 15 grados. % distancia en grados entre los angulos para ser considerados vecinos.
+        double r = 5 * M_PI/180; // por ejemplo son factibles.
+        double r_tope = 2*M_PI/180; 
 
-        //double r_tope = 0.078;
-        //double r = 0.15;
-        //double R = 0.78;
-        // Para 2 robots:
-        double r_tope = 0.25;
-        double r = 0.5;
-        double R = 1.5;
 
-        //Para 3 robots
-        //double r_tope = 0.25;
-        //double r = 0.5;
-        //double R = 1;
+        double factor_C = (r-r_tope) / ( (numRobots-1) * (d_opt - r_tope) * (1.5 * d_opt - r) );
+        double C = D * factor_C;
 
-        double A = 0.75;
-        double B = 0.3;
 
 
         //METRICAS A SACAR
 
         double errorX = 0;
         double errorY = 0;
-
-
-        //Multiplicador de W* para cambiar velocidad de platooning
-        double multiplicadorW = 1;
 
         
 
@@ -501,7 +553,7 @@ int main(int argc, char **argv)
         string aux = argv[1];
         if(aux == "calcular"){
             ros::init(argc, argv, "circularTrajectory");
-            CircularTrajectory synchronizer(10000);
+            CircularTrajectory synchronizer(1000);
         }else{
             cout << " PArametro " << argv[1] << endl;
             cout << "Argumento fallido: Introduce calcular o nada depende la opción que quieras hacer." << endl;

@@ -225,6 +225,8 @@ class CircularTrajectory{
         } 
 
         void pedirSiguienteGoal(const std_msgs::String msg){
+
+            double u1,u2,mu,w0;
             
             string aux = msg.data;
             double info_msg[3]; // guarda id, x , y
@@ -342,6 +344,8 @@ class CircularTrajectory{
 
 
         void calcularIGoal(int N){
+
+            double u1,u2,mu,w0;
 
             ofstream trazasSalida("src/robot_core/src/aux/salida_logs.txt", ios::out);
             ofstream coordenadas("src/robot_core/src/aux/coordenadasR0.txt",ios::out);
@@ -520,7 +524,7 @@ class CircularTrajectory{
         double C = D * factor_C;
 
         
-        double u1,u2,mu,w0;
+        
     
         
 

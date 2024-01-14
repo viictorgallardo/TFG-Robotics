@@ -136,9 +136,11 @@ plt.legend()
 #Muestra el gráfico
 plt.show()
 
+w_0 = []
+w_1 = []
+w_2 = []
 
 cuenta = 0
-
 with open(salida_logs, 'r') as archivo1:
     for linea in archivo1:
 
@@ -160,13 +162,20 @@ with open(salida_logs, 'r') as archivo1:
         elif indice_robot == 2:
             mu_2.append(ultimo_numero)
 
+        wRobot = float(palabras[5])
+        if indice_robot == 0:
+            w_0.append(wRobot)
+        elif indice_robot == 1:
+            w_1.append(wRobot)
+        elif indice_robot == 2:
+            w_2.append(wRobot)
 
 iteraciones_totales = range(0,cuenta)
         
 #Crea un gráfico de dispersión con las coordenadas
 plt.scatter( iteraciones_totales, mu_0, label='Mu 0', color='blue')
 plt.scatter( iteraciones_totales, mu_1, label='Mu 1', color='green')
-#plt.scatter( iteraciones_totales, mu_2, label='Mu 2', color='red')
+plt.scatter( iteraciones_totales, mu_2, label='Mu 2', color='red')
 
 #Personaliza el gráfico si lo deseas
 plt.title('Gráfico de Repulsión')
