@@ -92,11 +92,11 @@ define modelPractica model
 
 
 # throw in a robot
-erratic( pose [ 2 0 0 0 ] name "Robot1" color "blue")
+erratic( pose [ 3 0 0 0 ] name "Robot1" color "blue")
 
-erratic( pose [ 0.798062 0.671546 0 0 ] name "Robot2" color "green")
+erratic( pose [ 1.8 1.7 0 0 ] name "Robot2" color "green")
 
-erratic( pose [ -0.588855 -0.535444 0 0 ] name "Robot3" color "red")
+erratic( pose [ -1.5 -1.5 0 0 ] name "Robot3" color "red")
 
 #erratic( pose [ 2.75 -3.75 0 0 ] name "Robot4" color "yellow")
 

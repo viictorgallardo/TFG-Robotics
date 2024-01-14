@@ -30,7 +30,7 @@ class CircularTrajectory{
         CircularTrajectory(){
 
         
-            
+            /*
             double x0 = radioCirculo * cos(0) / (1 + alpha_liss * pow(sin(0), 2));
             double y0 = radioCirculo * cos(0) * sin(0) / (1 + alpha_liss * pow(sin(0), 2));
 
@@ -54,6 +54,16 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({x0,y0,0});
             posicionesRobotsNext.push_back({x1,y1,1});
             posicionesRobotsNext.push_back({x2,y2,2});
+
+            */
+
+            posicionesRobots.push_back({3,0,0});
+            posicionesRobots.push_back({1.8,1.7,1});
+            posicionesRobots.push_back({-1.5,-1.5,2});
+
+            posicionesRobotsNext.push_back({3,0,0});
+            posicionesRobotsNext.push_back({1.8,1.7,1});
+            posicionesRobotsNext.push_back({-1.5,-1.5,2});
         
 
             numPedirSiguienteRecibidos = 0;
@@ -80,7 +90,7 @@ class CircularTrajectory{
         CircularTrajectory(int iters){
 
             
-
+            /*
             //Dentro de la trayectoria lissajous: 
 
             double x0 = radioCirculo * cos(0) / (1 + alpha_liss * pow(sin(0), 2));
@@ -108,8 +118,15 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({x2,y2,2});
             //posicionesRobots.push_back({2,2,1.5});
             
-
+            */
         
+            posicionesRobots.push_back({3,0,0});
+            posicionesRobots.push_back({1.8,1.7,1});
+            posicionesRobots.push_back({-1.5,-1.5,2});
+
+            posicionesRobotsNext.push_back({3,0,0});
+            posicionesRobotsNext.push_back({1.8,1.7,1});
+            posicionesRobotsNext.push_back({-1.5,-1.5,2});
 
 
 
