@@ -490,12 +490,12 @@ class CircularTrajectory{
         double dot_w_star = pow(-1,numRobots); // 1 rad per second
         
         double Kw=0.5;
-        double D = 2;
+        double D = 1.2;
 
-	    double d_opt = 50*M_PI/180; // deseado al final.
+	    double d_opt = 30*M_PI/180; // deseado al final.
         double R = 1.5*d_opt; // 15 grados. % distancia en grados entre los angulos para ser considerados vecinos.
-        double r = 30 * M_PI/180; // por ejemplo son factibles.
-        double r_tope = 10*M_PI/180; 
+        double r = 20 * M_PI/180; // por ejemplo son factibles.
+        double r_tope = 5*M_PI/180; 
 
 
         double alpha_liss = 0.5;
