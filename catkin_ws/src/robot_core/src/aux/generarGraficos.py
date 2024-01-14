@@ -175,7 +175,7 @@ iteraciones_totales = range(0,cuenta)
 #Crea un gráfico de dispersión con las coordenadas
 plt.scatter( iteraciones_totales, mu_0, label='Mu 0', color='blue')
 plt.scatter( iteraciones_totales, mu_1, label='Mu 1', color='green')
-plt.scatter( iteraciones_totales, mu_2, label='Mu 2', color='red')
+#plt.scatter( iteraciones_totales, mu_2, label='Mu 2', color='red')
 
 #Personaliza el gráfico si lo deseas
 plt.title('Gráfico de Repulsión')

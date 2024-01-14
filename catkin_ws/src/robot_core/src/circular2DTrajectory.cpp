@@ -56,13 +56,13 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({x1,y1,1});
             posicionesRobotsNext.push_back({x2,y2,2});
             */
-            posicionesRobots.push_back({-4,-4,0.5});
-            posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({2,3.75,1.5});
+            posicionesRobots.push_back({-2,-2,0.5});
+            posicionesRobots.push_back({-1.5,2,1});
+            //posicionesRobots.push_back({2,3.75,1.5});
 
-            posicionesRobotsNext.push_back({-4,-4,0.5});
-            posicionesRobotsNext.push_back({-3.5,4,1});
-            posicionesRobotsNext.push_back({2,3.75,1.5});
+            posicionesRobotsNext.push_back({-2,-2,0.5});
+            posicionesRobotsNext.push_back({-1.5,2,1});
+            //posicionesRobotsNext.push_back({2,3.75,1.5});
         
 
             
@@ -116,13 +116,13 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({x2,y2,2});
             */
             
-            posicionesRobots.push_back({-4,-4,0.5});
-            posicionesRobots.push_back({-3.5,4,1});
-            posicionesRobots.push_back({2,3.75,1.5});
+            posicionesRobots.push_back({-2,-2,0.5});
+            posicionesRobots.push_back({-1.5,2,1});
+            //posicionesRobots.push_back({2,3.75,1.5});
 
-            posicionesRobotsNext.push_back({-4,-4,0.5});
-            posicionesRobotsNext.push_back({-3.5,4,1});
-            posicionesRobotsNext.push_back({2,3.75,1.5});
+            posicionesRobotsNext.push_back({-2,-2,0.5});
+            posicionesRobotsNext.push_back({-1.5,2,1});
+            //posicionesRobotsNext.push_back({2,3.75,1.5});
             
             //posicionesRobots.push_back({2.75,-3.75,2});
 
@@ -451,8 +451,8 @@ class CircularTrajectory{
                 //double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
                 //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
 
-                double muestraW1 = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
-                double muestraW2 = calcularDistancia(posicionesRobots[2].x,posicionesRobots[2].y,posicionesRobots[0].x,posicionesRobots[0].y);
+                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[0].w);
+                double muestraW2 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
                 //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
                 distancias << abs(muestraW1) <<  "," << abs(muestraW2) <<
                         endl;
@@ -510,8 +510,8 @@ class CircularTrajectory{
 
         vector<PosiRobot> posicionesRobots;
         vector<PosiRobot> posicionesRobotsNext;
-        int numRobots = 3;
-        double radioCirculo = 1.8;
+        int numRobots = 1;
+        double radioCirculo = 1.6;
 
 
     
@@ -526,7 +526,7 @@ class CircularTrajectory{
         double T=0.1; // segundos
         double dot_w_star = pow(-1,numRobots); // 1 rad per second
         
-        double Kw= 1;
+        double Kw= 0.5;
         double D = 1;
 
 	    double d_opt = 30*M_PI/180; // W deseado al final.

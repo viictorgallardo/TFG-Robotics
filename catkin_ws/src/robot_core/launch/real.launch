@@ -1,0 +1,15 @@
+<launch>
+
+
+	<node name="stage_sim" pkg="stage_ros" type="stageros" args="$(find robot_core)/world/simulationWorld.world" output="screen"/>
+  
+	<node name="robot_0" pkg="robot_core" type="moveRobot" output="screen" args="0">
+        <remap from="/pose" to="/turtlebot_1/amcl_pose"/>
+		<remap from="/scan" to="/turtlebot_1/scan"/>
+		<remap from="/cmd_vel" to="/turtlebot_1/cmd_vel_mux/input/teleop"/>
+        <remap from="/pedirSiguienteGoal" to="/robot_0/pedirSiguienteGoal"/>
+	</node>
+
+
+	
+</launch>

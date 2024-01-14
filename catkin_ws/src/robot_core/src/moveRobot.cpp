@@ -11,6 +11,10 @@
 #include <string>
 
 
+
+#include <geometry_msgs/PoseWithCovarianceStamped.h>
+
+
 using namespace std;
 
 class NodeSync
@@ -27,7 +31,8 @@ class NodeSync
     hayObstaculo = false;
     //Estos dos no se ponen a robot_0 porque ya se remapearon en el start.launch
     scan_sub_.subscribe(nh_, "/scan", 1);
-    pose_sub_.subscribe(nh_, "/pose", 1);
+    //pose_sub_.subscribe(nh_, "/pose", 1);
+    turtleBot_pose_sub_.subscribe(nh_, "/pose", 1);
     goal_sub_ = nh_.subscribe(goal_sub_aux, 1, &NodeSync::goalCb, this);
 
     //Canal que manda si cada robot quiere una nueva meta( True = si quiere False = En caso contrario)
@@ -44,7 +49,7 @@ class NodeSync
 
     //Tampoco se pone robot0 ya esta remapeado
     velocity_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1);
-    sync_.reset(new Sync(MySyncPolicy(10), scan_sub_, pose_sub_));
+    sync_.reset(new Sync(MySyncPolicy(10), scan_sub_, turtleBot_pose_sub_));
     sync_->registerCallback(boost::bind(&NodeSync::callback, this, _1, _2));
 
 
@@ -69,7 +74,7 @@ class NodeSync
     que controla el robot en su camino a una meta Goal. Además si el laser detecta un 
     obstaculo cerca, lo detiene
     */
-  void callback(const sensor_msgs::LaserScan::ConstPtr& laser_scan, const nav_msgs::Odometry::ConstPtr& estimate_pose)
+  void callback(const sensor_msgs::LaserScan::ConstPtr& laser_scan, const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& estimate_pose)
   {
     //ROS_INFO("Synchronization successful");
     if(primerMensaje == true){
@@ -220,15 +225,16 @@ class NodeSync
   }
 
  private:
-  ros::NodeHandle nh_;
+   ros::NodeHandle nh_;
   message_filters::Subscriber<sensor_msgs::LaserScan> scan_sub_;
-  message_filters::Subscriber<nav_msgs::Odometry> pose_sub_;
+  //message_filters::Subscriber<nav_msgs::Odometry> pose_sub_;
+  message_filters::Subscriber<geometry_msgs::PoseWithCovarianceStamped> turtleBot_pose_sub_;
   ros::Subscriber goal_sub_;
   ros::Publisher velocity_pub_;
   ros::Publisher pedirSiguienteGoal_pub;
   ros::Publisher hayObstaculo_pub_;
 
-  typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::LaserScan, nav_msgs::Odometry> MySyncPolicy;
+  typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::LaserScan, geometry_msgs::PoseWithCovarianceStamped> MySyncPolicy;
   typedef message_filters::Synchronizer<MySyncPolicy> Sync;
   boost::shared_ptr<Sync> sync_;
   ros::Publisher laser_data_pub;
@@ -243,7 +249,6 @@ class NodeSync
   double anteriorAlpha; 
   string r_id;
   bool hayObstaculo;
-
 };
 
 int main(int argc, char **argv)

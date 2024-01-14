@@ -7,6 +7,7 @@ robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.o: /opt/ros/noetic/include
 robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
 robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.o: /opt/ros/noetic/include/geometry_msgs/PoseStamped.h
 robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.o: /opt/ros/noetic/include/geometry_msgs/PoseWithCovariance.h
+robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.o: /opt/ros/noetic/include/geometry_msgs/PoseWithCovarianceStamped.h
 robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.o: /opt/ros/noetic/include/geometry_msgs/QuaternionStamped.h
 robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.o: /opt/ros/noetic/include/geometry_msgs/Transform.h
