@@ -31,7 +31,7 @@ class CircularTrajectory{
         //Constructor que utiliza el nodo para comunicarse con los robots
         CircularTrajectory(){
 
-        
+            /*
             double x0 = 0 + radioCirculo * cos(0);
             double y0 = 0 + radioCirculo * sin(0);
 
@@ -55,6 +55,14 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({x0,y0,0});
             posicionesRobotsNext.push_back({x1,y1,1});
             posicionesRobotsNext.push_back({x2,y2,2});
+            */
+            posicionesRobots.push_back({-4,-4,0.5});
+            posicionesRobots.push_back({-3.5,4,1});
+            posicionesRobots.push_back({2,3.75,1.5});
+
+            posicionesRobotsNext.push_back({-4,-4,0.5});
+            posicionesRobotsNext.push_back({-3.5,4,1});
+            posicionesRobotsNext.push_back({2,3.75,1.5});
         
 
             
@@ -82,7 +90,7 @@ class CircularTrajectory{
 
         //Constructor que realiza unicamente la fase de calculo
         CircularTrajectory(int iters){
-
+            /*
             double x0 = 0 + radioCirculo * cos(0);
             double y0 = 0 + radioCirculo * sin(0);
 
@@ -106,8 +114,8 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({x0,y0,0});
             posicionesRobotsNext.push_back({x1,y1,1});
             posicionesRobotsNext.push_back({x2,y2,2});
-        
-            /*
+            */
+            
             posicionesRobots.push_back({-4,-4,0.5});
             posicionesRobots.push_back({-3.5,4,1});
             posicionesRobots.push_back({2,3.75,1.5});
@@ -115,7 +123,7 @@ class CircularTrajectory{
             posicionesRobotsNext.push_back({-4,-4,0.5});
             posicionesRobotsNext.push_back({-3.5,4,1});
             posicionesRobotsNext.push_back({2,3.75,1.5});
-            */
+            
             //posicionesRobots.push_back({2.75,-3.75,2});
 
             
@@ -443,8 +451,8 @@ class CircularTrajectory{
                 //double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[2].w);
                 //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
 
-                double muestraW1 = normalizarAngulo(posicionesRobots[1].w - posicionesRobots[0].w);
-                double muestraW2 = calcularDistancia(posicionesRobots[1].x,posicionesRobots[1].y,posicionesRobots[0].x,posicionesRobots[0].y);
+                double muestraW1 = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
+                double muestraW2 = calcularDistancia(posicionesRobots[2].x,posicionesRobots[2].y,posicionesRobots[0].x,posicionesRobots[0].y);
                 //double muestraW2  = normalizarAngulo(posicionesRobots[2].w - posicionesRobots[0].w);
                 distancias << abs(muestraW1) <<  "," << abs(muestraW2) <<
                         endl;
@@ -518,10 +526,10 @@ class CircularTrajectory{
         double T=0.1; // segundos
         double dot_w_star = pow(-1,numRobots); // 1 rad per second
         
-        double Kw= 0.5;
+        double Kw= 1;
         double D = 1;
 
-	    double d_opt = 30*M_PI/180; // deseado al final.
+	    double d_opt = 30*M_PI/180; // W deseado al final.
         double R = 1.5*d_opt; // 15 grados. % distancia en grados entre los angulos para ser considerados vecinos.
         double r = 15 * M_PI/180; // por ejemplo son factibles.
         double r_tope = 5*M_PI/180; 
