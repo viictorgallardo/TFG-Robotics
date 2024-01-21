@@ -13,11 +13,11 @@ Resumiendo, este repositorio propone cosas como trayectorias circulares de N rob
 
 Trayectorias *Lissajous* de N robots...
 
+![Imagen trayectoria *Lissajous*](https://github.com/viictorgallardo/TFG-Robotics/blob/main/catkin_ws/src/robot_core/assets/3NLiss-Trayec.png)
 
 Incluso pruebas en real...
 
-
-
+![Imagen Turtlebot](https://github.com/viictorgallardo/TFG-Robotics/blob/main/catkin_ws/src/robot_core/assets/Real-TurtleBot.jpeg)
 
 Se puede encontrar todo el código dentro de *robot_core* donde lo más importante es:
 
