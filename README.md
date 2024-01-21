@@ -9,7 +9,7 @@ con respecto al análisis matemático que ahí hacen.
 
 Resumiendo, este repositorio propone cosas como trayectorias circulares de N robots en un *platooning*...
 
-!
+![Imagen de trayectoria circular](https://github.com/viictorgallardo/TFG-Robotics/blob/main/catkin_ws/src/robot_core/assets/3NCirc-Trayec.png)
 
 Trayectorias *Lissajous* de N robots...
 
