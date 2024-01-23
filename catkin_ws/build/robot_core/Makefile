@@ -68,6 +68,17 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -89,17 +100,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -181,6 +181,21 @@ lissajousTrajectory: robot_core/CMakeFiles/lissajousTrajectory.dir/rule
 lissajousTrajectory/fast:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f robot_core/CMakeFiles/lissajousTrajectory.dir/build.make robot_core/CMakeFiles/lissajousTrajectory.dir/build
 .PHONY : lissajousTrajectory/fast
+
+# Convenience name for target.
+robot_core/CMakeFiles/moveRobotReal.dir/rule:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_core/CMakeFiles/moveRobotReal.dir/rule
+.PHONY : robot_core/CMakeFiles/moveRobotReal.dir/rule
+
+# Convenience name for target.
+moveRobotReal: robot_core/CMakeFiles/moveRobotReal.dir/rule
+
+.PHONY : moveRobotReal
+
+# fast build rule for target.
+moveRobotReal/fast:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f robot_core/CMakeFiles/moveRobotReal.dir/build.make robot_core/CMakeFiles/moveRobotReal.dir/build
+.PHONY : moveRobotReal/fast
 
 # Convenience name for target.
 robot_core/CMakeFiles/teleop_twist_keyboard.dir/rule:
@@ -590,6 +605,33 @@ src/moveRobot.cpp.s:
 	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f robot_core/CMakeFiles/moveRobot.dir/build.make robot_core/CMakeFiles/moveRobot.dir/src/moveRobot.cpp.s
 .PHONY : src/moveRobot.cpp.s
 
+src/moveRobotReal.o: src/moveRobotReal.cpp.o
+
+.PHONY : src/moveRobotReal.o
+
+# target to build an object file
+src/moveRobotReal.cpp.o:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f robot_core/CMakeFiles/moveRobotReal.dir/build.make robot_core/CMakeFiles/moveRobotReal.dir/src/moveRobotReal.cpp.o
+.PHONY : src/moveRobotReal.cpp.o
+
+src/moveRobotReal.i: src/moveRobotReal.cpp.i
+
+.PHONY : src/moveRobotReal.i
+
+# target to preprocess a source file
+src/moveRobotReal.cpp.i:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f robot_core/CMakeFiles/moveRobotReal.dir/build.make robot_core/CMakeFiles/moveRobotReal.dir/src/moveRobotReal.cpp.i
+.PHONY : src/moveRobotReal.cpp.i
+
+src/moveRobotReal.s: src/moveRobotReal.cpp.s
+
+.PHONY : src/moveRobotReal.s
+
+# target to generate assembly for a file
+src/moveRobotReal.cpp.s:
+	cd /home/arob/Desktop/TFG-Robotics/catkin_ws/build && $(MAKE) -f robot_core/CMakeFiles/moveRobotReal.dir/build.make robot_core/CMakeFiles/moveRobotReal.dir/src/moveRobotReal.cpp.s
+.PHONY : src/moveRobotReal.cpp.s
+
 src/readOdomScan.o: src/readOdomScan.cpp.o
 
 .PHONY : src/readOdomScan.o
@@ -651,10 +693,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/local"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... lissajousTrajectory"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... moveRobotReal"
 	@echo "... teleop_twist_keyboard"
 	@echo "... readOdomScan"
 	@echo "... circularTrajectory"
@@ -690,6 +733,9 @@ help:
 	@echo "... src/moveRobot.o"
 	@echo "... src/moveRobot.i"
 	@echo "... src/moveRobot.s"
+	@echo "... src/moveRobotReal.o"
+	@echo "... src/moveRobotReal.i"
+	@echo "... src/moveRobotReal.s"
 	@echo "... src/readOdomScan.o"
 	@echo "... src/readOdomScan.i"
 	@echo "... src/readOdomScan.s"
